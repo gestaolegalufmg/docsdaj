@@ -1,0 +1,78 @@
+metadata:
+  Title: peticao_de_juntada_do_susbtabelecimento
+---
+question: |
+  Acrescente o endereçamento
+fields:
+  - Numero da vara: numero_da_vara
+---
+mandatory: True 
+question: |
+  qual a competencia 
+fields:
+  - Competencia da vara: competencia
+---
+mandatory: True
+question: |
+  Número do Processo:
+fields:
+  - Numero: numero_do_processo
+    hint: 00000000000000
+---
+mandatory: True
+question: |
+  Acrescente o nome do cliente
+fields:
+  - Nome do Cliente: nome_do_cliente 
+---
+mandatory: True
+question: |
+  qualificado(s) nos autos da acao?
+fields:
+  - Natureza da acao: natureza_da_acao
+---
+mandatory: True
+question: |
+  Acrescente a data:
+fields:
+  - Data: data
+---
+mandatory: True
+question: |
+  Escolha o advogado para assinar a Peticao
+fields:
+  - Nome e OAB: nome_e_oab
+---
+mandatory: True
+question: |
+  - Número da Vara ${ numero_da_vara },   
+
+  - Competência ${ competencia }
+
+  - Número do Processo é ${ numero_do_processo }
+
+  - Nome do Cliente ${ nome_do_cliente }
+
+  - A data é ${ data }
+
+  - Numero da OAB: $ { nome_e_oab }
+---
+metadata:
+  title: Ação monitória
+---
+features:
+  navigation: vertical
+  progress bar: true
+  question back button: true
+  javascript:
+    - jquery-3.min.js
+    - jquery.js
+---
+sections:
+  - comarca
+  - autor
+  - reu
+  - contrato
+  - assinatura
+  - conclusão
+---
