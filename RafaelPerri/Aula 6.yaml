@@ -1,0 +1,35 @@
+metadata:
+  title: FORMULÁRIO - DECLARAÇÃO DE HIPOSSUFICIÊNCIA
+---
+question: |
+  Informações Pessoais
+fields: 
+  - "Nome completo: ": nome_declarante
+    required: True
+  - "RG: ": rg_declarante
+    required: True
+  - "CPF: ": cpf_declarante
+    required: True
+    hint: "Ex: 000.000.000-00"
+  - "Cidade: ": cidade
+    required: True
+  - "Data: ": data
+    required: True
+    datatype: date
+---
+section: Conclusão
+progress: 100
+mandatory: True
+question: |
+  O seu documento foi gerado com sucesso!
+attachment:
+  name: Declaração Hipossuficiência
+  language: pt
+  filename: decl_hipossuficiencia
+  docx template file: declaracao_hipossuficiencia.docx
+  valid formats:
+    - pdf
+    - docx
+buttons:
+  - Sair: exit
+---
