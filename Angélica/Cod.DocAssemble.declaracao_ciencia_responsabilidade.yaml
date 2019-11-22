@@ -1,0 +1,52 @@
+metadata:
+  title: Declaração de Ciência e Responsabilidade
+---
+features:
+  navigation: horizontal
+  progress bar: True
+  question back button: True
+---
+sections: 
+  - Dados do Declarante
+  - Data de Assinatura
+---
+question: |
+  Dados do Declarante
+subquestion: |
+  Preencha os Campos Obrigatórios
+fields:
+  - 'Nome:': nome_do_declarante
+    required: True
+  - 'Número CPF:': cpf_declarante
+    required: True
+    hint: "000.000.000-00"
+    help: 'O CPF deverá ser digitado no formato 000.000.000-00'
+  - 'RG:': numero_rg
+section: Dados do Declarante
+progress: 50
+mandatory: True
+---
+question: |
+  Data
+subquestion: |
+  Preencha a Data de Assinatura da Declaração
+fields:
+  - 'Data:': data
+    datatype: date
+    required: True
+section: Data de Assinatura
+progress: 100
+mandatory: True
+---
+question: |
+  Aqui está o seu documento.
+attachment:
+  name: Declaração de Ciência e Responsabilidade
+  language: pt
+  filename: declaracao_ciencia_responsabilidade
+  docx template file: declaracao_ciencia_responsabilidade.docx
+  valid formats: 
+    - pdf
+    - docx
+mandatory: True
+---
