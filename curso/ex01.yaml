@@ -1,0 +1,69 @@
+metadata:
+  title: PEDIDO DE ISENÇÃO DE CUSTAS CARTORÁRIAS
+---
+mandatory: True
+question: 
+  Qual o nome do requerente?
+fields:
+  - Nome: nome_requerente
+    required: True 
+---
+mandatory: True
+question:
+  Qual o número do seu RG?
+fields:   
+  - RG: rg_requerente
+    hint: "digite letras da UF, número e órgão emissor"
+    required: True
+---
+mandatory: True
+question:
+  Qual o número do seu CPF?
+fields:
+  - CPF: cpf_requerente
+    hint: "000.000.000-00"
+    help: "O cpf deverá ser digitado no formato 000.000.000-00"
+    required: True
+---
+mandatory: True
+question:
+  Digite o dia
+fields:
+  - Dia: dia_digitado
+    hint: "digite o numeral"
+    help: "Exemplo 02, 03, 15, 30"
+    required: True
+---
+mandatory: True
+question:
+  Digite o mês
+fields:
+  - Mês: mes_digitado
+    hint: "digite o mês por extenso"
+    help: "Exemplo Setembro, Janeiro, Fevereiro"
+    required: True
+---
+mandatory: True
+question:
+  Digite o ano
+fields:
+  - Ano: ano_digitado
+    hint: "digite o ano em numeral"
+    help: "Exemplo 2019"
+    required: True
+---
+mandatory: True
+buttons:
+  - Exit: exit
+---
+
+
+
+
+
+
+
+
+
+
+
