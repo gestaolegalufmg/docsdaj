@@ -1,0 +1,56 @@
+metadata:
+  title: DECLARAÇAO
+---
+question: Declaração de comparecimento
+fields:
+  - 'assistido:': nome_assistido
+    datatype: string
+    required: True
+  - 'horario do inicio:': horario_inicio
+    datatype: time
+    required: True
+  - 'horario do termino:': horario_termino
+    datatype: time
+    required: True
+  - 'data do comparecimento:': data
+    datatype: date
+    required: True
+mandatory: True
+---
+question: Local e data
+fields:
+  - 'cidade:': cidade
+    datatype: string
+    required: True
+  - 'data assinatutura:': data
+    datatype: date
+    required: True
+---
+question: Dados do advogado
+fields:
+  - 'advogado:': advogado
+    datatype: string
+    required: True
+  - 'oab:': numeroOab
+    datatype: string
+    hint: 00000/MG
+    required: True
+mandatory: True
+---
+mandatory: True
+question: |
+  Aqui está o seu documento!
+attachment:
+  name: Declaracao
+  language: pt
+  filename: documento-declaracao
+  docx template file: documento1.docx
+  valid formats:
+    - pdf
+    - docx
+---
+features:
+  navigation: vertical
+  progress bar: True
+  question back button: True
+---
