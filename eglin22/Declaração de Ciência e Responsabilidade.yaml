@@ -1,0 +1,43 @@
+metadata:
+  title: Declaração de Ciência e Responsabilidade
+---
+features:
+  navigation: horizontal
+  progress bar: true
+  question back button: true
+---
+sections:
+  - Dados do Declarante
+  - Endereço do Declarante
+---
+section: Dados do Declarante
+progress: 50
+mandatory: true
+Question: |
+  Dados do Declarante
+fields:
+  - Nome: nome
+  - CPF: cpf
+  - RG: rg
+---
+section: Endereço do Declarante
+progress: 100
+mandatory: true
+question: |
+  Endereço do Declarante
+fields:
+  - Endereço: local
+  - Data: data
+    datatype: date
+---
+mandatory: true
+question: |
+  Aqui está o seu documento.
+attachment:
+  name: Declaração de Ciência e Responsabilidade
+  language: pt
+  filename: Declaração de Ciência e Responsabilidade - ${ nome }.
+  docx template file: declaracao.docx
+  valid formats:
+    - pdf
+---
