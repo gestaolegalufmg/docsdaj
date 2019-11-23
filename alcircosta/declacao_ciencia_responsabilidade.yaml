@@ -1,0 +1,44 @@
+metadata:
+  title: DECLARAÇÃO DE CIÊNCIA E RESPONSABILIDADE
+  authors:
+   - name: Guilherme Marcelo de Medeiros
+     organization: Didático
+---
+mandatory: True
+question: |
+  Dados do Declarante
+subquestion: |
+  Preencha os dados do Declarante
+fields:
+  - Qual seu nome: nome_declarante
+    required: True
+  - Qual seu R.G: rg_declarante
+    required: True
+    hint: 'Ex: 00.000.000'
+  - Qual seu CPF: cpf_declarante
+    required: True
+    hint: 'Ex: 000.000.000-00'
+---
+mandatory: True
+question: |
+  Local e Data
+subquestion: |
+  Preencha Local e Data
+fields:
+  - Local de assinatura: local_assinatura
+    required: True
+  - Data de assinatura: data_assinatura
+    datatype: date
+    required: True  
+---
+mandatory: True
+question: Dados do Declarante
+subquestion: |
+  Nome do declarante é ${ nome_declarante }
+  Número de Registro Geral do Declarante é ${ rg_declarante }
+  Número de Registro C.P.F do Declarante é ${ cpf_declarante }
+  Declaração assinada na comarca de ${ local_assinatura } na data de ${ data_assinatura}
+buttons:
+  Sair: exit  
+
+ 
