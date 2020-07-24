@@ -1,0 +1,68 @@
+metadata:
+  title: DECLARAÇÃO DE CIÊNCIA E RESPONSABILIDADE
+  description: Declaração de Ciência e Responsabilidade - DAJ / UFMG
+---
+features:
+  navigation: horizontal
+  progress bar: True
+  question back button: True
+---
+sections:
+  - Dados
+  - Checagem
+  - Impressão
+---
+question: Preencha os campos abaixo
+progress: 33
+fields:
+  - "Nome Completo": nome_assistido
+    hint: "Exemplo: Afonso Augusto Moreira Pena"
+    required: True
+  - "CPF": cpf_assistido
+    required: True
+    hint: "Exemplo: 123.123.123-12"
+  - "Carteira de identidade": rg_assistido
+    required: True
+    hint: "Exemplo: MG-12.123.123"
+  - "Local de emissão da Declaração": cidade
+    default: Belo Horizonte
+    help: "Por definição já está preenchido com Belo Horizonte, mude se necessário."
+    required: True
+  - "Data de emissão da Declaração": data
+    default: |
+      ${ hoje }
+    help: "Por definição já está preenchido com a data de hoje, mude se necessário."
+    required: True
+---
+code: |
+  hoje = format_date(today())
+---
+mandatory: True
+progress: 66
+question: |
+  #Confira os seus dados:  
+  Nome: ${ nome_assistido }  
+  CPF: ${ cpf_assistido }  
+  RG: ${ rg_assistido }  
+  Cidade da Declaração: ${ cidade }  
+  Data da Declaração: ${ data }
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo! Ver documento: continue
+---
+section: Conclusão
+progress: 100
+mandatory: True
+question: |
+  Aqui está o seu documento:
+attachment:
+  name: Declaração de Ciência e Responsabilidade
+  language: pt
+  filename: declaracao_ciencia_responsabilidade
+  docx template file: declaracao_ciencia_responsabilidade.docx
+  validformats:
+    - pdf
+    - docx
+---

@@ -1,0 +1,78 @@
+metadata:
+  title: Declaração de Ciência e Responsabilidade - DAJ / UFMG
+  description: Declaração de Ciência e Responsabilidade - Divisão de Assistência Jurídica / Universidade Federal de Minas Gerais
+---
+features:
+  navigation: vertical
+  progress bar: True
+  question back button: True
+---
+sections: 
+  - Declaração de ciência e responsabilidade
+  - Dados do contrato
+---
+mandatory: True
+progress: 50
+section: Declaração de ciência e responsabilidade
+question: Preencher declaração de ciência e responsabilidade?
+buttons:
+  - OK: continue
+--- 
+mandatory: True
+progress: 100
+section: Dados do contrato
+question: DADOS DO ASSISTIDO
+fields:
+  - Tipo de pessoa: tipo_pessoa
+    datatype: radio
+    choices:
+      - Física
+      - Jurídica
+  - Nome Completo: nome_assistido
+    show if:
+      variable: tipo_pessoa
+      is: Física
+  - CPF: cpf_assistido
+    hint: "Exemplo: 123.123.123-12"
+    show if:
+      variable: tipo_pessoa
+      is: Física
+  - Razão Social: empresa_assistida
+    show if:
+      variable: tipo_pessoa
+      is: Jurídica
+  - CNPJ: cnpj_assistido
+    hint: "Exemplo: 12.123.123/1234-12"
+    show if:
+      variable: tipo_pessoa
+      is: Jurídica
+  - Representante da Pessoa Jurídica: representante_assistido
+    show if:
+      variable: tipo_pessoa
+      is: Jurídica
+  - CPF do representante: cpf_representante
+    show if:
+      variable: tipo_pessoa
+      is: Jurídica
+  - Carteira de identidade: rg_assistido
+    hint: "Apenas números"
+    show if:
+      variable: tipo_pessoa
+      is: Física
+  - UF de emissão da Identidade: uf_rg
+    default: 'MG'
+    show if:
+      variable: tipo_pessoa
+      is: Física
+---
+mandatory: True
+question: |
+  Aqui está seu documento.
+attachment: 
+  name: Declaração de Ciência e Responsabilidade
+  language: pt
+  filename: declaracao_ciencia_responsabilidade
+  docx template file: declaracao_ciencia_responsabilidade.docx
+  valid formats:
+    - pdf
+    - docx

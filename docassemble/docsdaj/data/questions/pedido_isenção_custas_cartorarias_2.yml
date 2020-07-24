@@ -1,0 +1,45 @@
+metadata:
+  title: "**PEDIDO DE ISENÇÃO DE CUSTAS CARTORÁRIAS**"
+---
+question: |
+  "Preencha com seus dados:"
+fields:
+  - "Nome:": outorgante_nome
+    required: True
+  - "Nacionalidade:": outorgante_nacionalidade
+    required: True
+  - "Estado civil:": outorgante_estado_civil
+    required: True
+    datatype: dropdown
+    choices:
+      - Solteiro
+      - Casado
+      - Divorciado
+      - Viúvo
+      - Em união estável
+  - "Profissão:": outorgante_profissao
+    required: True
+  - "RG:": outorgante_rg
+    required: True
+  - "CPF:": outorgante_cpf
+    required: True
+    hint: "000.000.000-00"
+---
+question: |
+  "Data da requisição:"
+fields:
+  - "Data:": data
+    datatype: date
+---
+mandatory: True
+question: |
+Aqui está o seu documento.
+attachment:
+  name: PEDIDO DE ISENÇÃO DE CUSTAS CARTORÁRIAS
+  language: pt
+  filename: pedido_isencao_custas_cartorarias
+  docx template file: pedido_isencao_custas_cartorarias.docx
+  valid formats:
+    - pdf
+    - docx
+---

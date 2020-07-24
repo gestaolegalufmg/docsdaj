@@ -1,0 +1,69 @@
+metadata:
+  title: Procurações Grupo SADA
+---
+features:
+  navigation: horizontal
+  progress bar: True
+  question back button: True
+---
+sections:
+  - Outorgante
+  - Outorgado
+  - Tipo da Procuraçao
+  - Poderes concedidos
+  - Representante legal
+---
+mantatory: True
+section: Dados do outorgante
+progress: 20
+question: |
+  **Dados do outorgante**
+fields: 
+   - Nome: outorgante
+   - Endereco: lougradouro
+   - Numero: num
+   - Bairro: bairro
+   - Cidade/UF: Cidade_UF
+   - CEP: CEP
+   - CNPJ: cnpj
+     hint: "00.000.000/0000-00"
+mandatory: True
+---
+question: |
+  **Dados do outorgado**
+fields: 
+   - Nome: outorgado
+   - Nacionalidade: nac
+   - Estado civil: e_c
+   - Profissão: prof
+   - RG: rg
+   - CPF: cpf
+     hint: "000.000.000-00"
+mandatory: True
+---
+mandatory: true
+question: |
+  **Tipo da Procuraçao**
+fields: 
+   - Procuracao 1: Bancaria
+   - Procuracao 2: Aduaneira
+---
+question: |
+  Local da assinatura:
+fields: 
+   - Local: local
+   - Data: data
+     datatype: date
+mandatory: True
+---
+mandatory: True
+question: |
+  Aqui está o seu documento.
+attachment:
+  name: Procurações Grupo SADA
+  language: pt_BR
+  filename: ppp
+  docx template file: ppp.docx
+  valid formats:
+    - pdf
+    - docx

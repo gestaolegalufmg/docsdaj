@@ -1,0 +1,121 @@
+metadata:
+  title: Documento de Substabelecimento da DAJ
+  short title: Substabeleciemento DAJ
+  comment: "exercício do curso de programação aplicada ao direito"
+---
+mandatory: true
+question: |
+  Dados do Substabelecento
+subquestion: | 
+  No Substabelecimento, quem assina o documento é o 
+  Substabelecente, que confere ao Substabelecido poderes que lhe foram
+  conferidos por um terceiro, o outorgante.
+fields:
+  - "Nome Completo: ": nomeSubstabelecente
+---
+mandatory: true
+question: Quem será Substabelecido?
+fields:
+  - "Nome Completo: ": nomeSubstabelecido
+    required: True
+  - "Naturalidade: ": naturalidadeSubstabelecido
+    hint: "brasileiro(a)"
+    required: True
+  - "Estado Civil: ": estadoCivilSubstabelecido
+    required: True
+  - "Profissão: ": profissaoSubstabelecido 
+    required: True
+  - "CPF: ": cpfSubstabelecido
+    required: True
+  - "Logradouro: ": enderecoSubstabelecido
+    required: True
+  - "Número: ": numeroRuaSubstabelecido
+    required: True
+  - "Bairro: ": bairroSubstabelecido
+    required: True
+  - "Cidade: ": cidadeSubstabelecido
+    required: True
+  - "Estado: ": estadoSubstabelecido
+    required: True
+---
+mandatory: true
+question: |
+  Quem outorgou os poderes aos Substabelecente?
+fields:
+  - "Nome Completo: ": nomeOutorgante
+    required: True
+  - "Naturalidade: ": naturalidadeOutorgante
+    hint: "brasileiro(a)"
+    required: True
+  - "Estado Civil: ": estadoCivilOutorgante
+    required: True
+  - "Profissão: ": profissaoOutorgante 
+    required: True
+  - "CPF: ": cpfOutorgante
+    required: True
+  - "Logradouro: ": enderecoOutorgante
+    required: True
+  - "Número: ": numeroRuaOutorgante
+    required: True
+  - "Bairro: ": bairroOutorgante
+    required: True
+  - "Cidade: ": cidadeOutorgante
+    required: True
+  - "Estado: ": estadoOutorgante
+    required: True
+---   
+question: |
+  A que ação o Substabelecimento se refere?
+fields:
+  - "Nome/tipo da ação: ": nomeAcao
+    hint: "Ex. Ação de alimentos, ação revisional de contrato."
+  - "Número do processo: ": numeroAcao
+    required: True
+mandatory: true
+---
+mandatory: True
+question: |
+  Que dia é hoje?
+fields:
+  - "Dia do Mês: ": dia
+    hint: "Ex. 23."
+  - "Mês: ": mes
+  - "Ano: ": ano
+---
+mandatory: true
+section: Conclusao
+progress: 100
+question: |
+  Aqui está o seu documento.
+attachment:
+  name: Substabelecimento
+  language: pt
+  filename: substabelecimento
+  docx template file: substabelecimento.docx
+  valid formats:
+  - pdf
+  - docx
+---
+  
+  # - "Checkboxes:": opcao_checkbox
+  #   datatype: checkboxes 
+  #   choices:
+  #   - A: A
+  #   - B: B
+  #   - C: C
+  #   required: False
+  # - "Dropdown:": opcao_dropdown
+  #   datatype: dropdown
+  #   choices:
+  #   - A: A
+  #   - B: B
+  #   - C: C
+    
+  # - "Radio": opcao_radio
+  #   datatype: radio
+  #   choices:
+  #   - A: A
+  #   - B: B
+  #   - C: C
+  #   required: False
+  # - 

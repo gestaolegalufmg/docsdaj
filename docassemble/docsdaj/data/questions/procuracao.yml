@@ -1,0 +1,57 @@
+metadata:
+  title: Entrevista
+---
+features:
+  progress bar: true
+  question back button: true
+---
+progress: 30
+question: |
+  Informe os seus dados.
+subquestion: |
+  O CPF deverá ser informado no formato 000.000.000-00
+  
+  O RG deverá ser informado no formato 00.000.000
+fields: 
+  - Nome Completo: nome_autor
+    hint: "Ex: João Almeida Avelar Campos"
+  - CPF: cpf_autor
+    hint: "000.000.000-00"
+  - RG: rg_autor
+    hint: "XX-00.000.000"
+---
+progress: 50
+question: |
+  Informe a data da realização da ação.
+fields:
+  - Data: data_acao
+    datatype: date
+---
+progress: 100
+question: |
+  Informe os dados referentes à procuração em questão
+fields:
+  - Ação: acao_procuracao
+    hint: "Ex: Nomeação de representante para assinatura de contratos"
+  - Outorgante: nome_outorgante
+  - Outorgado: nome_outorgado
+---
+mandatory: True
+question: |
+  O seu nome é ${ nome_autor }
+  
+  O seu RG é ${ rg_autor }
+  
+  O seu CPF é ${ cpf_autor }
+  
+  A data da ação é ${ data_acao }
+  
+  A procuração visa ${ acao_procuracao }
+  
+  O outorgante é ${ nome_outorgante }
+  
+  O outorgado é ${ nome_outorgado }
+
+buttons:  
+  - Exit: exit
+---
