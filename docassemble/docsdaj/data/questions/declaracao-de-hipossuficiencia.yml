@@ -4,11 +4,11 @@ metadata:
 question: |
   Informações Pessoais
 fields: 
-  - "Nome completo: ": nome_declarante
+  - "Nome completo: ": nome_assistido
     required: True
-  - "RG: ": rg_declarante
+  - "RG: ": num_rg
     required: True
-  - "CPF: ": cpf_declarante
+  - "CPF: ": num_cpf
     required: True
     hint: "Ex: 000.000.000-00"
   - "Cidade: ": cidade
@@ -26,7 +26,7 @@ attachment:
   name: Declaração Hipossuficiência
   language: pt
   filename: decl_hipossuficiencia
-  docx template file: declaracao_hipossuficiencia.docx
+  docx template file: declaracao-de-hipossuficiencia.docx
   valid formats:
     - pdf
     - docx

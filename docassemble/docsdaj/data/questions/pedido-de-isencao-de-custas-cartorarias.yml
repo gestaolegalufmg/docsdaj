@@ -1,0 +1,85 @@
+metadata:
+  title: PEDIDO DE ISENÇÃO DE CUSTAS CARTORÁRIAS
+---
+features:
+  navigation: horizontal
+  progress bar: True
+  question back button: True
+---
+sections:
+  - Dados
+  - Checagem
+  - Impressão
+---
+question: Preencha os campos abaixo
+progress: 33
+fields:
+  - "Nome Completo": nome_assistido
+    hint: "Exemplo: Afonso Augusto Moreira Pena"
+    required: True
+  - "CPF": num_cpf 
+    required: True
+    hint: "Exemplo: 123.123.123-12"
+  - "Carteira de identidade": num_rg 
+    required: True
+    hint: "Exemplo: MG-12.123.123"
+  - "Local de emissão da Declaração": cidade
+    default: Belo Horizonte
+    help: "Por definição já está preenchido com Belo Horizonte, mude se necessário."
+    required: True
+---
+mandatory: True
+question:
+  Digite o dia
+fields:
+  - Dia: dia_digitado
+    hint: "digite o numeral"
+    help: "Exemplo 02, 03, 15, 30"
+    required: True
+---
+mandatory: True
+question:
+  Digite o mês
+fields:
+  - Mês: mes_digitado
+    hint: "digite o mês por extenso"
+    help: "Exemplo Setembro, Janeiro, Fevereiro"
+    required: True
+---
+mandatory: True
+question:
+  Digite o ano
+fields:
+  - Ano: ano_digitado
+    hint: "digite o ano em numeral"
+    help: "Exemplo 2019"
+    required: True
+---
+mandatory: True
+progress: 66
+question: |
+  #Confira os seus dados:  
+  Nome: ${ nome_assistido }  
+  CPF: ${ num_cpf }  
+  RG: ${ num_rg }  
+  Cidade da Declaração: ${ cidade }  
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo! Ver documento: continue
+---
+section: Conclusão
+progress: 100
+mandatory: True
+question: |
+  Aqui está o seu documento:
+attachment:
+  name: PEDIDO_DE_ISENCAO_DE_CUSTAS_CARTORARIAS
+  language: pt
+  filename: pedido_isencao_custas_cartorarias
+  docx template file: pedido-de-isencao-de-custas-cartorarias.docx
+  validformats:
+    - pdf
+    - docx
+---

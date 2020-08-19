@@ -44,7 +44,7 @@ attachment:
   name: Declaracao
   language: pt
   filename: documento-declaracao
-  docx template file: documento1.docx
+  docx template file: declaracao-de-comparecimento.docx
   valid formats:
     - pdf
     - docx

@@ -18,10 +18,10 @@ fields:
   - "Nome Completo": nome_assistido
     hint: "Exemplo: Afonso Augusto Moreira Pena"
     required: True
-  - "CPF": cpf_assistido
+  - "CPF": num_cpf 
     required: True
     hint: "Exemplo: 123.123.123-12"
-  - "Carteira de identidade": rg_assistido
+  - "Carteira de identidade": num_rg 
     required: True
     hint: "Exemplo: MG-12.123.123"
   - "Local de emissão da Declaração": cidade
@@ -42,8 +42,8 @@ progress: 66
 question: |
   #Confira os seus dados:  
   Nome: ${ nome_assistido }  
-  CPF: ${ cpf_assistido }  
-  RG: ${ rg_assistido }  
+  CPF: ${ num_cpf }  
+  RG: ${ num_rg }  
   Cidade da Declaração: ${ cidade }  
   Data da Declaração: ${ data }
 back button: True
@@ -61,7 +61,7 @@ attachment:
   name: Declaração de Ciência e Responsabilidade
   language: pt
   filename: declaracao_ciencia_responsabilidade
-  docx template file: declaracao_ciencia_responsabilidade.docx
+  docx template file: declaracao-de-ciencia-e-responsabilidade.docx
   validformats:
     - pdf
     - docx

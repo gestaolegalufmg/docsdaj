@@ -1,0 +1,39 @@
+metadata:
+  title: DECLARAÇÃO DE VERACIDADE E RESPONSABILIDADE DAS INFORMAÇÕES PRESTADAS
+---
+question: DECLARAÇÃO DE VERACIDADE E RESPONSABILIDADE DAS INFORMAÇÕES PRESTADAS
+fields:
+  - 'assistido:': nome_assistido
+    datatype: string
+    required: True
+  - 'Assunto da petição:': descricao_caso
+    datatype: string
+    required: True
+mandatory: True
+---
+question: Local e data
+fields:
+  - 'cidade:': cidade
+    datatype: string
+    required: True
+  - 'data assinatutura:': data
+    datatype: date
+    required: True
+---
+mandatory: True
+question: |
+  Aqui está o seu documento!
+attachment:
+  name: DECLARAO_DE_VERACIDADE.yml
+  language: pt
+  filename: DECLARAO DE VERACIDADE E RESPONSABILIDADE
+  docx template file: declaracao-de-veracidade-e-responsabilidade-das-informacoes-prestadas.docx	
+  valid formats:
+    - pdf
+    - docx
+---
+features:
+  navigation: vertical
+  progress bar: True
+  question back button: True
+---
