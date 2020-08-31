@@ -1,6 +1,9 @@
 metadata:
   title: DECLARAÇÃO DE CIÊNCIA E RESPONSABILIDADE
-  description: Declaração de Ciência e Responsabilidade - DAJ / UFMG
+---
+initial: True
+code: |
+  set_language('pt')
 ---
 features:
   navigation: horizontal
@@ -12,23 +15,24 @@ sections:
   - Checagem
   - Impressão
 ---
-question: Preencha os campos abaixo
+section: Dados
+question: Preencha os campos abaixo.
 progress: 33
 fields:
-  - "Nome Completo": nome_assistido
-    hint: "Exemplo: Afonso Augusto Moreira Pena"
+  - "Nome do Assistido": nome_assistido
+    hint: "Ex: Afonso Augusto Moreira Pena"
     required: True
-  - "CPF": num_cpf 
+  - "Número de CPF do Assistido": num_cpf 
     required: True
-    hint: "Exemplo: 123.123.123-12"
-  - "Carteira de identidade": num_rg 
+    hint: "Ex: 123.123.123-12"
+  - "Número de RG do Assistido": num_rg 
     required: True
-    hint: "Exemplo: MG-12.123.123"
+    hint: "Ex: MG-12.123.123"
   - "Local de emissão da Declaração": cidade
     default: Belo Horizonte
     help: "Por definição já está preenchido com Belo Horizonte, mude se necessário."
     required: True
-  - "Data de emissão da Declaração": data
+  - "Data de Assinatura": data
     default: |
       ${ hoje }
     help: "Por definição já está preenchido com a data de hoje, mude se necessário."
@@ -38,14 +42,15 @@ code: |
   hoje = format_date(today())
 ---
 mandatory: True
+section: Checagem
 progress: 66
 question: |
   #Confira os seus dados:  
-  Nome: ${ nome_assistido }  
-  CPF: ${ num_cpf }  
-  RG: ${ num_rg }  
-  Cidade da Declaração: ${ cidade }  
-  Data da Declaração: ${ data }
+  Nome do assistido: ${ nome_assistido }  
+  Número de CPF do Assistido: ${ num_cpf }  
+  Número de RG do Assistido: ${ num_rg }  
+  Local de Emissão da Declaração: ${ cidade }  
+  Data de Assinatura: ${ data }
 back button: True
 back button label: |
   Ops, errei. Voltar
@@ -60,7 +65,7 @@ question: |
 attachment:
   name: Declaração de Ciência e Responsabilidade
   language: pt
-  filename: declaracao_ciencia_responsabilidade
+  filename: Declaração de Ciência e Responsabilidade
   docx template file: declaracao-de-ciencia-e-responsabilidade.docx
   validformats:
     - pdf

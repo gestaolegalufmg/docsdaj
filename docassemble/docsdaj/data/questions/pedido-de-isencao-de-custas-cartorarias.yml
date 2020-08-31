@@ -11,29 +11,38 @@ sections:
   - Checagem
   - Impressão
 ---
+initial: True
+code: |
+  set_language('pt')
+---
 question: Preencha os campos abaixo
 progress: 33
 fields:
   - "Nome Completo": nome_assistido
-    hint: "Exemplo: Afonso Augusto Moreira Pena"
+    datatype: string 
     required: True
+    
   - "CPF": num_cpf 
+    datatype: int 
     required: True
     hint: "Exemplo: 123.123.123-12"
+    
   - "Carteira de identidade": num_rg 
+    datatype: int 
     required: True
-    hint: "Exemplo: MG-12.123.123"
+    
   - "Local de emissão da Declaração": cidade
     default: Belo Horizonte
     help: "Por definição já está preenchido com Belo Horizonte, mude se necessário."
     required: True
 ---
 mandatory: True
+
 question:
   Digite o dia
 fields:
   - Dia: dia_digitado
-    hint: "digite o numeral"
+    datatype: int 
     help: "Exemplo 02, 03, 15, 30"
     required: True
 ---
@@ -42,7 +51,7 @@ question:
   Digite o mês
 fields:
   - Mês: mes_digitado
-    hint: "digite o mês por extenso"
+    datatype: string 
     help: "Exemplo Setembro, Janeiro, Fevereiro"
     required: True
 ---
@@ -51,12 +60,14 @@ question:
   Digite o ano
 fields:
   - Ano: ano_digitado
+    datatype: int 
     hint: "digite o ano em numeral"
     help: "Exemplo 2019"
     required: True
 ---
 mandatory: True
 progress: 66
+
 question: |
   #Confira os seus dados:  
   Nome: ${ nome_assistido }  

@@ -1,0 +1,90 @@
+metadata:
+  title: Declaração de Ciência e Comparecimento - DAJ / UFMG
+  description: Declaração de Ciência e Comparecimento - DAJ / UFMG
+---
+initial: True
+code: |
+  set_language('pt')
+---
+question: Insira os dados do assistido
+progress: 6
+fields:
+  - 'Assistido:': nome_assistido
+    datatype: string
+    hint: Airton Senna de Lima
+    required: True
+  - 'Horário de início do atendimento:': horario_inicio
+    datatype: time
+    hint: 12:50
+    required: True
+  - 'Horário de término do atendimento:': horario_termino
+    datatype: time
+    hint: 13:45
+    required: True
+mandatory: True
+---
+question: Insira os dados do estagiário jurídico
+progress: 37
+fields:
+  - 'Nome do estagiário(a) outorgado(a):': nome_estagiario
+    datatype: string
+    hint: Luiza Sonza Cavalcanti
+    required: True
+  - 'OAB do estagiário(a):': oab_estagiario
+    datatype: string
+    hint: 78.593 (apenas os números)
+    required: True
+mandatory: True
+---
+question: Insira os dados a seguir
+progress: 62
+fields:
+  - 'Data da procuração:': data
+    datatype: date
+    required: True
+  - 'Local da assinatura:': cidade
+    datatype: string
+    hint: Belo Horizonte
+    required: True
+mandatory: True
+---
+progress: 87
+question: |
+  #Confira os seus dados:  
+  Nome do assistido: ${ nome_assistido }  
+  Nome do estagiário: ${ nome_estagiario }  
+  OAB do estagiário: ${ oab_estagiario }  
+  Cidade da Declaração: ${ cidade }  
+  Data da Declaração: ${ data }
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo! Ver documento: continue
+mandatory: True
+---
+sections:
+  - Dados do assistido
+  - Dados do estagiário
+  - Dados finais
+  - Checagem
+  - Impressão
+---
+progress: 100
+question: |
+  Aqui está o seu documento!
+attachment:
+  name: Declaração de Ciência e Comparecimento
+  language: pt
+  filename: declaracao-de-ciencia-e-comparecimento
+  docx template file: declaracao-de-ciencia-e-comparecimento.docx
+  valid formats:
+    - pdf
+    - docx
+mandatory: True
+---
+features:
+  navigation: horizontal
+  progress bar: True
+  question back button: True
+---

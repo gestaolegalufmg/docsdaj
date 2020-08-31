@@ -1,17 +1,24 @@
 metadata:
   title: FORMULÁRIO - DECLARAÇÃO DE HIPOSSUFICIÊNCIA
 ---
-question: |
-  Informações Pessoais
+initial: True
+code: |
+  set_language('pt')
+---
+question: Informações Pessoais
 fields: 
   - "Nome completo: ": nome_assistido
+    datatype: string
     required: True
   - "RG: ": num_rg
+    datatype: int
     required: True
   - "CPF: ": num_cpf
+    datatype: int
     required: True
     hint: "Ex: 000.000.000-00"
   - "Cidade: ": cidade
+    datatype: string
     required: True
   - "Data: ": data
     required: True

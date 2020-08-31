@@ -1,35 +1,52 @@
 metadata:
   title: Procuração
 ---
-question: Procuração
+initial: True
+code: |
+  set_language('pt')
+---
+question: Insira os dados do assistido
+progress: 1
 fields:
   - 'Assistido:': nome_assistido
     datatype: string
-    required: True
-  - 'Outorgado:': nome_outorgante
-    datatype: string
-    required: True
-  - 'Nome da ação:': acao_procuracao
-    datatype: string
+    hint: Maria da Silva Souza
     required: True
   - 'CPF:': num_cpf
     datatype: Int
+    hint: 014.297.923-34
     required: True
   - 'RG:': num_rg
     datatype: Int
-    required: True
-  - 'Cidade:': cidade
-    datatype: string
+    hint: MG-13.432.345
     required: True
 mandatory: True
 ---
-question: |
-  Informe a data da realização da ação.
+question: Insira os dados da procuração
+progress: 50
 fields:
-  - Data: data
+  - 'Nome do estagiário outorgado:': nome_estagiario
+    datatype: string
+    hint: Carlos Souza Aguiar
+    required: True
+  - 'OAB do estagiário:': oab_estagiario
+    datatype: string
+    hint: 97.124 (apenas os números)
+    required: True
+  - 'Nome da ação ajuizada:': acao_procuracao
+    datatype: string
+    hint: Ação de Despejo contra Luzia Aparecida e outros
+    required: True
+  - 'Data da procuração:': data
     datatype: date
+    required: True
+  - 'Local da assinatura:': cidade
+    datatype: string
+    hint: Belo Horizonte
+    required: True
 ---
 mandatory: True
+progress: 100
 question: |
   Aqui está o seu documento!
 attachment:

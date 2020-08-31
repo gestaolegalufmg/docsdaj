@@ -1,9 +1,15 @@
 metadata:
   title: Substabelecimento
 ---
-question: Declaração de substabelecimento
+initial: True
+code: |
+  set_language('pt')
+---
+section: Dados iniciais
+question: Substabelecimento
 fields:
-  - 'Assistido:': nome_assistido
+  - 'Nome do assistido:': nome_assistido
+    hint: João da Silva
     datatype: string
     required: True
   - 'Tipo de ação judicial:': tipo_acaojudicial
@@ -12,46 +18,142 @@ fields:
   - 'N° do processo:': numero_processo
     datatype: int
     required: True
-  - 'Cidade da Comarca:': cidade_comarca
+  - 'Comarca:': cidade_comarca
     datatype: string
     required: True
   - 'Estado da Comarca:': estado_comarca
-    datatype: string
-    required: True
+    datatype: dropdown
+    choices: 
+    - AC
+    - AL
+    - AP
+    - AM
+    - BA
+    - CE
+    - DF
+    - ES
+    - GO
+    - MA
+    - MT
+    - MS
+    - MG
+    - PA
+    - PB
+    - PR
+    - PE
+    - PI
+    - RJ
+    - RN
+    - RS
+    - RO
+    - RR
+    - SC
+    - SP
+    - SE
+    - TO
 
+    required: True
+progress: 1
 mandatory: True
 ---
-question: Local e data
-fields:
-  - 'cidade:': cidade
-    datatype: string
-    required: True
-  - 'data assinatutura:': data
-    datatype: date
-    required: True
----
+section: Dados do advogado
 question: Dados do advogado
 fields:
-  - 'advogado:': advogado
+  - 'Advogado:': advogado
     datatype: string
     required: True
-  - 'oab:': numeroOab
+  - 'OAB:': numeroOab
     datatype: string
     hint: 00000/MG
     required: True
+progress: 20
+mandatory: True
+
+---
+section: Dados do orientador
+question: Dados do orientador
+fields:
+  - 'Orientador:': orientador
+    datatype: string
+    required: True
+  - 'Número da OAB do orientador:': numeroOabOrientador
+    datatype: string
+    hint: 00000/MG
+    required: True
+progress: 40
 mandatory: True
 ---
+section: Local e data
+question: Local e data
+fields:
+  - 'Cidade:': cidade
+    datatype: string
+    required: True
+  - 'Data assinatutura:': data
+    datatype: date
+    required: True
+    
+progress: 60
+
+---
 mandatory: True
+progress: 80
+section: Checagem
+question: |
+ #Confira os seus dados:
+ 
+ Nome do assistido: ${ nome_assistido } 
+ 
+ Tipo de ação judicial: ${ tipo_acaojudicial }
+ 
+ N° do processo: ${ numero_processo }
+ 
+ Comarca: ${ cidade_comarca }
+ 
+ Estado da Comarca: ${ estado_comarca }
+ 
+ Cidade: ${ cidade }
+ 
+ Data assinatutura: ${ data }
+ 
+ Advogado: ${ advogado }
+ 
+ Número da OAB do advogado: ${ numeroOab }
+ 
+ Orientador: ${ orientador }
+ 
+ Número da OAB do orientador: ${ numeroOabOrientador }
+back button: True
+back button label: |
+ Ops, errei. Voltar.
+buttons:
+ - Tudo certo! Ver documento: continue
+---
+mandatory: True
+section: Impressão
 question: |
   Aqui está o seu documento!
 attachment:
   name: Substabelecimento
   language: pt
   filename: documento-substabelecimento
+  default: |
+      ${ nome_assistido }
   docx template file: substabelecimento.docx
   valid formats:
     - pdf
     - docx
+    
+progress: 100
+
+---
+sections:
+ - Dados iniciais
+ - Dados do advogado
+ - Dados do orientador
+ - Local e data
+ - Checagem
+ - Impressão
 ---
 features:
   navigation: vertical

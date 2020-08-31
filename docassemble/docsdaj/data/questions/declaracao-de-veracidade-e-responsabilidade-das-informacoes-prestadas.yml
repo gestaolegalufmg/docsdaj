@@ -1,39 +1,64 @@
 metadata:
-  title: DECLARAÇÃO DE VERACIDADE E RESPONSABILIDADE DAS INFORMAÇÕES PRESTADAS
+  title: Declaração de Veracidade e Responsabilidade das Informações Prestadas
 ---
-question: DECLARAÇÃO DE VERACIDADE E RESPONSABILIDADE DAS INFORMAÇÕES PRESTADAS
-fields:
-  - 'assistido:': nome_assistido
-    datatype: string
-    required: True
-  - 'Assunto da petição:': descricao_caso
-    datatype: string
-    required: True
-mandatory: True
----
-question: Local e data
-fields:
-  - 'cidade:': cidade
-    datatype: string
-    required: True
-  - 'data assinatutura:': data
-    datatype: date
-    required: True
----
-mandatory: True
-question: |
-  Aqui está o seu documento!
-attachment:
-  name: DECLARAO_DE_VERACIDADE.yml
-  language: pt
-  filename: DECLARAO DE VERACIDADE E RESPONSABILIDADE
-  docx template file: declaracao-de-veracidade-e-responsabilidade-das-informacoes-prestadas.docx	
-  valid formats:
-    - pdf
-    - docx
+initial: True
+code: |
+  set_language('pt')
 ---
 features:
-  navigation: vertical
+  navigation: horizontal
   progress bar: True
   question back button: True
 ---
+sections:
+  - Dados
+  - Checagem
+  - Impressão
+---
+section: Dados
+question: Preencha os campos abaixo.
+progress: 33
+fields:
+  - 'Nome do Assistido:': nome_assistido
+    datatype: string
+    required: True
+  - 'Assunto da Petição Inicial:': descricao_caso
+    datatype: string
+    required: True
+    hint: "Ex: Ação trabalhista, Ação de alimentos"
+  - 'Local de Emissão da Declaração:': cidade
+    datatype: string
+    required: True
+    hint: "Ex: Belo Horizonte"
+  - 'Data de Assinatutura:': data
+    datatype: date
+    required: True
+---
+Section: Checagem
+progress: 66
+mandatory: True
+question: |
+  #Confira os dados abaixo:  
+  Nome do Assistido: ${ nome_assistido }  
+  Assunto da Petição Inicial: ${ descricao_caso }   
+  Local de Emissão Declaração: ${ cidade }  
+  Data de Assinatura: ${ data }
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo! Ver documento: continue
+---
+section: Conclusão
+progress: 100
+mandatory: True 
+question: |
+  Aqui está o seu documento!
+attachment:
+  name: declaracao-de-veracidade-e-responsabilidade-das-informacoes-prestadas.yml
+  language: pt
+  filename: DECLARACAO DE VERACIDADE E RESPONSABILIDADE
+  docx template file: declaracao-de-veracidade-e-responsabilidade-das-informacoes-prestadas.docx
+  valid formats:
+    - pdf
+    - docx
