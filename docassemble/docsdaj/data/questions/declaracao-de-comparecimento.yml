@@ -1,11 +1,12 @@
 metadata:
-  title: DECLARAÇAO
+  title: Declaração de Comparecimento - Alterado por Ailton 09 12
 ---
-question: Declaração de comparecimento
+question: Declaração de Comparecimento
 fields:
   - 'assistido:': nome_assistido
     datatype: string
     required: True
+    hint: "Josildo Lima dos Santos"
   - 'horario do inicio:': horario_inicio
     datatype: time
     required: True
@@ -31,6 +32,7 @@ fields:
   - 'advogado:': advogado
     datatype: string
     required: True
+    hint: "Lucas dos Santos"
   - 'oab:': numeroOab
     datatype: string
     hint: 00000/MG
