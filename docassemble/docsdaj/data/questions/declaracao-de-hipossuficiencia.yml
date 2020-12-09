@@ -6,10 +6,11 @@ code: |
   set_language('pt')
 ---
 question: Informações Pessoais
-fields: 
+fields:
   - "Nome completo: ": nome_assistido
     datatype: string
     required: True
+    hint: "José da Silva"
   - "RG: ": num_rg
     datatype: int
     required: True
