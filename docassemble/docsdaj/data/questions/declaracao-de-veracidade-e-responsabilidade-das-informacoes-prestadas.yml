@@ -45,7 +45,7 @@ question: |
   Data de Assinatura: ${ data }
 back button: True
 back button label: |
-  Ops, errei. Voltar.
+  Ops, errei. Voltar
 buttons:
   - Tudo certo! Ver documento: continue
 ---
@@ -57,7 +57,7 @@ question: |
 attachment:
   name: declaracao-de-veracidade-e-responsabilidade-das-informacoes-prestadas.yml
   language: pt
-  filename: declaração de veracidade e responsabilidade ${ nome_assistido }
+  filename: DECLARACAO DE VERACIDADE E RESPONSABILIDADE
   docx template file: declaracao-de-veracidade-e-responsabilidade-das-informacoes-prestadas.docx
   valid formats:
     - pdf
