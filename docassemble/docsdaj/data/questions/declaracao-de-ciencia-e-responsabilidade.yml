@@ -19,38 +19,54 @@ section: Dados
 question: Preencha os campos abaixo.
 progress: 33
 fields:
-  - "Nome do Assistido": nome_assistido
-    hint: "Ex: Afonso Augusto Moreira Pena"
+  - "Nome do(a) Assistido(a):": nome_assistido
+    hint: "Ex.: Afonso Augusto Moreira Pena"
     required: True
-  - "Número de CPF do Assistido": num_cpf 
+  - "Número de CPF do(a) Assistido(a):": num_cpf 
+    minlength: 14
+    maxlength: 14
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: "Ex.: 123.123.123-12"
     required: True
-    hint: "Ex: 123.123.123-12"
-  - "Número de RG do Assistido": num_rg 
+  - "Número de RG do(a) Assistido(a):": num_rg 
+    minlength: 11
+    maxlength: 14
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: "Ex.: MG-12.123.123"
     required: True
-    hint: "Ex: MG-12.123.123"
-  - "Local de emissão da Declaração": cidade
+  - "Número do Caso:": num_caso
+    hint: "Ex.: 27"
+  - "Cidade de assinatura:": cidade
     default: Belo Horizonte
-    help: "Por definição já está preenchido com Belo Horizonte, mude se necessário."
+    hint: "Ex.: Belo Horizonte"
     required: True
-  - "Data de Assinatura": data
+  - "Data de assinatura:": data
+    datatype: date
     default: |
-      ${ hoje }
-    help: "Por definição já está preenchido com a data de hoje, mude se necessário."
-    required: True
----
-code: |
-  hoje = format_date(today())
+      ${ today(format='yyyy-MM-dd') }
+   
+      
+
 ---
 mandatory: True
 section: Checagem
 progress: 66
 question: |
   #Confira os seus dados:  
-  Nome do assistido: ${ nome_assistido }  
-  Número de CPF do Assistido: ${ num_cpf }  
-  Número de RG do Assistido: ${ num_rg }  
-  Local de Emissão da Declaração: ${ cidade }  
-  Data de Assinatura: ${ data }
+  Nome do(a) assistido(a): ${ nome_assistido }  
+  Número de CPF do(a) Assistido(a): ${ num_cpf }  
+  Número de RG do(a) Assistido(a): ${ num_rg }  
+  Número do Caso: ${ num_caso }  
+  Cidade de assinatura: ${ cidade } 
+  Data de assinatura: ${ data }
 back button: True
 back button label: |
   Ops, errei. Voltar
@@ -62,11 +78,13 @@ progress: 100
 mandatory: True
 question: |
   Aqui está o seu documento:
+subquestion: |
+  Responda nossa [pesquisa de satisfação](https://forms.gle/XKGQKBes5u8e8bW6A)!
 attachment:
   name: Declaração de Ciência e Responsabilidade
   language: pt
-  filename: Declaração de Ciência e Responsabilidade
-  docx template file: declaracao-de-ciencia-e-responsabilidade.docx
+  filename: Declaração de Ciência e Responsabilidade ${ nome_assistido }
+  docx template file: declaracao_de_ciencia_e_responsabilidade_trabalhista.docx
   validformats:
     - pdf
     - docx
