@@ -25,10 +25,10 @@ declaracao-comparecimento.yml - Nome incompleto ou abreviado
 declaracao-de-comparecimento.yaml - Extensão errada
 ```
 
-**ERRADO**
+**ERRADO -  Nomes divergentes**
 ```bash
 declaracao-de-comparecimento.yml
-declaracao-de-comparecimento-do-assistido.docx - Nomes de entrevistas e de templates divergentes
+declaracao-de-comparecimento-do-assistido.docx
 ```
 
 
