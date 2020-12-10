@@ -1,5 +1,5 @@
 metadata:
-  title: DECLARAÇAO
+  title: Declaração de comparecimento
 ---
 question: Declaração de comparecimento
 fields:
@@ -41,9 +41,9 @@ mandatory: True
 question: |
   Aqui está o seu documento!
 attachment:
-  name: Declaracao
+  name: Declaração de Comparecimento
   language: pt
-  filename: documento-declaracao
+  filename: ${ nome_assistido }-documento-declaracao
   docx template file: declaracao-de-comparecimento.docx
   valid formats:
     - pdf

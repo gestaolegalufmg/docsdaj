@@ -17,47 +17,78 @@ sections:
 ---
 section: Dados
 question: Preencha os campos abaixo.
-progress: 33
+progress: 1
 fields:
   - 'Nome do Assistido:': nome_assistido
     datatype: string
+    hint: Ana Maria Braga
     required: True
-  - 'Assunto da Petição Inicial:': descricao_caso
+  - "Número de CPF do Assistido": num_cpf 
+    minlength: 14
+    maxlength: 14
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: "123.123.123-12"
+    required: True
+  - "Número de RG do Assistido": num_rg 
+    minlength: 11
+    maxlength: 14
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: "MG-12.123.123"
+    required: True
+  - 'Assunto da Petição Inicial:': tipo_acao
     datatype: string
     required: True
     hint: "Ex: Ação trabalhista, Ação de alimentos"
+  - "Número do Caso": num_caso
+    hint: 1
   - 'Local de Emissão da Declaração:': cidade
     datatype: string
+    default: Belo Horizonte
     required: True
     hint: "Ex: Belo Horizonte"
   - 'Data de Assinatutura:': data
     datatype: date
+    default: |
+      ${ today(format='yyyy-MM-dd') }
     required: True
 ---
 Section: Checagem
-progress: 66
+progress: 50
 mandatory: True
 question: |
   #Confira os dados abaixo:  
   Nome do Assistido: ${ nome_assistido }  
-  Assunto da Petição Inicial: ${ descricao_caso }   
+  Número de CPF do Assistido: ${ num_cpf }  
+  Número de RG do Assistido: ${ num_rg }  
+  Assunto da Petição Inicial: ${ tipo_acao }  
+  Número do Caso: ${ num_caso }  
   Local de Emissão Declaração: ${ cidade }  
-  Data de Assinatura: ${ data }
+  Data de Assinatura: ${ data }  
 back button: True
 back button label: |
   Ops, errei. Voltar
 buttons:
   - Tudo certo! Ver documento: continue
 ---
-section: Conclusão
+section: Impressão
 progress: 100
 mandatory: True 
 question: |
   Aqui está o seu documento!
+subquestion: |
+  Responda nossa [pesquisa de satisfação](https://forms.gle/XKGQKBes5u8e8bW6A)!
 attachment:
-  name: declaracao-de-veracidade-e-responsabilidade-das-informacoes-prestadas.yml
+  name: Declarao de Veracidade e Responsabilidade das Informaes Prestadas
   language: pt
-  filename: DECLARACAO DE VERACIDADE E RESPONSABILIDADE
+  filename:  ${ nome_assistido }-declaracao-de-veracidade-e-responsabilidade-das-informacoes-prestadas
   docx template file: declaracao-de-veracidade-e-responsabilidade-das-informacoes-prestadas.docx
   valid formats:
     - pdf

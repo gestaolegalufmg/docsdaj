@@ -1,5 +1,5 @@
 metadata:
-  title: Pedido de isenção de custas cartorárias
+  title: Recibo de documentos
 ---
 initial: True
 code: |
@@ -16,20 +16,15 @@ sections:
   - Documentos
   - Impressão
 ---
-mandatory: True
-code: |
-  telefone_assistido2 = ""
-  complemento = ""
----
 section: Dados
 mandatory: true
 question: Preencha os campos abaixo.
 progress: 25
 fields:
-  - "Nome do Assistido:": nome_assistido
+  - "Nome do Recebedor:": nome_recebedor
     hint: "Ex.: Afonso Augusto Moreira Pena"
     required: True
-  - "Número de CPF do Assistido:": num_cpf_assistido  
+  - "Número de CPF do Recebedor:": num_cpf_recebedor  
     minlength: 14
     maxlength: 14
     validation messages:
@@ -39,7 +34,7 @@ fields:
          Formato inválido!
     hint: "Ex.: 123.123.123-12"
     required: True
-  - "Número de RG do Assistido:": num_rg_assistido
+  - "Número de RG do Recebedor:": num_rg_recebedor 
     minlength: 11
     maxlength: 14
     validation messages:
@@ -49,84 +44,58 @@ fields:
          Formato inválido!
     hint: "Ex.: MG-12.123.123"
     required: True
-  - "Nacionalidade do Assistido:": nacionalidade_assistido  
-    hint: "Ex.: Brasileiro"
+  - "Nome do Entregador:": nome_entregador 
+    hint: "Ex.: John Mayer"
+  - "Número de CPF do Entregador:": num_cpf_entregador
+    minlength: 14
+    maxlength: 14
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: "Ex.: 123.123.123-12"
     required: True
-  - "Estado civil do Assistido:": estado_civil_assitido  
-    hint: "Ex.: Solteiro"
+  - "Número de RG do Entregador:": num_rg_entregador 
+    minlength: 10
+    maxlength: 14
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: "Ex.: MG-12.123.123"
     required: True
-  - "Profissão do Assistido:": profissao_assistido   
-    hint: "Ex.: Professor"
-    required: True
-  - "Filiação do Assistido:": filiacao_assistido  
-    hint: "Ex.: Maria Joaquina"
-    required: True
-  - "Logradouro:": logradouro   
-    hint: "Ex.: Avenida João Pinheiro"
-    required: True
-  - "Número residencial:": num_residencial   
-    hint: "Ex.: 110"
-    required: True
-  - "Complemento:": complemento    
-    hint: "Ex.: Sala 110"
-    required: False
-  - "Bairro:": bairro
-    hint: "Ex.: Centro"
-    required: True
-  - "Cidade:": cidade    
+  - "Número do Caso:": num_caso
+    hint: "Ex.: 1280"
+  - "Cidade:": cidade
+    default: Belo Horizonte
     hint: "Ex.: Belo Horizonte"
-    required: True
-  - 'Estado:': sigla_estado 
-    datatype: dropdown
-    choices: 
-    - AC
-    - AL
-    - AP
-    - AM
-    - BA
-    - CE
-    - DF
-    - ES
-    - GO
-    - MA
-    - MT
-    - MS
-    - MG
-    - PA
-    - PB
-    - PR
-    - PE
-    - PI
-    - RJ
-    - RN
-    - RS
-    - RO
-    - RR
-    - SC
-    - SP
-    - SE
-    - TO
-    required: True
-  - "Cep:": cep     
-    hint: "Ex.: 31100-500"
-    required: True
-  - "Telefone (1):": telefone_assistido 
-    hint: "(31)98456-5432"
-    required: True
-  - "Telefone (2):": telefone_assistido2
-    hint: "(31)3456-5432"
-    required: False
-  - "Email:": email_assitido 
-    hint: "ryan@daj.ufmg.br"
     required: True
   - "Data:": data
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
-    required: True
-  - "Endereço do cartório": enderecamento_cartorio
-    hint: "Rua São Paulo, 115"
-    required: True
+---
+section: Checagem de Dados
+mandatory: true
+progress: 49
+question: |
+  #Confira os seus dados:  
+  Nome do Recebedor: ${ nome_recebedor }   
+  Número de CPF do Recebedor: ${ num_cpf_recebedor }  
+  Número de RG do Recebedor: ${ num_rg_recebedor }  
+  Nome do Entregador: ${ nome_entregador }   
+  Número de CPF do Entregador: ${ num_cpf_entregador }  
+  Número de RG do Entregador: ${ num_rg_entregador }  
+  Número do caso: ${ num_caso }  
+  Cidade: ${ cidade }   
+  Data de Assinatura: ${ data }
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo!: continue
 ---
 section: Documentos
 progress: 75
@@ -234,10 +203,10 @@ question: |
 subquestion: |
   Responda nossa [pesquisa de satisfação](https://forms.gle/XKGQKBes5u8e8bW6A)!
 attachment:
-  name: Pedido de isenção de custas cartorárias
+  name: Recibo_de_doc.yml
   language: pt
-  filename:  ${ nome_assistido }-pedido-isencao-custas-cartorarias
-  docx template file: pedido-de-isencao-de-custas-cartorarias.docx
+  filename: ${ nome_recebedor }-recibo-de-documentos
+  docx template file: recibo-de-documentos.docx
   valid formats:
     - pdf
     - docx

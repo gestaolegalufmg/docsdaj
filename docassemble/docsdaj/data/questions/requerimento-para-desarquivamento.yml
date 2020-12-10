@@ -1,0 +1,152 @@
+metadata:
+  title: Requerimento para desarquivamento
+---
+initial: True
+code: |
+  set_language('pt')
+  complemento = ""
+---
+features:
+  navigation: horizontal
+  progress bar: True
+  question back button: True
+---
+sections:
+  - Dados
+  - Checagem
+  - Impressão
+---
+section: Dados
+question: Preencha os campos abaixo.
+progress: 33
+fields:
+  - "Nome do Assistido": nome_assistido
+    hint: "Ex: Afonso Augusto Moreira Pena"
+    required: True
+  - "Número de CPF do Assistido": num_cpf 
+    minlength: 14
+    maxlength: 14
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: "123.123.123-12"
+    required: True
+  - "Número de RG do Assistido": num_rg 
+    minlength: 11
+    maxlength: 14
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: "MG-12.123.123"
+    required: True
+  - "Número do Caso": num_caso
+    hint: 1
+  - "Logradouro": logradouro
+    hint: "Rua"
+  - "Número residencial": num_residencial
+    hint: 123
+  - "Complemento": complemento
+    hint: 302
+    required: False
+  - "Bairro": bairro
+    hint: "Centro"
+  - 'Estado:': sigla_estado 
+    datatype: dropdown
+    choices: 
+    - AC
+    - AL
+    - AP
+    - AM
+    - BA
+    - CE
+    - DF
+    - ES
+    - GO
+    - MA
+    - MT
+    - MS
+    - MG
+    - PA
+    - PB
+    - PR
+    - PE
+    - PI
+    - RJ
+    - RN
+    - RS
+    - RO
+    - RR
+    - SC
+    - SP
+    - SE
+    - TO
+    default: "MG"
+    required: True
+  - "CEP": cep
+    minlength: 9
+    maxlength: 9
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: "30160-100"
+  - "Cidade de domicílio": cidade
+    hint: "Belo Horizonte"
+    required: True
+  - "Data de Assinatura": data
+    datatype: date
+    default: |
+      ${ today(format='yyyy-MM-dd') }
+  - "Razões para desarquivamento": razoes_desarquivamento
+  - "Data do Arquivamento": data_arquivamento
+    datatype: date
+    default: |
+      ${ today(format='yyyy-MM-dd') }
+  - "Motivos do Arquivamento": motivos_arquivamento
+  - "Teve processo?": decisao
+    datatype: yesnoradio
+  - "Número da ação:": num_acao 
+    show if: decisao
+    required: False
+
+   
+     
+---
+mandatory: True
+section: Checagem
+progress: 66
+question: |
+  #Confira os seus dados:  
+  Nome do assistido: ${ nome_assistido }  
+  Número de CPF do Assistido: ${ num_cpf }  
+  Número de RG do Assistido: ${ num_rg }  
+  Local de Emissão da Declaração: ${ cidade }  
+  Número do Caso: ${ num_caso }  
+  Data de Assinatura: ${ data }
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo! Ver documento: continue
+---
+section: Conclusão
+progress: 100
+mandatory: True
+question: |
+  Aqui está o seu documento:
+subquestion: |
+  Responda nossa [pesquisa de satisfação](https://forms.gle/XKGQKBes5u8e8bW6A)!
+attachment:
+  name: Requerimento para desarquivamento
+  language: pt
+  filename:  ${ nome_assistido }-requerimento-para-desarquivamento
+  docx template file: requerimento-para-desarquivamento.docx
+  validformats:
+    - pdf
+    - docx
+---

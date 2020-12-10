@@ -1,6 +1,5 @@
 metadata:
-  title: Declaração de Ciência e Comparecimento - DAJ / UFMG
-  description: Declaração de Ciência e Comparecimento - DAJ / UFMG
+  title: Declaração de Ciência e Comparecimento
 ---
 initial: True
 code: |
@@ -76,7 +75,7 @@ question: |
 attachment:
   name: Declaração de Ciência e Comparecimento
   language: pt
-  filename: declaracao-de-ciencia-e-comparecimento
+  filename: ${ nome_assistido }-declaracao-de-ciencia-e-comparecimento
   docx template file: declaracao-de-ciencia-e-comparecimento.docx
   valid formats:
     - pdf

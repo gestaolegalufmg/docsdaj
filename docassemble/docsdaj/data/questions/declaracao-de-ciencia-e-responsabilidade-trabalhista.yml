@@ -1,0 +1,88 @@
+metadata:
+  title: Declaração de Ciência e Responsabilidade Trabalhista
+---
+initial: True
+code: |
+  set_language('pt')
+---
+features:
+  navigation: horizontal
+  progress bar: True
+  question back button: True
+---
+sections:
+  - Dados
+  - Checagem
+  - Impressão
+---
+section: Dados
+question: Preencha os campos abaixo.
+progress: 33
+fields:
+  - "Nome do(a) Assistido(a):": nome_assistido
+    hint: "Ex.: Afonso Augusto Moreira Pena"
+    required: True
+  - "Número de CPF do(a) Assistido(a):": num_cpf 
+    minlength: 14
+    maxlength: 14
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: "Ex.: 123.123.123-12"
+    required: True
+  - "Número de RG do(a) Assistido(a):": num_rg 
+    minlength: 11
+    maxlength: 14
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: "Ex.: MG-12.123.123"
+    required: True
+  - "Número do Caso:": num_caso
+    hint: "Ex.: 27"
+  - "Cidade de assinatura:": cidade
+    default: Belo Horizonte
+    hint: "Ex.: Belo Horizonte"
+    required: True
+  - "Data de assinatura:": data
+    datatype: date
+    default: |
+      ${ today(format='yyyy-MM-dd') }
+---
+mandatory: True
+section: Checagem
+progress: 66
+question: |
+  #Confira os seus dados:  
+  Nome do(a) assistido(a): ${ nome_assistido }  
+  Número de CPF do(a) Assistido(a): ${ num_cpf }  
+  Número de RG do(a) Assistido(a): ${ num_rg }  
+  Número do Caso: ${ num_caso }  
+  Cidade de assinatura: ${ cidade } 
+  Data de assinatura: ${ data }
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo! Ver documento: continue
+---
+section: Conclusão
+progress: 100
+mandatory: True
+question: |
+  Aqui está o seu documento:
+subquestion: |
+  Responda nossa [pesquisa de satisfação](https://forms.gle/XKGQKBes5u8e8bW6A)!
+attachment:
+  name: Declaração de Ciência e Responsabilidade Trabalhista
+  language: pt
+  filename: ${ nome_assistido }-declaracao-de-ciencia-e-responsabilidade-trabalhista
+  docx template file: declaracao-de-ciencia-e-responsabilidade-trabalhista.docx
+  validformats:
+    - pdf
+    - docx
+---

@@ -1,0 +1,148 @@
+metadata:
+  title: Petição de juntada de substabelecimento
+---
+initial: True
+code: |
+  set_language('pt')
+---
+sections:
+  - Dados
+  - Dados do Estagiário
+  - Checagem
+  - Impressão
+---
+question: Petição de Juntada de Substabelecimento
+section: Dados
+progress: 1
+fields:
+  - 'Nome do Assistido:': nome_assistido
+    datatype: string
+    hint: Carol Solberg
+    required: True
+  - "Número de CPF do Assistido": num_cpf 
+    minlength: 14
+    maxlength: 14
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: "123.123.123-12"
+    required: True
+  - 'Juízo Competente:': juizo_competente 
+    hint: "8ª VARA CÍVEL DA COMARCA DE BETIM"
+    required: True
+  - 'Numero dos Autos:': num_autos
+    datatype: Int
+    required: True
+  - 'Tipo da Ação:': tipo_acao 
+    required: True
+  - "Cidade": cidade
+    default: Belo Horizonte
+    hint: Belo Horizonte
+    required: True
+  - "Data de Assinatura": data
+    datatype: date
+    default: |
+      ${ today(format='yyyy-MM-dd') }
+mandatory: True
+---
+question: Insira os dados do estagiário jurídico
+section: Dados do Estagiário
+progress: 37
+fields:
+  - 'Nome do Patrono(a):': nome_patrono_atual
+    datatype: string
+    hint: Luiza Sonza Cavalcanti
+    required: True
+  - 'UF da OAB do Patrono:': estado
+    datatype: dropdown
+    choices: 
+    - AC
+    - AL
+    - AP
+    - AM
+    - BA
+    - CE
+    - DF
+    - ES
+    - GO
+    - MA
+    - MT
+    - MS
+    - MG
+    - PA
+    - PB
+    - PR
+    - PE
+    - PI
+    - RJ
+    - RN
+    - RS
+    - RO
+    - RR
+    - SC
+    - SP
+    - SE
+    - TO
+    default: MG
+    required: True
+  - 'OAB do Patrono(a):': num_oab_patrono_atual 
+    minlength: 6
+    maxlength: 6
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: 78.593 
+    required: True
+
+mandatory: True
+
+---
+mandatory: True
+section: Checagem
+progress: 66
+question: |
+  #Confira os seus dados:  
+  Nome do assistido: ${ nome_assistido }  
+  Número de CPF do Assistido: ${ num_cpf }  
+  Juízo Competente: ${ juizo_competente  }   
+  Número dos Autos: ${ num_autos }  
+  Data de Assinatura: ${ data }  
+  Cidade da Assinatura: ${ cidade }  
+  Nome do Patrono: ${ nome_patrono_atual  }   
+  OAB do Patrono: ${ num_oab_patrono_atual  }   
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo! Ver documento: continue
+---
+features:
+  navigation: horizontal
+  progress bar: True
+  question back button: True
+---
+mandatory: True
+section: Impressão
+progress: 100
+question: |
+  Aqui está o seu documento!
+subquestion: |
+  Responda nossa [pesquisa de satisfação](https://forms.gle/XKGQKBes5u8e8bW6A)!
+attachment:
+  name: Petição de juntada de substabelecimento
+  language: pt
+  filename: ${ nome_assistido }-peticao_juntada_de_substabelecimento_e_substabelecimento
+  docx template file: peticao-de-juntada-de-substabelecimento-e-substabelecimento.docx
+  valid formats:
+    - pdf
+    - docx
+---
+features:
+  navigation: horizontal
+  progress bar: True
+  question back button: True
+---

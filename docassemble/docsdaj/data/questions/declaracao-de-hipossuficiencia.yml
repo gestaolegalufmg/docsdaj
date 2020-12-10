@@ -1,42 +1,88 @@
 metadata:
-  title: FORMULÁRIO - DECLARAÇÃO DE HIPOSSUFICIÊNCIA
+  title: Declaração de Hipossuficiência
 ---
 initial: True
 code: |
   set_language('pt')
 ---
+sections:
+  - Dados 
+  - Checagem
+  - Impressão
+---
 question: Informações Pessoais
+section: Dados
+progress: 33
 fields: 
-  - "Nome completo: ": nome_assistido
+  - "Nome do Assistido: ": nome_assistido
     datatype: string
-    required: True
-  - "RG: ": num_rg
-    datatype: int
+    hint: John Clayton Mayer
     required: True
   - "CPF: ": num_cpf
-    datatype: int
+    minlength: 14
+    maxlength: 14
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: "123.123.123-12"
+  - "RG: ": num_rg
+    minlength: 11
+    maxlength: 14
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: "MG-12.123.123"
     required: True
-    hint: "Ex: 000.000.000-00"
   - "Cidade: ": cidade
     datatype: string
+    default: Belo Horizonte
     required: True
   - "Data: ": data
     required: True
     datatype: date
+    default: |
+      ${ today(format='yyyy-MM-dd') }
 ---
-section: Conclusão
+mandatory: True
+section: Checagem
+progress: 66
+question: |
+  #Confira os seus dados:  
+  Nome do Assistido: ${ nome_assistido }  
+  Número de CPF do Assistido: ${ num_cpf }  
+  Número de RG do Assistido: ${ num_rg }  
+  Cidade de Emissão: ${ cidade }   
+  Data de Assinatura: ${ data }
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo! Ver documento: continue
+---
+section: Impressão
 progress: 100
 mandatory: True
 question: |
   O seu documento foi gerado com sucesso!
+subquestion: |
+  Responda nossa [pesquisa de satisfação](https://forms.gle/XKGQKBes5u8e8bW6A)!
 attachment:
-  name: Declaração Hipossuficiência
+  name: Declaração de Hipossuficiência
   language: pt
-  filename: decl_hipossuficiencia
+  filename:  ${ nome_assistido }-declaracao-de-hipossuficiencia
   docx template file: declaracao-de-hipossuficiencia.docx
   valid formats:
     - pdf
     - docx
 buttons:
   - Sair: exit
+---
+features:
+  navigation: horizontal
+  progress bar: True
+  question back button: True
 ---

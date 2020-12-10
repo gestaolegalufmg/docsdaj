@@ -5,61 +5,125 @@ initial: True
 code: |
   set_language('pt')
 ---
+features:
+  navigation: horizontal
+  progress bar: True
+  question back button: True
+---
+sections:
+  - Dados
+  - Dados da Procuração
+  - Checagem
+  - Impressão
+---
+section: Dados do Assistido
 question: Insira os dados do assistido
 progress: 1
 fields:
-  - 'Assistido:': nome_assistido
+  - 'Nome do Assistido': nome_assistido
     datatype: string
     hint: Maria da Silva Souza
     required: True
-  - 'CPF:': num_cpf
-    datatype: Int
-    hint: 014.297.923-34
+  - "Número de CPF do Assistido": num_cpf 
+    minlength: 14
+    maxlength: 14
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: "123.123.123-12"
     required: True
-  - 'RG:': num_rg
-    datatype: Int
-    hint: MG-13.432.345
-    required: True
+  - "Número de RG do Assistido": num_rg 
+    minlength: 11
+    maxlength: 14
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: "MG-12.123.123"
 mandatory: True
 ---
+section: Dados da Procuração
 question: Insira os dados da procuração
-progress: 50
+progress: 33
 fields:
-  - 'Nome do estagiário outorgado:': nome_estagiario
-    datatype: string
+  - 'Nome do Orientador:': nome_orientador 
     hint: Carlos Souza Aguiar
     required: True
-  - 'OAB do estagiário:': oab_estagiario
-    datatype: string
-    hint: 97.124 (apenas os números)
+  - 'OAB do Orientador:': num_oab_orientador 
+    minlength: 6
+    maxlength: 6
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: 97.124
     required: True
-  - 'Nome da ação ajuizada:': acao_procuracao
-    datatype: string
+  - 'Nome do Estagiário:': nome_estagiario
+    hint: Carlos Souza Aguiar
+    required: True
+  - 'OAB do Estagiário:': num_oab_estagiario
+    minlength: 6
+    maxlength: 6
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: 97.124
+    required: True
+  - 'Tipo da Ação:': tipo_acao 
     hint: Ação de Despejo contra Luzia Aparecida e outros
     required: True
-  - 'Data da procuração:': data
+  - 'Data da Procuração:': data
     datatype: date
+    default: |
+      ${ today(format='yyyy-MM-dd') }
     required: True
-  - 'Local da assinatura:': cidade
+  - 'Local da Assinatura:': cidade
     datatype: string
+    default: Belo Horizonte
     hint: Belo Horizonte
     required: True
 ---
 mandatory: True
+section: Checagem
+progress: 66
+question: |
+  #Confira os seus dados:  
+  Nome do assistido: ${ nome_assistido }  
+  Número de CPF do Assistido: ${ num_cpf }  
+  Número de RG do Assistido: ${ num_rg }  
+  Nome do Orientador: ${ nome_estagiario }  
+  OAB do Orientador: ${ num_oab_orientador  }   
+  Nome do Estagiário: ${ nome_estagiario }  
+  OAB do Estagiário: ${ num_oab_estagiario }  
+  Tipo da Ação: ${ tipo_acao }  
+  Data da Procuração: ${ data }  
+  Local da Assinatura: ${ cidade }  
+  
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo! Ver documento: continue
+---
+mandatory: True
+section: Impressão
 progress: 100
 question: |
   Aqui está o seu documento!
+subquestion: |
+  Responda nossa [pesquisa de satisfação](https://forms.gle/XKGQKBes5u8e8bW6A)!
 attachment:
   name: Procuração
   language: pt
-  filename: procuracao
+  filename: ${ nome_assistido }-procuracao
   docx template file: procuracao.docx
   valid formats:
     - pdf
     - docx
----
-features:
-  navigation: vertical
-  progress bar: True
-  question back button: True
 ---
