@@ -1,0 +1,37 @@
+metadata:
+  title: Gestão Legal UFMG
+  short title: Bem-vindo ao servidor de desenvolvimento
+  comment: https://github.com/orgs/gestaolegalufmg/dashboard
+---
+mandatory: True
+question: |
+  <center>Gestão Legal UFMG</center>
+subquestion: |
+  <center>[FILE logo-min.png]</center>
+  - - -
+  ##### Documentos Dispoíveis (beta)
+  * [Declaração de ciência e responsabilidade trabalhista](https://docassemble.robertonovaes.com.br/interview?i=docassemble.playground1Producao%3Adeclaracao-de-ciencia-e-responsabilidade.yml)
+  * [Declaração de ciência e comparecimento](https://docassemble.robertonovaes.com.br/interview?i=docassemble.playground1%3Adeclaracao-de-ciencia-e-comparecimento.yml)
+  * [Declaração de hipossuficiência](https://docassemble.robertonovaes.com.br/interview?i=docassemble.playground1%3Adeclaracao-de-hipossuficiencia.yml)
+  * [Declaração de veracidade e responsabilidade das informações prestadas](https://docassemble.robertonovaes.com.br/interview?i=docassemble.playground1%3Adeclaracao-de-veracidade-e-responsabilidade-das-informacoes-prestadas.yml)
+  * [Petição de Juntada de Substabelecimento](https://docassemble.robertonovaes.com.br/interview?i=docassemble.playground1%3Apeticao-de-juntada-de-substabelecimento.yml)
+  * [Procuração](https://docassemble.robertonovaes.com.br/interview?i=docassemble.playground1%3Aprocuracao.yml)
+  * [Pedido de isenção de custas cartorárias](https://docassemble.robertonovaes.com.br/interview?i=docassemble.playground1%3Apedido-de-isencao-de-custas-cartorarias.yml)
+  * [Recibo de documentos](https://docassemble.robertonovaes.com.br/interview?i=docassemble.playground1%3Arecibo.yml)
+  * [Requerimento para desarquivamento - BETA](https://docassemble.robertonovaes.com.br/interview?i=docassemble.playground4Entregas%3Arequerimento_de_desarquivamento.yml)
+  * [Substabelecimento](https://docassemble.robertonovaes.com.br/interview?i=docassemble.playground1%3Asubstabelecimento.yml)
+  * [Solicitação ao Cartório de Ofício de Notas - BETA](https://docassemble.robertonovaes.com.br/interview?i=docassemble.playground4Entregas%3Asolicitacao_ao_cartorio_de_oficio.yml)
+  * [Termo de autorização de uso de imagem e voz - BETA](https://docassemble.robertonovaes.com.br/interview?i=docassemble.playground4Entregas%3Atermo_de_autorizacao_de_uso_de_voz_e_imagem.yml)
+
+  ---
+  ##### Links Úteis
+
+  * [Sobre o projeto](https://www.robertonovaes.com.br/index.php/gestao-legal/)
+  * [GitHub](https://github.com/orgs/gestaolegalufmg/dashboard)
+
+  - - -
+  <center>[FILE logo-fdce-min.png]
+  [FILE logo-ufmg-min.png]</center>
+
+
+---
