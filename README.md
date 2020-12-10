@@ -13,12 +13,12 @@ Nomes do arquivos de entrevistas (.yml) e de templates (.docx) devem ser feitos:
 
 Exemplo: Declaração de comparecimento
 **CERTO**
-```python
+```bash
 declaracao-de-comparecimento.yml
 declaracao-de-comparecimento.docx
 ```
 **ERRADO**
-```python
+```bash
 Declaração-de-Comparecimento.yml - Uso de maiúsculas e carcteres especiais
 declaracao_de_comparecimento.yml - Separação por underscore
 declaracao-comparecimento.yml - Nome incompleto ou abreviado
@@ -26,7 +26,7 @@ declaracao-de-comparecimento.yaml - Extensão errada
 ```
 
 **ERRADO**
-```python
+```bash
 declaracao-de-comparecimento.yml
 declaracao-de-comparecimento-do-assistido.docx - Nomes de entrevistas e de templates divergentes
 ```
