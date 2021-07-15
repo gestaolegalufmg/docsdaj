@@ -23,7 +23,7 @@ fields:
   - "Nome do Assistido": nome_assistido
     hint: "Ex: Afonso Augusto Moreira Pena"
     required: True
-  - "Número de CPF do Assistido": num_cpf 
+  - "Número de CPF do Assistido": num_cpf
     minlength: 14
     maxlength: 14
     validation messages:
@@ -33,7 +33,7 @@ fields:
          Formato inválido!
     hint: "123.123.123-12"
     required: True
-  - "Número de RG do Assistido": num_rg 
+  - "Número de RG do Assistido": num_rg
     minlength: 11
     maxlength: 14
     validation messages:
@@ -54,9 +54,9 @@ fields:
     required: False
   - "Bairro": bairro
     hint: "Centro"
-  - 'Estado:': sigla_estado 
+  - 'Estado:': sigla_estado
     datatype: dropdown
-    choices: 
+    choices:
     - AC
     - AL
     - AP
@@ -110,23 +110,23 @@ fields:
   - "Motivos do Arquivamento": motivos_arquivamento
   - "Teve processo?": decisao
     datatype: yesnoradio
-  - "Número da ação:": num_acao 
+  - "Número da ação:": num_acao
     show if: decisao
-    required: False
+    required: True
 
-   
-     
+
+
 ---
 mandatory: True
 section: Checagem
 progress: 66
 question: |
-  #Confira os seus dados:  
-  Nome do assistido: ${ nome_assistido }  
-  Número de CPF do Assistido: ${ num_cpf }  
-  Número de RG do Assistido: ${ num_rg }  
-  Local de Emissão da Declaração: ${ cidade }  
-  Número do Caso: ${ num_caso }  
+  #Confira os seus dados:
+  Nome do assistido: ${ nome_assistido }
+  Número de CPF do Assistido: ${ num_cpf }
+  Número de RG do Assistido: ${ num_rg }
+  Local de Emissão da Declaração: ${ cidade }
+  Número do Caso: ${ num_caso }
   Data de Assinatura: ${ data }
 back button: True
 back button label: |
