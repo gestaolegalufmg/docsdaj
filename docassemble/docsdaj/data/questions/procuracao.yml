@@ -11,7 +11,7 @@ features:
   question back button: True
 ---
 sections:
-  - Dados
+  - Dados Iniciais
   - Dados da Procuração
   - Checagem
   - Impressão
