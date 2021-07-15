@@ -23,7 +23,7 @@ fields:
     datatype: string
     hint: Ana Maria Braga
     required: True
-  - "Número de CPF do Assistido": num_cpf 
+  - "Número de CPF do Assistido": num_cpf
     minlength: 14
     maxlength: 14
     validation messages:
@@ -33,7 +33,7 @@ fields:
          Formato inválido!
     hint: "123.123.123-12"
     required: True
-  - "Número de RG do Assistido": num_rg 
+  - "Número de RG do Assistido": num_rg
     minlength: 11
     maxlength: 14
     validation messages:
@@ -43,10 +43,11 @@ fields:
          Formato inválido!
     hint: "MG-12.123.123"
     required: True
-  - 'Assunto da Petição Inicial:': tipo_acao
+  - 'Tipo de ação:': tipo_acao
     datatype: string
     required: True
-    hint: "Ex: Ação trabalhista, Ação de alimentos"
+    hint: "Ex.: trabalhista, de alimentos"
+    help: "Classificação da ação de acordo com a matéria abordada na petição inicial."
   - "Número do Caso": num_caso
     hint: 1
   - 'Local de Emissão da Declaração:': cidade
@@ -64,14 +65,14 @@ Section: Checagem
 progress: 50
 mandatory: True
 question: |
-  #Confira os dados abaixo:  
-  Nome do Assistido: ${ nome_assistido }  
-  Número de CPF do Assistido: ${ num_cpf }  
-  Número de RG do Assistido: ${ num_rg }  
-  Assunto da Petição Inicial: ${ tipo_acao }  
-  Número do Caso: ${ num_caso }  
-  Local de Emissão Declaração: ${ cidade }  
-  Data de Assinatura: ${ data }  
+  #Confira os dados abaixo:
+  Nome do Assistido: ${ nome_assistido }
+  Número de CPF do Assistido: ${ num_cpf }
+  Número de RG do Assistido: ${ num_rg }
+  Assunto da Petição Inicial: ${ tipo_acao }
+  Número do Caso: ${ num_caso }
+  Local de Emissão Declaração: ${ cidade }
+  Data de Assinatura: ${ data }
 back button: True
 back button label: |
   Ops, errei. Voltar
@@ -80,7 +81,7 @@ buttons:
 ---
 section: Impressão
 progress: 100
-mandatory: True 
+mandatory: True
 question: |
   Aqui está o seu documento!
 subquestion: |
