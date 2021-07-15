@@ -24,6 +24,8 @@ fields:
     required: True
   - 'data assinatutura:': data
     datatype: date
+    default: |
+      ${ today(format='yyyy-MM-dd') }
     required: True
 ---
 question: Dados do advogado
