@@ -49,7 +49,7 @@ section: Dados da Procuração
 question: Insira os dados da procuração
 progress: 33
 fields:
-  - 'Nome do Orientador:': nome_orientador 
+  - 'Nome do Orientador:': nome_orientador
     hint: Carlos Souza Aguiar
     required: True
   - 'OAB do Orientador:': num_oab_orientador 
@@ -97,7 +97,7 @@ question: |
   Nome do assistido: ${ nome_assistido }  
   Número de CPF do Assistido: ${ num_cpf }  
   Número de RG do Assistido: ${ num_rg }  
-  Nome do Orientador: ${ nome_estagiario }  
+  Nome do Orientador: ${ nome_orientador }
   OAB do Orientador: ${ num_oab_orientador  }   
   Nome do Estagiário: ${ nome_estagiario }  
   OAB do Estagiário: ${ num_oab_estagiario }  
