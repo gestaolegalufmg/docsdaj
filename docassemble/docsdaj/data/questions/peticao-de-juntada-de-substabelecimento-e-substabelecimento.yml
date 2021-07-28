@@ -1,6 +1,9 @@
 metadata:
   title: Petição de juntada de substabelecimento
 ---
+objects:
+  - colaboradores: DAList.using(object_type=Individual)
+---
 initial: True
 code: |
   set_language('pt')
@@ -27,7 +30,7 @@ fields:
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: "123.123.123-12"
+    hint: "123.456.789-10"
     required: True
   - 'Juízo Competente:': juizo_competente 
     hint: "8ª VARA CÍVEL DA COMARCA DE BETIM"
@@ -99,6 +102,13 @@ fields:
     required: True
 
 mandatory: True
+
+---
+question: Deseja nomear um colaborador?
+section: Dados dos Colaboradores
+progress: 55
+yesno: colaboradores.there_are_any
+default: yes
 
 ---
 mandatory: True
