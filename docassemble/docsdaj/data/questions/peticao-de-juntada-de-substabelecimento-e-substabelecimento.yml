@@ -58,9 +58,9 @@ fields:
     datatype: string
     hint: Luiza Sonza Cavalcanti
     required: True
-  - 'UF da OAB do Patrono:': estado
+  - 'UF da OAB do Patrono:': patrono_estadooab
     datatype: dropdown
-    choices: 
+    choices:
     - AC
     - AL
     - AP
@@ -90,7 +90,7 @@ fields:
     - TO
     default: MG
     required: True
-  - 'OAB do Patrono(a):': num_oab_patrono_atual 
+  - 'OAB do Patrono(a):': patrono_numoab
     minlength: 6
     maxlength: 6
     validation messages:
@@ -98,7 +98,7 @@ fields:
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: 78.593 
+    hint: 78.593
     required: True
 
 mandatory: True
@@ -110,25 +110,10 @@ progress: 55
 yesno: colaboradores.there_are_any
 default: yes
 
+
 ---
-mandatory: True
-section: Checagem
-progress: 66
-question: |
-  #Confira os seus dados:  
-  Nome do assistido: ${ nome_assistido }  
-  Número de CPF do Assistido: ${ num_cpf }  
-  Juízo Competente: ${ juizo_competente  }   
-  Número dos Autos: ${ num_autos }  
-  Data de Assinatura: ${ data }  
-  Cidade da Assinatura: ${ cidade }  
-  Nome do Patrono: ${ nome_patrono_atual  }   
-  OAB do Patrono: ${ num_oab_patrono_atual  }   
-back button: True
-back button label: |
-  Ops, errei. Voltar
-buttons:
-  - Tudo certo! Ver documento: continue
+include:
+  - teste_objects.yml
 ---
 features:
   navigation: horizontal

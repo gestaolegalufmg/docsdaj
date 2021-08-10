@@ -44,27 +44,19 @@ fields:
       is: New
   - Número OAB: colaboradores[i].numoab
     required: True
-    datatype: integer
     show if:
       variable: colaboradores[i].existing_or_new
       is: New
 ---
-code: |
-  for i in colaboradores:
-    capitalize(colaboradores[i].name.first)
----
 mandatory: True
-question: |
-  O seu documento foi gerado com sucesso!
-attachment:
-  name: Teste Requeridos
-  language: pt
-  docx template file: teste-colaboradores.docx
-  valid formats:
-    - pdf
-    - docx
-buttons:
-  - Sair: exit
+code: |
+  if colaboradores.there_are_any:
+    todos_colaboradores = ''
+    for colaborador in colaboradores:
+      todos_colaboradores = '' + colaborador.name.full().upper() + ', '
+      oab_texto = "De OAB nº " + colaborador.estadooab + colaborador.numoab
+
+
 ---
 features:
   navigation: horizontal
