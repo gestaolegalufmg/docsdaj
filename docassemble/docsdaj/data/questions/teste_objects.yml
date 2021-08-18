@@ -1,6 +1,3 @@
-metadata:
-  title: Teste Colaborador
----
 initial: True
 code: |
   set_language('pt')
@@ -8,8 +5,8 @@ code: |
 objects:
   - colaboradores: DAList.using(object_type=Individual)
 ---
-question: Nomear o colaborador?
-yesno: colaboradores.there_are_any
+question: É necessário nomear um colaborador.
+continue button field: colaboradores.there_are_any
 default: yes
 
 ---
@@ -53,10 +50,20 @@ code: |
   if colaboradores.there_are_any:
     todos_colaboradores = ''
     for colaborador in colaboradores:
-      todos_colaboradores = '' + colaborador.name.full().upper() + ', '
-      oab_texto = "De OAB nº " + colaborador.estadooab + colaborador.numoab
+      todos_colaboradores = todos_colaboradores + '' + colaborador.name.full().upper() + ', ' + "OAB " + colaborador.estadooab.upper() + colaborador.numoab + "; "
 
-
+---
+mandatory: True
+section: Checagem Colaboradores
+question: |
+  Confira os dados informados
+subquestion:
+  ${todos_colaboradores}
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo! Ver documento: continue
 ---
 features:
   navigation: horizontal

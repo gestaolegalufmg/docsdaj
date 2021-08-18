@@ -98,22 +98,13 @@ fields:
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: 78.593
     required: True
 
 mandatory: True
 
 ---
-question: Deseja nomear um colaborador?
-section: Dados dos Colaboradores
-progress: 55
-yesno: colaboradores.there_are_any
-default: yes
-
-
----
 include:
-  - teste_objects.yml
+  - comum_colaborador.yml
 ---
 features:
   navigation: horizontal
