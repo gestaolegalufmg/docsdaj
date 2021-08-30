@@ -78,7 +78,6 @@ fields:
   - 'Tipo da Ação:': tipo_acao 
     hint: Ação de Despejo contra Luzia Aparecida e outros
     required: True
-  - 
   - 'Data da Procuração:': data
     datatype: date
     default: |
