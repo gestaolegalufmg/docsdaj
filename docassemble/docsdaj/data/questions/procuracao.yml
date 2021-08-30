@@ -94,16 +94,16 @@ section: Checagem
 progress: 66
 question: |
   #Confira os seus dados:
-  Nome do assistido: ${ nome_assistido }
-  Número de CPF do Assistido: ${ num_cpf }
-  Número de RG do Assistido: ${ num_rg }
-  Nome do Orientador: ${ nome_orientador }
-  OAB do Orientador: ${ num_oab_orientador }
-  Nome do Estagiário: ${ nome_estagiario }
-  OAB do Estagiário: ${ num_oab_estagiario }
-  Tipo da Ação: ${ tipo_acao }
-  Data da Procuração: ${ data }
-  Local da Assinatura: ${ cidade }
+  Nome do assistido: ${ nome_assistido }  
+  Número de CPF do Assistido: ${ num_cpf }  
+  Número de RG do Assistido: ${ num_rg }  
+  Nome do Orientador: ${ nome_orientador }  
+  OAB do Orientador: ${ num_oab_orientador }  
+  Nome do Estagiário: ${ nome_estagiario }  
+  OAB do Estagiário: ${ num_oab_estagiario }  
+  Tipo da Ação: ${ tipo_acao }  
+  Data da Procuração: ${ data }  
+  Local da Assinatura: ${ cidade }  
 
 back button: True
 back button label: |
