@@ -1,41 +1,31 @@
 metadata:
   title: Declaração de Hipossuficiência
 ---
+features:
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+---
 initial: True
 code: |
   set_language('pt')
 ---
 sections:
-  - Dados 
+  - Dados
   - Checagem
   - Impressão
 ---
 question: Informações Pessoais
 section: Dados
 progress: 33
-fields: 
+fields:
   - "Nome do Assistido: ": nome_assistido
     datatype: string
     hint: John Clayton Mayer
     required: True
   - "CPF: ": num_cpf
-    minlength: 14
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
     hint: "123.123.123-12"
   - "RG: ": num_rg
-    minlength: 11
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: "MG-12.123.123"
+    hint: "12.123.123"
     required: True
   - "Cidade: ": cidade
     datatype: string
@@ -46,16 +36,25 @@ fields:
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+        $('#bnVtX3Jn').mask('99.999.999');
+    });
+  </script>
+
+---
 ---
 mandatory: True
 section: Checagem
 progress: 66
 question: |
-  #Confira os seus dados:  
-  Nome do Assistido: ${ nome_assistido }  
-  Número de CPF do Assistido: ${ num_cpf }  
-  Número de RG do Assistido: ${ num_rg }  
-  Cidade de Emissão: ${ cidade }   
+  #Confira os seus dados:
+  Nome do Assistido: ${ nome_assistido }
+  Número de CPF do Assistido: ${ num_cpf }
+  Número de RG do Assistido: ${ num_rg }
+  Cidade de Emissão: ${ cidade }
   Data de Assinatura: ${ data }
 back button: True
 back button label: |
@@ -81,6 +80,7 @@ attachment:
 buttons:
   - Sair: exit
 ---
+
 features:
   navigation: horizontal
   progress bar: True
