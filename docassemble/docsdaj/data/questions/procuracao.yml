@@ -18,7 +18,7 @@ sections:
 ---
 section: Dados do Assistido
 question: Insira os dados do assistido
-progress: 21
+progress: 20
 fields:
   - 'Nome do Assistido': nome_assistido
     datatype: string
