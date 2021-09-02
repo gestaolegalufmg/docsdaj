@@ -28,11 +28,13 @@ fields:
     required: True
   - 'Data do comparecimento:': data
     datatype: date
+    default: |
+      ${ today(format='yyyy-MM-dd') }
     required: True
   - 'Cidade:': cidade
     datatype: string
     required: True
-  - 'Data assinatutura:': data
+  - 'Data assinatutura:': data_assinatura
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
@@ -40,8 +42,47 @@ fields:
   - 'Nome do Colaborador:': nome_colaborador
     datatype: string
     required: True
-  - 'OAB:': num_oab
-    hint: 00000/MG
+  - 'UF da OAB do Colaborador:': estado
+    datatype: dropdown
+    choices:
+    - AC
+    - AL
+    - AP
+    - AM
+    - BA
+    - CE
+    - DF
+    - ES
+    - GO
+    - MA
+    - MT
+    - MS
+    - MG
+    - PA
+    - PB
+    - PR
+    - PE
+    - PI
+    - RJ
+    - RN
+    - RS
+    - RO
+    - RR
+    - SC
+    - SP
+    - SE
+    - TO
+    default: MG
+    required: True
+  - 'OAB do Colaborado:': num_oab
+    minlength: 6
+    maxlength: 6
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: 78.593
     required: True
 mandatory: True
 script: |
@@ -56,6 +97,17 @@ section: Checagem
 progress: 77
 question: |
   #Confira os seus dados:
+  Nome do assistido: ${ nome_assistido }
+  Número de CPF do Assistido: ${ num_cpf }
+  Horário do início: $ { hora_inicial }
+  Horário do término: $ { hora_final }
+  Data da de comparecimento: ${ data }
+  Cidade: ${ cidade }
+  Data da assinatura: ${ data_assinatura }
+  Nome do Colaborador: ${ nome_colaborador  }
+  OAB do Colaborado: ${ num_oab }
+  UF da OAB do Colaborador: ${ estado }
+  Local da Assinatura: ${ cidade }
 back button: True
 back button label: |
   Ops, errei. Voltar
