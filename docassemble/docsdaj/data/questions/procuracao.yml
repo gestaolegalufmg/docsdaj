@@ -45,7 +45,7 @@ fields:
     hint: "MG-12.123.123"
 mandatory: True
 ---
-section: Dados da Procuração
+section: Dados
 question: Insira os dados da procuração
 progress: 33
 fields:
