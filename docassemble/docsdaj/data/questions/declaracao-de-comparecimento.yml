@@ -1,3 +1,11 @@
+features:
+  navigation: vertical
+  progress bar: True
+  question back button: True
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+    - comum_validacao_cpf.js
+---
 metadata:
   title: Declaração de comparecimento
 ---
@@ -6,13 +14,14 @@ fields:
   - 'assistido:': nome_assistido
     datatype: string
     required: True
-  - 'horario do inicio:': horario_inicio
+  - "Número de CPF do Assistido": num_cpf
+  - 'horario do inicio:': hora_inicial
     datatype: time
     required: True
-  - 'horario do termino:': horario_termino
+  - 'horario do termino:': hora_final
     datatype: time
     required: True
-  - 'data do comparecimento:': data
+  - 'data do comparecimento:': data_comparecimento
     datatype: date
     required: True
 mandatory: True
@@ -28,16 +37,67 @@ fields:
       ${ today(format='yyyy-MM-dd') }
     required: True
 ---
-question: Dados do advogado
+question: Dados do colaborador
 fields:
-  - 'advogado:': advogado
-    datatype: string
+  - 'Nome do Colaborador:': nome_colaborador
     required: True
-  - 'oab:': numeroOab
-    datatype: string
-    hint: 00000/MG
+  - 'UF da OAB do Colaborador:': uf_oab
+    datatype: dropdown
+    choices:
+      - AC
+      - AL
+      - AP
+      - AM
+      - BA
+      - CE
+      - DF
+      - ES
+      - GO
+      - MA
+      - MT
+      - MS
+      - MG
+      - PA
+      - PB
+      - PR
+      - PE
+      - PI
+      - RJ
+      - RN
+      - RS
+      - RO
+      - RR
+      - SC
+      - SP
+      - SE
+      - TO
+    default: MG
+  - 'Número da OAB:': num_oab
     required: True
 mandatory: True
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+          $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+      });
+      $("#bnVtX2NwZg").focusout(function() {
+      $('#bnVtX2NwZg-error').remove()
+      var campo_teste = $("#bnVtX2NwZg").val();
+      if (campo_teste){
+        var cpf_valido = CPF_valido(campo_teste)
+        if (!cpf_valido) {
+            console.log("CPF INVÁLIDO");
+
+          $("#bnVtX2NwZg").val("");
+          $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+       }
+       else {
+        console.log("CPF VÁLIDO");
+       }
+     }
+     });
+   </script>
+
 ---
 mandatory: True
 question: |
@@ -50,9 +110,3 @@ attachment:
   valid formats:
     - pdf
     - docx
----
-features:
-  navigation: vertical
-  progress bar: True
-  question back button: True
----
