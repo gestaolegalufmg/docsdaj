@@ -65,12 +65,16 @@ fields:
     hint: Carlos Souza Aguiar
     required: True
   - 'Estado da OAB do Orientador': uf_oab_orientador
+    code: |
+      lista_estados_sigla()
   - 'OAB do Orientador:': num_oab_orientador
     required: True
   - 'Nome do Estagiário:': nome_estagiario
     hint: Carlos Souza Aguiar
     required: True
   - 'Estado da OAB do Estagiário': uf_oab_estagiario
+    code: |
+      lista_estados_sigla()
     required: True
   - 'OAB do Estagiário:': num_oab_estagiario
     required: True
