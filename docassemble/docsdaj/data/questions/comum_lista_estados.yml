@@ -31,7 +31,7 @@ code: |
     "Tocantins"]
     return estados
 
-  def lista_estados_sigla
+  def lista_estados_sigla ():
     siglas = [
     "AC",
     "AL",
