@@ -9,6 +9,9 @@ features:
   navigation: horizontal
   progress bar: True
   question back button: True
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+    - comum_validacao_cpf.js
 ---
 sections:
   - Dados Iniciais
@@ -24,58 +27,54 @@ fields:
     datatype: string
     hint: Maria da Silva Souza
     required: True
-  - "Número de CPF do Assistido": num_cpf 
-    minlength: 14
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: "123.123.123-12"
+  - "Número de CPF do Assistido": num_cpf
     required: True
-  - "Número de RG do Assistido": num_rg 
-    minlength: 11
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: "MG-12.123.123"
+  - "Número de RG do Assistido": num_rg
+    required: True
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+          $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+          $('#bnVtX3Jn').mask('ZZ00.000.000', {translation:  {'Z': {pattern: /[A-Z]/, optional: true}}});
+      });
+      $("#bnVtX2NwZg").focusout(function() {
+      $('#bnVtX2NwZg-error').remove()
+      var campo_teste = $("#bnVtX2NwZg").val();
+      if (campo_teste){
+        var cpf_valido = CPF_valido(campo_teste)
+        if (!cpf_valido) {
+            console.log("CPF INVÁLIDO");
+
+          $("#bnVtX2NwZg").val("");
+          $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+       }
+       else {
+        console.log("CPF VÁLIDO");
+       }
+     }
+     });
+   </script>
 mandatory: True
+
 ---
 section: Dados da Procuração
 question: Insira os dados da procuração
 progress: 33
 fields:
-  - 'Nome do Orientador:': nome_orientador 
+  - 'Nome do Orientador:': nome_orientador
     hint: Carlos Souza Aguiar
     required: True
-  - 'OAB do Orientador:': num_oab_orientador 
-    minlength: 6
-    maxlength: 6
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: 97.124
+  - 'Estado da OAB do Orientador': uf_oab_orientador
+  - 'OAB do Orientador:': num_oab_orientador
     required: True
   - 'Nome do Estagiário:': nome_estagiario
     hint: Carlos Souza Aguiar
     required: True
-  - 'OAB do Estagiário:': num_oab_estagiario
-    minlength: 6
-    maxlength: 6
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: 97.124
+  - 'Estado da OAB do Estagiário': uf_oab_estagiario
     required: True
-  - 'Tipo da Ação:': tipo_acao 
+  - 'OAB do Estagiário:': num_oab_estagiario
+    required: True
+  - 'Tipo da Ação:': tipo_acao
     hint: Ação de Despejo contra Luzia Aparecida e outros
     required: True
   - 'Data da Procuração:': data
@@ -88,6 +87,14 @@ fields:
     default: Belo Horizonte
     hint: Belo Horizonte
     required: True
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+          $('#bnVtX29hYl9vcmllbnRhZG9y').mask('000.000', {reverse: true});
+          $('#bnVtX29hYl9lc3RhZ2lhcmlv').mask('000.000', {reverse: true});
+      });
+   </script>
+
 ---
 mandatory: True
 section: Checagem
