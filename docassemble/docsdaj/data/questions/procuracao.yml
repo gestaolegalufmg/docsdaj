@@ -1,6 +1,9 @@
 metadata:
   title: Procuração
 ---
+include:
+  - comum_lista_estados.yml
+---
 initial: True
 code: |
   set_language('pt')
@@ -35,7 +38,7 @@ script: |
   <script type="text/javascript">
     $(document).ready(function(){
           $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
-          $('#bnVtX3Jn').mask('ZZ00.000.000', {translation:  {'Z': {pattern: /[A-Z]/, optional: true}}});
+          $('#bnVtX3Jn').mask('ZZ00.000.000', {translation:  {'Z': {pattern: /[A-Za-z]/, optional: true}}});
       });
       $("#bnVtX2NwZg").focusout(function() {
       $('#bnVtX2NwZg-error').remove()
@@ -104,18 +107,18 @@ mandatory: True
 section: Checagem
 progress: 66
 question: |
-  #Confira os seus dados:  
-  Nome do assistido: ${ nome_assistido }  
-  Número de CPF do Assistido: ${ num_cpf }  
-  Número de RG do Assistido: ${ num_rg }  
-  Nome do Orientador: ${ nome_estagiario }  
-  OAB do Orientador: ${ num_oab_orientador  }   
-  Nome do Estagiário: ${ nome_estagiario }  
-  OAB do Estagiário: ${ num_oab_estagiario }  
-  Tipo da Ação: ${ tipo_acao }  
-  Data da Procuração: ${ data }  
-  Local da Assinatura: ${ cidade }  
-  
+  #Confira os seus dados:
+  Nome do assistido: ${ nome_assistido }
+  Número de CPF do Assistido: ${ num_cpf }
+  Número de RG do Assistido: ${ num_rg }
+  Nome do Orientador: ${ nome_estagiario }
+  OAB do Orientador: ${ num_oab_orientador  }
+  Nome do Estagiário: ${ nome_estagiario }
+  OAB do Estagiário: ${ num_oab_estagiario }
+  Tipo da Ação: ${ tipo_acao }
+  Data da Procuração: ${ data }
+  Local da Assinatura: ${ cidade }
+
 back button: True
 back button label: |
   Ops, errei. Voltar
