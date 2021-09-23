@@ -82,14 +82,14 @@ mandatory: true
 progress: 49
 question: |
   #Confira os seus dados:  
-  Nome do Recebedor: ${ nome_recebedor }   
+  Nome do Recebedor: ${ nome_recebedor }  
   Número de CPF do Recebedor: ${ num_cpf_recebedor }  
   Número de RG do Recebedor: ${ num_rg_recebedor }  
-  Nome do Entregador: ${ nome_entregador }   
+  Nome do Entregador: ${ nome_entregador }  
   Número de CPF do Entregador: ${ num_cpf_entregador }  
   Número de RG do Entregador: ${ num_rg_entregador }  
   Número do caso: ${ num_caso }  
-  Cidade: ${ cidade }   
+  Cidade: ${ cidade }  
   Data de Assinatura: ${ data }
 back button: True
 back button label: |
