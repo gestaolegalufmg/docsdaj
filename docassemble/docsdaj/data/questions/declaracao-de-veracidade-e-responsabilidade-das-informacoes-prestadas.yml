@@ -65,12 +65,12 @@ progress: 50
 mandatory: True
 question: |
   #Confira os dados abaixo:
-  Nome do Assistido: ${ nome_assistido }
-  Número de CPF do Assistido: ${ num_cpf }
-  Número de RG do Assistido: ${ num_rg }
-  Assunto da Petição Inicial: ${ tipo_acao }
-  Número do Caso: ${ num_caso }
-  Local de Emissão Declaração: ${ cidade }
+  Nome do Assistido: ${ nome_assistido }  
+  Número de CPF do Assistido: ${ num_cpf }  
+  Número de RG do Assistido: ${ num_rg }  
+  Assunto da Petição Inicial: ${ tipo_acao }  
+  Número do Caso: ${ num_caso }  
+  Local de Emissão Declaração: ${ cidade }  
   Data de Assinatura: ${ data }
 back button: True
 back button label: |

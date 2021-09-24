@@ -102,26 +102,16 @@ section: Checagem
 question: |
  #Confira os seus dados:
 
- Nome do assistido: ${ nome_assistido }
-
- Tipo de ação judicial: ${ tipo_acaojudicial }
-
- N° do processo: ${ numero_processo }
-
- Comarca: ${ cidade_comarca }
-
- Estado da Comarca: ${ estado_comarca }
-
- Cidade: ${ cidade }
-
- Data assinatutura: ${ data }
-
- Advogado: ${ advogado }
-
- Número da OAB do advogado: ${ numeroOab }
-
- Orientador: ${ orientador }
-
+ Nome do assistido: ${ nome_assistido }  
+ Tipo de ação judicial: ${ tipo_acaojudicial }  
+ N° do processo: ${ numero_processo }  
+ Comarca: ${ cidade_comarca }  
+ Estado da Comarca: ${ estado_comarca }  
+ Cidade: ${ cidade }  
+ Data assinatutura: ${ data }  
+ Advogado: ${ advogado }  
+ Número da OAB do advogado: ${ numeroOab }  
+ Orientador: ${ orientador }  
  Número da OAB do orientador: ${ numeroOabOrientador }
 back button: True
 back button label: |

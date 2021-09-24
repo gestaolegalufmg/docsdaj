@@ -106,6 +106,25 @@ mandatory: True
 include:
   - comum_colaborador.yml
 ---
+mandatory: True
+section: Checagem
+progress: 66
+question: |
+  #Confira os seus dados:
+  Nome do assistido: ${ nome_assistido }
+  Número de CPF do Assistido: ${ num_cpf }
+  Juízo Competente: ${ juizo_competente  }
+  Número dos Autos: ${ num_autos }
+  Data de Assinatura: ${ data }
+  Cidade da Assinatura: ${ cidade }
+  Nome do Patrono: ${ nome_patrono_atual  }
+  OAB do Patrono: ${ num_oab_patrono_atual  }
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo! Ver documento: continue
+---
 features:
   navigation: horizontal
   progress bar: True
@@ -126,9 +145,4 @@ attachment:
   valid formats:
     - pdf
     - docx
----
-features:
-  navigation: horizontal
-  progress bar: True
-  question back button: True
 ---

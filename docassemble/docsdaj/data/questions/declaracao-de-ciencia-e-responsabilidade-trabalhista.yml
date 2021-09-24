@@ -62,7 +62,7 @@ question: |
   Número de CPF do(a) Assistido(a): ${ num_cpf }  
   Número de RG do(a) Assistido(a): ${ num_rg }  
   Número do Caso: ${ num_caso }  
-  Cidade de assinatura: ${ cidade } 
+  Cidade de assinatura: ${ cidade }  
   Data de assinatura: ${ data }
 back button: True
 back button label: |
