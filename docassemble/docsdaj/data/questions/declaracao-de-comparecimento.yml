@@ -1,44 +1,121 @@
 metadata:
   title: Declaração de comparecimento
 ---
+features:
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+---
+sections:
+  - Dados
+  - Checagem
+  - Impressão
+---
+section: Dados
+progress: 33
 question: Declaração de comparecimento
 fields:
-  - 'assistido:': nome_assistido
+  - 'Nome do assistido:': nome_assistido
     datatype: string
     required: True
-  - 'horario do inicio:': horario_inicio
+  - "CPF: ": num_cpf
+    hint: "123.123.123-12"
+    required: True
+  - 'Horário do início:': hora_inicial
     datatype: time
     required: True
-  - 'horario do termino:': horario_termino
+  - 'Horário do término:': hora_final
     datatype: time
     required: True
-  - 'data do comparecimento:': data
-    datatype: date
-    required: True
-mandatory: True
----
-question: Local e data
-fields:
-  - 'cidade:': cidade
-    datatype: string
-    required: True
-  - 'data assinatutura:': data
+  - 'Data do comparecimento:': data
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
     required: True
----
-question: Dados do advogado
-fields:
-  - 'advogado:': advogado
+  - 'Cidade:': cidade
     datatype: string
     required: True
-  - 'oab:': numeroOab
+  - 'Data assinatutura:': data_assinatura
+    datatype: date
+    default: |
+      ${ today(format='yyyy-MM-dd') }
+    required: True
+  - 'Nome do Colaborador:': nome_colaborador
     datatype: string
-    hint: 00000/MG
+    required: True
+  - 'UF da OAB do Colaborador:': estado
+    datatype: dropdown
+    choices:
+    - AC
+    - AL
+    - AP
+    - AM
+    - BA
+    - CE
+    - DF
+    - ES
+    - GO
+    - MA
+    - MT
+    - MS
+    - MG
+    - PA
+    - PB
+    - PR
+    - PE
+    - PI
+    - RJ
+    - RN
+    - RS
+    - RO
+    - RR
+    - SC
+    - SP
+    - SE
+    - TO
+    default: MG
+    required: True
+  - 'OAB do Colaborado:': num_oab
+    minlength: 6
+    maxlength: 6
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: 78.593
     required: True
 mandatory: True
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+    });
+  </script>
+
 ---
+section: Checagem
+progress: 77
+question: |
+  #Confira os seus dados:
+  Nome do assistido: ${ nome_assistido }
+  Número de CPF do Assistido: ${ num_cpf }
+  Horário do início: $ { hora_inicial }
+  Horário do término: $ { hora_final }
+  Data da de comparecimento: ${ data }
+  Cidade: ${ cidade }
+  Data da assinatura: ${ data_assinatura }
+  Nome do Colaborador: ${ nome_colaborador  }
+  OAB do Colaborado: ${ num_oab }
+  UF da OAB do Colaborador: ${ estado }
+  Local da Assinatura: ${ cidade }
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo! Ver documento: continue
+---
+section: Impressão
+progress: 100
 mandatory: True
 question: |
   Aqui está o seu documento!
@@ -52,7 +129,7 @@ attachment:
     - docx
 ---
 features:
-  navigation: vertical
+  navigation: horizontal
   progress bar: True
   question back button: True
 ---
