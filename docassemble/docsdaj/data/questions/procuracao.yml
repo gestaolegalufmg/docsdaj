@@ -24,7 +24,7 @@ fields:
     datatype: string
     hint: Maria da Silva Souza
     required: True
-  - "Número de CPF do Assistido": num_cpf 
+  - "Número de CPF do Assistido": num_cpf
     minlength: 14
     maxlength: 14
     validation messages:
@@ -34,7 +34,7 @@ fields:
          Formato inválido!
     hint: "123.123.123-12"
     required: True
-  - "Número de RG do Assistido": num_rg 
+  - "Número de RG do Assistido": num_rg
     minlength: 11
     maxlength: 14
     validation messages:
@@ -49,10 +49,10 @@ section: Dados
 question: Insira os dados da procuração
 progress: 33
 fields:
-  - 'Nome do Orientador:': nome_orientador 
+  - 'Nome do Orientador:': nome_orientador
     hint: Carlos Souza Aguiar
     required: True
-  - 'OAB do Orientador:': num_oab_orientador 
+  - 'OAB do Orientador:': num_oab_orientador
     minlength: 6
     maxlength: 6
     validation messages:
@@ -75,7 +75,7 @@ fields:
          Formato inválido!
     hint: 97.124
     required: True
-  - 'Tipo da Ação:': tipo_acao 
+  - 'Tipo da Ação:': tipo_acao
     hint: Ação de Despejo contra Luzia Aparecida e outros
     required: True
   - 'Data da Procuração:': data
@@ -93,18 +93,18 @@ mandatory: True
 section: Checagem
 progress: 66
 question: |
-  #Confira os seus dados:  
+  #Confira os seus dados:
   Nome do assistido: ${ nome_assistido }  
   Número de CPF do Assistido: ${ num_cpf }  
   Número de RG do Assistido: ${ num_rg }  
-  Nome do Orientador: ${ nome_estagiario }  
-  OAB do Orientador: ${ num_oab_orientador  }   
+  Nome do Orientador: ${ nome_orientador }  
+  OAB do Orientador: ${ num_oab_orientador }  
   Nome do Estagiário: ${ nome_estagiario }  
   OAB do Estagiário: ${ num_oab_estagiario }  
   Tipo da Ação: ${ tipo_acao }  
   Data da Procuração: ${ data }  
   Local da Assinatura: ${ cidade }  
-  
+
 back button: True
 back button label: |
   Ops, errei. Voltar
