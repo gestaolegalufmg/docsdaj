@@ -78,6 +78,8 @@ fields:
   - 'Tipo da Ação:': tipo_acao
     hint: Ação de Despejo contra Luzia Aparecida e outros
     required: True
+  - 'Número do processo:': num_acao
+    required: True
   - 'Data da Procuração:': data
     datatype: date
     default: |
@@ -102,6 +104,7 @@ question: |
   Nome do Estagiário: ${ nome_estagiario }  
   OAB do Estagiário: ${ num_oab_estagiario }  
   Tipo da Ação: ${ tipo_acao }  
+  Número do processo: ${ num_acao }  
   Data da Procuração: ${ data }  
   Local da Assinatura: ${ cidade }  
 
