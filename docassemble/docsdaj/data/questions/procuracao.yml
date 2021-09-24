@@ -97,8 +97,8 @@ fields:
 script: |
   <script type="text/javascript">
     $(document).ready(function(){
-          $('#bnVtX29hYl9vcmllbnRhZG9y').mask('000.000', {reverse: true});
-          $('#bnVtX29hYl9lc3RhZ2lhcmlv').mask('000.000', {reverse: true});
+          $('#bnVtX29hYl9vcmllbnRhZG9y').mask('099.999', {reverse: true});
+          $('#bnVtX29hYl9lc3RhZ2lhcmlv').mask('099.999', {reverse: true});
       });
    </script>
 
@@ -112,9 +112,9 @@ question: |
   Número de CPF do Assistido: ${ num_cpf }
   Número de RG do Assistido: ${ num_rg }
   Nome do Orientador: ${ nome_estagiario }
-  OAB do Orientador: ${ num_oab_orientador  }
+  OAB do Orientador: ${ uf_oab_orientador  }${ num_oab_orientador  }
   Nome do Estagiário: ${ nome_estagiario }
-  OAB do Estagiário: ${ num_oab_estagiario }
+  OAB do Estagiário: ${ uf_oab_orientador  }${ num_oab_estagiario }
   Tipo da Ação: ${ tipo_acao }
   Data da Procuração: ${ data }
   Local da Assinatura: ${ cidade }

@@ -60,4 +60,4 @@ code: |
     "SP",
     "SE",
     "TO"]
-  return estados_siglas
+    return siglas
