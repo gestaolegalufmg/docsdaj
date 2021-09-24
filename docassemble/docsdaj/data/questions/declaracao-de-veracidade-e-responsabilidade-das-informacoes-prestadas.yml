@@ -43,11 +43,10 @@ fields:
          Formato inválido!
     hint: "MG-12.123.123"
     required: True
-  - 'Tipo de ação:': tipo_acao
+  - 'Assunto da Petição Inicial:': tipo_acao
     datatype: string
     required: True
-    hint: "Ex.: trabalhista, de alimentos"
-    help: "Classificação da ação de acordo com a matéria abordada na petição inicial."
+    hint: "Ex: Ação trabalhista, Ação de alimentos"
   - "Número do Caso": num_caso
     hint: 1
   - 'Local de Emissão da Declaração:': cidade
@@ -87,7 +86,7 @@ question: |
 subquestion: |
   Responda nossa [pesquisa de satisfação](https://forms.gle/XKGQKBes5u8e8bW6A)!
 attachment:
-  name: Declarao de Veracidade e Responsabilidade das Informaes Prestadas
+  name: Declaração de Veracidade e Responsabilidade das Informações Prestadas
   language: pt
   filename:  ${ nome_assistido }-declaracao-de-veracidade-e-responsabilidade-das-informacoes-prestadas
   docx template file: declaracao-de-veracidade-e-responsabilidade-das-informacoes-prestadas.docx
