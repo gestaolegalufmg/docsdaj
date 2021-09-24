@@ -1,6 +1,9 @@
 metadata:
   title: Procuração
 ---
+include:
+  - comum_lista_estados.yml
+---
 initial: True
 code: |
   set_language('pt')
@@ -9,6 +12,9 @@ features:
   navigation: horizontal
   progress bar: True
   question back button: True
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+    - comum_validacao_cpf.js
 ---
 sections:
   - Dados Iniciais
@@ -25,24 +31,32 @@ fields:
     hint: Maria da Silva Souza
     required: True
   - "Número de CPF do Assistido": num_cpf
-    minlength: 14
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: "123.123.123-12"
     required: True
   - "Número de RG do Assistido": num_rg
-    minlength: 11
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: "MG-12.123.123"
+    required: True
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+          $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+          $('#bnVtX3Jn').mask('ZZ00.000.000', {translation:  {'Z': {pattern: /[A-Za-z]/, optional: true}}});
+      });
+      $("#bnVtX2NwZg").focusout(function() {
+      $('#bnVtX2NwZg-error').remove()
+      var campo_teste = $("#bnVtX2NwZg").val();
+      if (campo_teste){
+        var cpf_valido = CPF_valido(campo_teste)
+        if (!cpf_valido) {
+            console.log("CPF INVÁLIDO");
+
+          $("#bnVtX2NwZg").val("");
+          $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+       }
+       else {
+        console.log("CPF VÁLIDO");
+       }
+     }
+     });
+   </script>
 mandatory: True
 ---
 section: Dados
@@ -52,18 +66,17 @@ fields:
   - 'Nome do Orientador:': nome_orientador
     hint: Carlos Souza Aguiar
     required: True
+  - 'Estado da OAB do Orientador': uf_oab_orientador
+    code: |
+      lista_estados_sigla()
   - 'OAB do Orientador:': num_oab_orientador
-    minlength: 6
-    maxlength: 6
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: 97.124
     required: True
   - 'Nome do Estagiário:': nome_estagiario
     hint: Carlos Souza Aguiar
+    required: True
+  - 'Estado da OAB do Estagiário': uf_oab_estagiario
+    code: |
+      lista_estados_sigla()
     required: True
   - 'OAB do Estagiário:': num_oab_estagiario
     minlength: 6
@@ -90,23 +103,30 @@ fields:
     default: Belo Horizonte
     hint: Belo Horizonte
     required: True
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+          $('#bnVtX29hYl9vcmllbnRhZG9y').mask('099.999', {reverse: true});
+          $('#bnVtX29hYl9lc3RhZ2lhcmlv').mask('099.999', {reverse: true});
+      });
+   </script>
+
 ---
 mandatory: True
 section: Checagem
 progress: 66
 question: |
   #Confira os seus dados:
-  Nome do assistido: ${ nome_assistido }  
-  Número de CPF do Assistido: ${ num_cpf }  
-  Número de RG do Assistido: ${ num_rg }  
-  Nome do Orientador: ${ nome_orientador }  
-  OAB do Orientador: ${ num_oab_orientador }  
-  Nome do Estagiário: ${ nome_estagiario }  
-  OAB do Estagiário: ${ num_oab_estagiario }  
-  Tipo da Ação: ${ tipo_acao }  
-  Número do processo: ${ num_acao }  
-  Data da Procuração: ${ data }  
-  Local da Assinatura: ${ cidade }  
+  Nome do assistido: ${ nome_assistido }
+  Número de CPF do Assistido: ${ num_cpf }
+  Número de RG do Assistido: ${ num_rg }
+  Nome do Orientador: ${ nome_estagiario }
+  OAB do Orientador: ${ uf_oab_orientador  }${ num_oab_orientador  }
+  Nome do Estagiário: ${ nome_estagiario }
+  OAB do Estagiário: ${ uf_oab_orientador  }${ num_oab_estagiario }
+  Tipo da Ação: ${ tipo_acao }
+  Data da Procuração: ${ data }
+  Local da Assinatura: ${ cidade }
 
 back button: True
 back button label: |
