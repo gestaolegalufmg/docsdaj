@@ -1,9 +1,13 @@
-metadata:
-  title: Declaração de comparecimento
----
 features:
+  navigation: vertical
+  progress bar: True
+  question back button: True
   javascript:
     - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+    - comum_validacao_cpf.js
+---
+metadata:
+  title: Declaração de comparecimento
 ---
 sections:
   - Dados
@@ -17,7 +21,7 @@ fields:
   - 'Nome do assistido:': nome_assistido
     datatype: string
     required: True
-  - "CPF: ": num_cpf
+  - "Número de CPF do Assistido: ": num_cpf
     hint: "123.123.123-12"
     required: True
   - 'Horário do início:': hora_inicial
@@ -39,58 +43,67 @@ fields:
     default: |
       ${ today(format='yyyy-MM-dd') }
     required: True
+---
+question: Dados do colaborador
+fields:
   - 'Nome do Colaborador:': nome_colaborador
-    datatype: string
     required: True
-  - 'UF da OAB do Colaborador:': estado
+  - 'UF da OAB do Colaborador:': uf_oab
     datatype: dropdown
     choices:
-    - AC
-    - AL
-    - AP
-    - AM
-    - BA
-    - CE
-    - DF
-    - ES
-    - GO
-    - MA
-    - MT
-    - MS
-    - MG
-    - PA
-    - PB
-    - PR
-    - PE
-    - PI
-    - RJ
-    - RN
-    - RS
-    - RO
-    - RR
-    - SC
-    - SP
-    - SE
-    - TO
+      - AC
+      - AL
+      - AP
+      - AM
+      - BA
+      - CE
+      - DF
+      - ES
+      - GO
+      - MA
+      - MT
+      - MS
+      - MG
+      - PA
+      - PB
+      - PR
+      - PE
+      - PI
+      - RJ
+      - RN
+      - RS
+      - RO
+      - RR
+      - SC
+      - SP
+      - SE
+      - TO
     default: MG
-    required: True
-  - 'OAB do Colaborado:': num_oab
-    minlength: 6
-    maxlength: 6
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: 78.593
+  - 'Número da OAB:': num_oab
     required: True
 mandatory: True
 script: |
   <script type="text/javascript">
     $(document).ready(function(){
-        $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
-    });
-  </script>
+          $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+      });
+      $("#bnVtX2NwZg").focusout(function() {
+      $('#bnVtX2NwZg-error').remove()
+      var campo_teste = $("#bnVtX2NwZg").val();
+      if (campo_teste){
+        var cpf_valido = CPF_valido(campo_teste)
+        if (!cpf_valido) {
+            console.log("CPF INVÁLIDO");
+
+          $("#bnVtX2NwZg").val("");
+          $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+       }
+       else {
+        console.log("CPF VÁLIDO");
+       }
+     }
+     });
+   </script>
 
 ---
 section: Checagem
@@ -127,9 +140,3 @@ attachment:
   valid formats:
     - pdf
     - docx
----
-features:
-  navigation: horizontal
-  progress bar: True
-  question back button: True
----
