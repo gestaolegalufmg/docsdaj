@@ -1,6 +1,11 @@
 metadata:
   title: Petição de juntada de substabelecimento
 ---
+features:
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+    - comum_validacao_cpf.js
+---
 objects:
   - colaboradores: DAList.using(object_type=Individual)
 ---
@@ -10,8 +15,10 @@ code: |
 ---
 sections:
   - Dados
-  - Dados do Estagiário
-  - Checagem
+  - Dados do Patrono
+  - Checagem I
+  - Dados do Colaborador
+  - Checagem II
   - Impressão
 ---
 question: Petição de Juntada de Substabelecimento
@@ -20,9 +27,8 @@ progress: 1
 fields:
   - 'Nome do Assistido:': nome_assistido
     datatype: string
-    hint: Carol Solberg
     required: True
-  - "Número de CPF do Assistido": num_cpf 
+  - "Número de CPF do Assistido": num_cpf
     minlength: 14
     maxlength: 14
     validation messages:
@@ -30,33 +36,52 @@ fields:
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: "123.456.789-10"
     required: True
-  - 'Juízo Competente:': juizo_competente 
+  - 'Juízo Competente:': juizo_competente
     hint: "8ª VARA CÍVEL DA COMARCA DE BETIM"
     required: True
   - 'Numero dos Autos:': num_autos
     datatype: Int
     required: True
-  - 'Tipo da Ação:': tipo_acao 
+  - 'Tipo da Ação:': tipo_acao
     required: True
   - "Cidade": cidade
     default: Belo Horizonte
-    hint: Belo Horizonte
     required: True
   - "Data de Assinatura": data
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
 mandatory: True
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+      });
+      $("#bnVtX2NwZg").focusout(function() {
+      $('#bnVtX2NwZg-error').remove()
+      var campo_teste = $("#bnVtX2NwZg").val();
+      if (campo_teste){
+        var cpf_valido = CPF_valido(campo_teste)
+        if (!cpf_valido) {
+            console.log("CPF INVÁLIDO");
+
+          $("#bnVtX2NwZg").val("");
+          $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+       }
+       else {
+        console.log("CPF VÁLIDO");
+       }
+     }
+     });
+   </script>
 ---
-question: Insira os dados do estagiário jurídico
-section: Dados do Estagiário
+question: Insira os dados do patrona
+section: Dados do Patrono
 progress: 37
 fields:
   - 'Nome do Patrono(a):': nome_patrono_atual
     datatype: string
-    hint: Luiza Sonza Cavalcanti
     required: True
   - 'UF da OAB do Patrono:': patrono_estadooab
     datatype: dropdown
@@ -92,38 +117,51 @@ fields:
     required: True
   - 'OAB do Patrono(a):': patrono_numoab
     minlength: 6
-    maxlength: 6
+    maxlength: 7
     validation messages:
        maxlength: |
          Formato inválido!
        minlength: |
          Formato inválido!
     required: True
-
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#cGF0cm9ub19udW1vYWI').mask('900.000', {reverse: true});
+    });
+  </script>
 mandatory: True
 
 ---
-include:
-  - comum_colaborador.yml
----
 mandatory: True
-section: Checagem
-progress: 66
+section: Checagem I
+progress: 40
 question: |
   #Confira os seus dados:
   Nome do assistido: ${ nome_assistido }
+
   Número de CPF do Assistido: ${ num_cpf }
+
   Juízo Competente: ${ juizo_competente  }
+
   Número dos Autos: ${ num_autos }
+
   Data de Assinatura: ${ data }
+
   Cidade da Assinatura: ${ cidade }
+
   Nome do Patrono: ${ nome_patrono_atual  }
-  OAB do Patrono: ${ num_oab_patrono_atual  }
+
+  OAB do Patrono: ${ patrono_estadooab } ${ patrono_numoab  }
 back button: True
 back button label: |
   Ops, errei. Voltar
 buttons:
   - Tudo certo! Ver documento: continue
+
+---
+include:
+  - comum_colaborador.yml
 ---
 features:
   navigation: horizontal

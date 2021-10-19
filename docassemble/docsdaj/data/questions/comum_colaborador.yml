@@ -1,0 +1,94 @@
+initial: True
+code: |
+  set_language('pt')
+---
+features:
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+---
+objects:
+  - colaboradores: DAList.using(object_type=Individual)
+---
+section: Dados do Colaborador
+question: É necessário nomear um colaborador.
+continue button field: colaboradores.there_are_any
+default: yes
+
+---
+section: Dados do Colaborador
+question: Adicionar mais um colaborador?
+yesno: colaboradores.there_is_another
+---
+code: |
+  pessoas = colaboradores.complete_elements()
+---
+section: Dados do Colaborador
+reconsider:
+  - pessoas
+question: |
+  Quem é o ${ ordinal(i) } colaborador?
+fields:
+  - Existing or New: colaboradores[i].existing_or_new
+    datatype: radio
+    default: New
+    choices:
+      - Existing
+      - New
+  - Person: colaboradores[i]
+    show if:
+      variable: colaboradores[i].existing_or_new
+      is: Existing
+    datatype: object
+    choices: pessoas
+  - Nome: colaboradores[i].name.first
+  - Estado OAB: colaboradores[i].estadooab
+    required: True
+    show if:
+      variable: colaboradores[i].existing_or_new
+      is: New
+  - Número OAB: colaboradores[i].numoab
+    required: True
+    show if:
+      variable: colaboradores[i].existing_or_new
+      is: New
+    minlength: 6
+    maxlength: 7
+    validation messages:
+      maxlength: |
+        Formato inválido!
+      minlength: |
+        Formato inválido!
+
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#X2ZpZWxkXzQ').mask('900.000', {reverse: true});
+    });
+  </script>
+---
+mandatory: True
+code: |
+  if colaboradores.there_are_any:
+    todos_colaboradores = ''
+    for colaborador in colaboradores:
+      todos_colaboradores = todos_colaboradores + '' + colaborador.name.full().upper() + ', ' + "OAB " + colaborador.estadooab.upper() + colaborador.numoab + "; "
+
+---
+mandatory: True
+progress: 80
+section: Checagem II
+question: |
+  Confira os dados dos colaboradores
+subquestion:
+  ${todos_colaboradores}
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo!: continue
+---
+features:
+  navigation: horizontal
+  progress bar: True
+  question back button: True
+---
