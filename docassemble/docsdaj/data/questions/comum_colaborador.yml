@@ -28,12 +28,12 @@ reconsider:
 question: |
   Quem é o ${ ordinal(i) } colaborador?
 fields:
-  - Existing or New: colaboradores[i].existing_or_new
+  - O colaborador é novo ou já existe?: colaboradores[i].existing_or_new
     datatype: radio
     default: New
     choices:
-      - Existing
-      - New
+      - Existente
+      - Novo
   - Person: colaboradores[i]
     show if:
       variable: colaboradores[i].existing_or_new
