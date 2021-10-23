@@ -61,6 +61,7 @@ script: |
   <script type="text/javascript">
     $(document).ready(function(){
         $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+  	    $('#bnVtX2F1dG9z').mask('0000000-00.0000.0.00.0000');
       });
     </script>
 progress: 1
