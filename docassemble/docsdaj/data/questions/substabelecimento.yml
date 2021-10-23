@@ -1,9 +1,9 @@
 metadata:
   title: Substabelecimento
 ---
-  features:
-    javascript:
-      - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+features:
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
 ---
 initial: True
 code: |
@@ -66,29 +66,41 @@ script: |
 progress: 1
 mandatory: True
 ---
-section: Dados do advogado
-question: Dados do advogado
+section: Dados do(a) advogado(a)
+question: Dados do(a) advogado(a)
 fields:
-  - 'Advogado:': advogado
+  - 'Advogado(a):': nome_colaborador_1
     datatype: string
     required: True
-  - 'OAB:': numeroOab
-    datatype: string
-    hint: 00000/MG
+  - 'OAB:': num_oab_colaborador_1
+    minlength: 6
+    maxlength: 6
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: 78.593
     required: True
 progress: 20
 mandatory: True
 
 ---
-section: Dados do orientador
-question: Dados do orientador
+section: Dados do patrono atual
+question: Dados do patrono atual
 fields:
-  - 'Orientador(a):': nome_patrono_atual
+  - 'Nome do Patrono Atual:': nome_patrono_atual
     datatype: string
     required: True
-  - 'Número da OAB do(a) orientador(a):': num_oab_patrono_atual
-    datatype: string
-    hint: 00000/MG
+  - 'Número da OAB do Patrono Atual:': num_oab_patrono_atual
+    minlength: 6
+    maxlength: 6
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
+    hint: 78.593
     required: True
 progress: 40
 mandatory: True
@@ -117,25 +129,25 @@ question: |
 
  Nome do assistido: ${ nome_assistido }
 
- Tipo de ação judicial: ${ tipo_acaojudicial }
+ Tipo de ação judicial: ${ tipo_acao }
 
- N° do processo: ${ numero_processo }
+ N° do processo: ${ num_autos }
 
  Comarca: ${ cidade_comarca }
 
  Estado da Comarca: ${ estado_comarca }
 
- Cidade: ${ cidade }
+ Cidade: ${ cidade_assinatura }
 
- Data assinatutura: ${ data }
+ Data assinatutura: ${ data_assinatura }
 
- Advogado: ${ advogado }
+ Advogado: ${ nome_colaborador_1 }
 
- Número da OAB do advogado: ${ numeroOab }
+ Número da OAB do advogado: ${ num_oab_colaborador_1 }
 
- Orientador: ${ orientador }
+ Patrono atual: ${ nome_patrono_atual }
 
- Número da OAB do orientador: ${ numeroOabOrientador }
+ Número da OAB do patrono atual: ${ num_oab_patrono_atual }
 back button: True
 back button label: |
  Ops, errei. Voltar.
