@@ -1,6 +1,10 @@
 metadata:
   title: Substabelecimento
 ---
+  features:
+    javascript:
+      - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+---
 initial: True
 code: |
   set_language('pt')
@@ -9,13 +13,13 @@ section: Dados iniciais
 question: Substabelecimento
 fields:
   - 'Nome do(a) Assistido(a):': nome_assistido
-    hint: João da Silva
     datatype: string
     required: True
-  - 'Tipo de ação judicial:': tipo_acaojudicial
+  - 'CPF do(a) Assistido(a):': num_cpf
+  - 'Tipo de ação judicial:': tipo_acao
     datatype: string
     required: True
-  - 'N° do processo:': numero_processo
+  - 'N° do processo:': num_autos
     datatype: integer
     required: True
   - 'Comarca:': cidade_comarca
@@ -53,6 +57,12 @@ fields:
     - TO
 
     required: True
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+      });
+    </script>
 progress: 1
 mandatory: True
 ---
@@ -73,10 +83,10 @@ mandatory: True
 section: Dados do orientador
 question: Dados do orientador
 fields:
-  - 'Orientador:': orientador
+  - 'Orientador(a):': nome_patrono_atual
     datatype: string
     required: True
-  - 'Número da OAB do orientador:': numeroOabOrientador
+  - 'Número da OAB do(a) orientador(a):': num_oab_patrono_atual
     datatype: string
     hint: 00000/MG
     required: True
@@ -86,11 +96,14 @@ mandatory: True
 section: Local e data
 question: Local e data
 fields:
-  - 'Cidade:': cidade
+  - 'Cidade:': cidade_assinatura
     datatype: string
+    default: Belo Horizonte
     required: True
-  - 'Data assinatutura:': data
+  - 'Data assinatutura:': data_assinatura
     datatype: date
+    default: |
+    ${ today(format='yyyy-MM-dd') }
     required: True
 
 progress: 60
