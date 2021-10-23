@@ -115,7 +115,7 @@ fields:
   - 'Data assinatutura:': data_assinatura
     datatype: date
     default: |
-    ${ today(format='yyyy-MM-dd') }
+      ${ today(format='yyyy-MM-dd') }
     required: True
 
 progress: 60
