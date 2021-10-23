@@ -83,6 +83,61 @@ fields:
          Formato inválido!
     hint: 78.593
     required: True
+  - 'Advogado(a) 2:': nome_colaborador_2
+    datatype: string
+  - 'OAB 2:': num_oab_colaborador_2
+    minlength: 6
+    maxlength: 6
+    validation messages:
+      maxlength: |
+        Formato inválido!
+      minlength: |
+        Formato inválido!
+    hint: 78.593
+  - 'Advogado(a) 3:': nome_colaborador_3
+    datatype: string
+  - 'OAB 3:': num_oab_colaborador_3
+    minlength: 6
+    maxlength: 6
+    validation messages:
+      maxlength: |
+        Formato inválido!
+      minlength: |
+        Formato inválido!
+    hint: 78.593
+  - 'Advogado(a) 4:': nome_colaborador_4
+    datatype: string
+    - 'OAB 4:': num_oab_colaborador_4
+      minlength: 6
+      maxlength: 6
+      validation messages:
+        maxlength: |
+          Formato inválido!
+        minlength: |
+          Formato inválido!
+      hint: 78.593
+  - 'Advogado(a) 5:': nome_colaborador_5
+    datatype: string
+    - 'OAB 5:': num_oab_colaborador_5
+      minlength: 6
+      maxlength: 6
+      validation messages:
+        maxlength: |
+          Formato inválido!
+        minlength: |
+          Formato inválido!
+      hint: 78.593
+  - 'Advogado(a) 6:': nome_colaborador_6
+    datatype: string
+    - 'OAB 6:': num_oab_colaborador_6
+      minlength: 6
+      maxlength: 6
+      validation messages:
+        maxlength: |
+          Formato inválido!
+        minlength: |
+          Formato inválido!
+      hint: 78.593
 progress: 20
 mandatory: True
 
