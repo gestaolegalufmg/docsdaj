@@ -8,7 +8,7 @@ code: |
 section: Dados iniciais
 question: Substabelecimento
 fields:
-  - 'Nome do(a) assistido(a):': nome_assistido
+  - 'Nome do(a) Assistido(a):': nome_assistido
     hint: João da Silva
     datatype: string
     required: True
@@ -16,7 +16,7 @@ fields:
     datatype: string
     required: True
   - 'N° do processo:': numero_processo
-    datatype: int
+    datatype: integer
     required: True
   - 'Comarca:': cidade_comarca
     datatype: string
