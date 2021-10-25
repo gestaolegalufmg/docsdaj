@@ -9,6 +9,8 @@ features:
   navigation: horizontal
   progress bar: True
   question back button: True
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
 ---
 sections:
   - Dados
@@ -17,13 +19,13 @@ sections:
 ---
 section: Dados
 question: Preencha os campos abaixo.
-progress: 1
+progress: 33
 fields:
-  - 'Nome do Assistido:': nome_assistido
+  - 'Nome do(a) Assistido(a):': nome_assistido
     datatype: string
     hint: Ana Maria Braga
     required: True
-  - "Número de CPF do Assistido": num_cpf
+  - "Número de CPF do(a) Assistido(a)": num_cpf
     minlength: 14
     maxlength: 14
     validation messages:
@@ -33,7 +35,7 @@ fields:
          Formato inválido!
     hint: "123.123.123-12"
     required: True
-  - "Número de RG do Assistido": num_rg
+  - "Número do RG do(a) Assistido(a):": num_rg
     minlength: 11
     maxlength: 14
     validation messages:
@@ -48,30 +50,52 @@ fields:
     required: True
     hint: "Ex: Ação trabalhista, Ação de alimentos"
   - "Número do Caso": num_caso
+    datatype: int
     hint: 1
   - 'Local de Emissão da Declaração:': cidade
     datatype: string
     default: Belo Horizonte
     required: True
     hint: "Ex: Belo Horizonte"
-  - 'Data de Assinatutura:': data
+  - 'Data de Assinatutura:': data_assinatura
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
     required: True
+script: |
+      <script type="text/javascript">
+        $(document).ready(function(){
+            $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+          });
+          $("#bnVtX2NwZg").focusout(function() {
+          $('#bnVtX2NwZg-error').remove()
+          var campo_teste = $("#bnVtX2NwZg").val();
+          if (campo_teste){
+            var cpf_valido = CPF_valido(campo_teste)
+            if (!cpf_valido) {
+                console.log("CPF INVÁLIDO");
+              $("#bnVtX2NwZg").val("");
+              $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+           }
+           else {
+            console.log("CPF VÁLIDO");
+           }
+         }
+         });
+       </script>
 ---
 Section: Checagem
-progress: 50
+progress: 66
 mandatory: True
 question: |
   #Confira os dados abaixo:
-  Nome do Assistido: ${ nome_assistido }  
-  Número de CPF do Assistido: ${ num_cpf }  
-  Número de RG do Assistido: ${ num_rg }  
+  Nome do(a) Assistido(a): ${ nome_assistido }
+  Número de CPF do(a) Assistido(a): ${ num_cpf }
+  Número do RG do(a) Assistido(a): ${ num_rg }
   Assunto da Petição Inicial: ${ tipo_acao }  
   Número do Caso: ${ num_caso }  
   Local de Emissão Declaração: ${ cidade }  
-  Data de Assinatura: ${ data }
+  Data de Assinatura: ${ data_assinatura }
 back button: True
 back button label: |
   Ops, errei. Voltar
