@@ -30,14 +30,14 @@ question: |
 fields:
   - O colaborador é novo ou já existe?: colaboradores[i].existing_or_new
     datatype: radio
-    default: New
+    default: Novo
     choices:
       - Existente
       - Novo
   - Person: colaboradores[i]
     show if:
       variable: colaboradores[i].existing_or_new
-      is: Existing
+      is: Existente
     datatype: object
     choices: pessoas
   - Nome: colaboradores[i].name.first
@@ -45,12 +45,12 @@ fields:
     required: True
     show if:
       variable: colaboradores[i].existing_or_new
-      is: New
+      is: Novo
   - Número OAB: colaboradores[i].numoab
     required: True
     show if:
       variable: colaboradores[i].existing_or_new
-      is: New
+      is: Novo
     minlength: 6
     maxlength: 7
     validation messages:
