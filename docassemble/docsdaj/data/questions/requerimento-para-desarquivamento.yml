@@ -4,12 +4,13 @@ metadata:
 initial: True
 code: |
   set_language('pt')
-  complemento = ""
 ---
 features:
   navigation: horizontal
   progress bar: True
   question back button: True
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
 ---
 sections:
   - Dados
@@ -21,7 +22,6 @@ question: Preencha os campos abaixo.
 progress: 33
 fields:
   - "Nome do Assistido": nome_assistido
-    hint: "Ex: Afonso Augusto Moreira Pena"
     required: True
   - "Número de CPF do Assistido": num_cpf
     minlength: 14
@@ -31,7 +31,6 @@ fields:
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: "123.123.123-12"
     required: True
   - "Número de RG do Assistido": num_rg
     minlength: 11
@@ -41,19 +40,23 @@ fields:
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: "MG-12.123.123"
     required: True
   - "Número do Caso": num_caso
-    hint: 1
+    datatype: integer
+  - "CEP": cep
+    minlength: 9
+    maxlength: 9
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
   - "Logradouro": logradouro
-    hint: "Rua"
   - "Número residencial": num_residencial
-    hint: 123
+    datatype: integer
   - "Complemento": complemento
-    hint: 302
     required: False
   - "Bairro": bairro
-    hint: "Centro"
   - 'Estado:': sigla_estado
     datatype: dropdown
     choices:
@@ -86,17 +89,7 @@ fields:
     - TO
     default: "MG"
     required: True
-  - "CEP": cep
-    minlength: 9
-    maxlength: 9
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: "30160-100"
   - "Cidade de domicílio": cidade
-    hint: "Belo Horizonte"
     required: True
   - "Data de Assinatura": data
     datatype: date
@@ -113,21 +106,41 @@ fields:
   - "Número da ação:": num_acao
     show if: decisao
     required: True
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+	$('#X2ZpZWxkXzE2').mask('0000000-00.0000.0.00.0000');
 
+          $('#Y2Vw').mask('00000-000'); });
+          $("#Y2Vw").focusout(function(){ var cep = $("#Y2Vw").val();
+          cep = cep.replace ("-","");
+            {var urlStr = "https://viacep.com.br/ws/"+ cep +"/json/";
+            $.ajax({ url: urlStr, crossDomain: true, type: "get", dataType: "json", success: function(data){
+              $("#bG9ncmFkb3Vybw").val(data.logradouro);
+              $("#YmFpcnJv").val(data.bairro);
+              $("#Y2lkYWRl").val(data.localidade);
+              $("#c2lnbGFfZXN0YWRv").val(data.uf); }, error: function(erro){ console.log(erro);
+      } }); } });
 
-
+    </script>
 ---
 mandatory: True
 section: Checagem
 progress: 66
 question: |
   #Confira os seus dados:
-  Nome do assistido: ${ nome_assistido }  
-  Número de CPF do Assistido: ${ num_cpf }  
-  Número de RG do Assistido: ${ num_rg }  
-  Local de Emissão da Declaração: ${ cidade }  
-  Número do Caso: ${ num_caso }  
+  Nome do assistido: ${ nome_assistido }
+
+  Número de CPF do Assistido: ${ num_cpf }
+
+  Número de RG do Assistido: ${ num_rg }
+
+  Número do Caso: ${ num_caso }
+
   Data de Assinatura: ${ data }
+
+  Endereço: ${ logradouro }, ${ bairro }, ${ complemento } nº ${ num_residencial }, ${ cidade }, ${ cep }, ${ sigla_estado }.
 back button: True
 back button label: |
   Ops, errei. Voltar
