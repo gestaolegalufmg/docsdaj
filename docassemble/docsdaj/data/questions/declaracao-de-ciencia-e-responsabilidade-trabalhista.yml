@@ -82,11 +82,17 @@ progress: 66
 question: |
   #Confira os seus dados:
   Nome do(a) Assistido(a): ${ nome_assistido }
+
   Número de CPF do(a) Assistido(a): ${ num_cpf }
+
   Número de RG do(a) Assistido(a): ${ num_rg }
+
   Número do Caso: ${ num_caso }
+
   Local de Assinatura: ${ cidade_assinatura }
+
   Data de Assinatura: ${ data_assinatura }
+
 back button: True
 back button label: |
   Ops, errei. Voltar
