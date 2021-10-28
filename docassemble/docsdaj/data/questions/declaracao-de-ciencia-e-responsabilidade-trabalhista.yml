@@ -4,6 +4,7 @@ metadata:
 features:
  javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+  - comum_validacao_cpf.js
 ---
 initial: True
 code: |
@@ -44,6 +45,7 @@ fields:
          Formato inválido!
     required: True
   - "Número do Caso:": num_caso
+    datatype: integer
   - "Local de Assinatura:": cidade_assinatura
     default: Belo Horizonte
     required: True
@@ -56,7 +58,22 @@ script: |
     $(document).ready(function(){
       $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
     });
-    </script>
+   $("#bnVtX2NwZg").focusout(function() {
+      $('#bnVtX2NwZg-error').remove()
+      var campo_teste = $("#bnVtX2NwZg").val();
+      if (campo_teste){
+        var cpf_valido = CPF_valido(campo_teste)
+        if (!cpf_valido) {
+            console.log("CPF INVÁLIDO");
+          $("#bnVtX2NwZg").val("");
+          $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+       }
+       else {
+        console.log("CPF VÁLIDO");
+       }
+     }
+     });
+   </script>
 
 ---
 mandatory: True
