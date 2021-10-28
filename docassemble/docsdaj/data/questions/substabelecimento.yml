@@ -14,61 +14,69 @@ code: |
   set_language('pt')
 ---
 sections:
-  - Dados do(a) Assistido(a)
+  - Dados
   - Dados do Patrono
   - Checagem I
   - Dados do Colaborador
   - Checagem II
   - Impressão
 ---
-section: Dados do(a) Assistido(a)
+section: Dados iniciais
 question: Substabelecimento
 fields:
-  - 'Nome do(a) Assistido(a):': nome_assistido
+  - 'Nome do(a) assistido(a):': nome_assistido
+    hint: João da Silva
     datatype: string
     required: True
-  - 'CPF do(a) Assistido(a):': num_cpf
+  - 'Número de CPF do(a) Assistido(a)': num_cpf
+    minlength: 14
+    maxlength: 14
+    validation messages:
+      maxlength: |
+        Formato inválido!
+      minlength: |
+        Formato inválido!
+    required: True
   - 'Tipo de Ação Judicial:': tipo_acao
-    hint: Ação Declaratória de Nulidade de Negócio Jurídico
     datatype: string
     required: True
   - 'N° do Processo:': num_autos
     required: True
- - 'Local de Assinatura:': cidade_assinatura
+  - 'Local de Assinatura:': cidade_assinatura
     datatype: string
     default: Belo Horizonte
     required: True
- - 'Data de Assinatutura:': data_assinatura
+  - 'Data de Assinatutura:': data_assinatura
     datatype: date
     default: |
      ${ today(format='yyyy-MM-dd') }
     required: True
+mandatory: True
 script: |
   <script type="text/javascript">
     $(document).ready(function(){
         $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
-        });
-        $("#bnVtX2NwZg").focusout(function() {
-        $('#bnVtX2NwZg-error').remove()
-        var campo_teste = $("#bnVtX2NwZg").val();
-        if (campo_teste){
-          var cpf_valido = CPF_valido(campo_teste)
-          if (!cpf_valido) {
-              console.log("CPF INVÁLIDO");
-            $("#bnVtX2NwZg").val("");
-            $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
-         }
-         else {
-          console.log("CPF VÁLIDO");
-         }
-  	    $('#bnVtX2F1dG9z').mask('0000000-00.0000.0.00.0000');
       });
-    </script>
-progress: 1
-mandatory: True
+      $("#bnVtX2NwZg").focusout(function() {
+      $('#bnVtX2NwZg-error').remove()
+      var campo_teste = $("#bnVtX2NwZg").val();
+      if (campo_teste){
+        var cpf_valido = CPF_valido(campo_teste)
+        if (!cpf_valido) {
+            console.log("CPF INVÁLIDO");
+          $("#bnVtX2NwZg").val("");
+          $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+       }
+       else {
+        console.log("CPF VÁLIDO");
+       }
+     }
+     });
+   </script>
 ---
-section: Dados do Patrono
 question: Insira os Dados do Patrono
+section: Dados do Patrono
+progress: 20
 fields:
   - 'Nome do Patrono(a):': nome_patrono_atual
     datatype: string
@@ -120,7 +128,6 @@ script: |
         $('#cGF0cm9ub19udW1vYWI').mask('900.000', {reverse: true});
     });
   </script>
-progress: 20
 mandatory: True
 ---
 mandatory: True
@@ -132,8 +139,6 @@ question: |
   Nome do(a) assistido(a): ${ nome_assistido }
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
-
-  Tipo de Ação Judicial: ${ tipo_acao }
 
   Número do Processo: ${ num_autos }
 
@@ -154,7 +159,7 @@ include:
   - comum_colaborador.yml
 ---
 features:
-  navigation: horizontal
+  navigation: vertical
   progress bar: True
   question back button: True
 ---
@@ -166,8 +171,6 @@ attachment:
   name: Substabelecimento
   language: pt
   filename: ${ nome_assistido }-substabelecimento
-  default: |
-      ${ nome_assistido }
   docx template file: substabelecimento.docx
   valid formats:
     - pdf
