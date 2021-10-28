@@ -101,10 +101,13 @@ fields:
     required: True
   - "Cep:": cep
     required: True
+    datatype: integer
   - "Telefone (1):": telefone_assistido
     required: True
+    datatype: integer
   - "Telefone (2):": telefone_assistido2
     required: False
+    datatype: integer
   - "Email:": email_assitido
     required: True
   - "Data:": data
