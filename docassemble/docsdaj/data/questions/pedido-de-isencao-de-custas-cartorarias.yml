@@ -52,16 +52,12 @@ fields:
     required: True
   - "Nacionalidade do(a) Assistido(a):": nacionalidade_assistido
     required: True
-    datatype: text
   - "Estado civil do(a) Assistido(a):": estado_civil_assitido
     required: True
-    datatype: text
   - "Profissão do(a) Assistido(a):": profissao_assistido
     required: True
-    datatype: text
   - "Filiação do(a) Assistido(a):": filiacao_assistido
     required: True
-    datatype: text
   - "Logradouro:": logradouro
     required: True
     datatype: integer
@@ -73,10 +69,8 @@ fields:
     datatype: integer
   - "Bairro:": bairro
     required: True
-    datatype: text
   - "Cidade:": cidade_assistido
     required: True
-    datatype: text
   - 'Estado:': sigla_estado 
     datatype: dropdown
     choices: 
