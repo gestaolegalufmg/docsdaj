@@ -34,42 +34,6 @@ fields:
     required: True
   - 'N° do Processo:': num_autos
     required: True
-  - 'Comarca:': cidade_comarca
-    hint: 20ª Vara Cível de Belo Horizonte
-    datatype: string
-    required: True
-  - 'Estado da Comarca:': estado_comarca
-    datatype: dropdown
-    choices:
-    - AC
-    - AL
-    - AP
-    - AM
-    - BA
-    - CE
-    - DF
-    - ES
-    - GO
-    - MA
-    - MT
-    - MS
-    - MG
-    - PA
-    - PB
-    - PR
-    - PE
-    - PI
-    - RJ
-    - RN
-    - RS
-    - RO
-    - RR
-    - SC
-    - SP
-    - SE
-    - TO
-    default: MG
-    required: True
  - 'Local de Assinatura:': cidade_assinatura
     datatype: string
     default: Belo Horizonte
@@ -169,13 +133,9 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Tipo de Ação Judicial: ${ acao_judicial }
+  Tipo de Ação Judicial: ${ tipo_acao }
 
   Número do Processo: ${ num_autos }
-
-  Comarca: ${ juizo_competente  }
-
-  Estado da Comarca: ${ estado_comarca }
 
   Local de Assinatura: ${ cidade_assinatura }
 
