@@ -42,6 +42,36 @@ fields:
     choices: pessoas
   - Nome: colaboradores[i].name.first
   - Estado OAB: colaboradores[i].estadooab
+    datatype: dropdown
+    choices:
+    - AC
+    - AL
+    - AP
+    - AM
+    - BA
+    - CE
+    - DF
+    - ES
+    - GO
+    - MA
+    - MT
+    - MS
+    - MG
+    - PA
+    - PB
+    - PR
+    - PE
+    - PI
+    - RJ
+    - RN
+    - RS
+    - RO
+    - RR
+    - SC
+    - SP
+    - SE
+    - TO
+    default: MG
     required: True
     show if:
       variable: colaboradores[i].existing_or_new
