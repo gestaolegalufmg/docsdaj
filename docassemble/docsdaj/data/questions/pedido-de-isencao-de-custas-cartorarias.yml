@@ -26,10 +26,9 @@ mandatory: true
 question: Preencha os campos abaixo.
 progress: 25
 fields:
-  - "Nome do Assistido:": nome_assistido
-    hint: "Ex.: Afonso Augusto Moreira Pena"
+  - "Nome do(a) Assistido(a):": nome_assistido
     required: True
-  - "Número de CPF do Assistido:": num_cpf_assistido  
+  - "Número de CPF do(a) Assistido(a):": num_cpf_assistido
     minlength: 14
     maxlength: 14
     validation messages:
@@ -37,9 +36,8 @@ fields:
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: "Ex.: 123.123.123-12"
     required: True
-  - "Número de RG do Assistido:": num_rg_assistido
+  - "Número de RG do(a) Assistido(a):": num_rg_assistido
     minlength: 11
     maxlength: 14
     validation messages:
@@ -47,34 +45,24 @@ fields:
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: "Ex.: MG-12.123.123"
     required: True
-  - "Nacionalidade do Assistido:": nacionalidade_assistido  
-    hint: "Ex.: Brasileiro"
+  - "Nacionalidade do(a) Assistido(a):": nacionalidade_assistido
     required: True
-  - "Estado civil do Assistido:": estado_civil_assitido  
-    hint: "Ex.: Solteiro"
+  - "Estado civil do(a) Assistido(a):": estado_civil_assitido
     required: True
-  - "Profissão do Assistido:": profissao_assistido   
-    hint: "Ex.: Professor"
+  - "Profissão do(a) Assistido(a):": profissao_assistido
     required: True
-  - "Filiação do Assistido:": filiacao_assistido  
-    hint: "Ex.: Maria Joaquina"
+  - "Filiação do(a) Assistido(a):": filiacao_assistido
     required: True
-  - "Logradouro:": logradouro   
-    hint: "Ex.: Avenida João Pinheiro"
+  - "Logradouro:": logradouro
     required: True
-  - "Número residencial:": num_residencial   
-    hint: "Ex.: 110"
+  - "Número residencial:": num_residencial
     required: True
-  - "Complemento:": complemento    
-    hint: "Ex.: Sala 110"
+  - "Complemento:": complemento
     required: False
   - "Bairro:": bairro
-    hint: "Ex.: Centro"
     required: True
-  - "Cidade:": cidade    
-    hint: "Ex.: Belo Horizonte"
+  - "Cidade:": cidade_assistido
     required: True
   - 'Estado:': sigla_estado 
     datatype: dropdown
@@ -107,17 +95,13 @@ fields:
     - SE
     - TO
     required: True
-  - "Cep:": cep     
-    hint: "Ex.: 31100-500"
+  - "Cep:": cep
     required: True
-  - "Telefone (1):": telefone_assistido 
-    hint: "(31)98456-5432"
+  - "Telefone (1):": telefone_assistido
     required: True
   - "Telefone (2):": telefone_assistido2
-    hint: "(31)3456-5432"
     required: False
-  - "Email:": email_assitido 
-    hint: "ryan@daj.ufmg.br"
+  - "Email:": email_assitido
     required: True
   - "Data:": data
     datatype: date
@@ -125,13 +109,12 @@ fields:
       ${ today(format='yyyy-MM-dd') }
     required: True
   - "Endereço do cartório": enderecamento_cartorio
-    hint: "Rua São Paulo, 115"
     required: True
 ---
 section: Documentos
 progress: 75
 mandatory: True
-question: Qual o documento o assistido recebeu?
+question: Qual o documento o(a) assistido(a) recebeu?
 fields:
   - 'Documento:':  doc_1
     required: True
