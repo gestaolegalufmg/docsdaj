@@ -56,7 +56,7 @@ script: |
   <script type="text/javascript">
     $(document).ready(function(){
         $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
-        $('#insira-id-do-numero-da-acao').mask('0000000-00.0000.0.00.0000');
+        $('#bnVtX2F1dG9z').mask('0000000-00.0000.0.00.0000');
       });
       $("#bnVtX2NwZg").focusout(function() {
       $('#bnVtX2NwZg-error').remove()
