@@ -1,6 +1,10 @@
 metadata:
   title: Pedido de isenção de custas cartorárias
 ---
+features:
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+---
 initial: True
 code: |
   set_language('pt')
@@ -110,6 +114,24 @@ fields:
     required: True
   - "Endereço do cartório": enderecamento_cartorio
     required: True
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#bnVtX2NwZl9hc3Npc3RpZG8').mask('000.000.000-00', {reverse: true});
+
+      $('#Y2Vw').mask('00000-000'); });
+      $("#Y2Vw").focusout(function(){ var cep = $("#Y2Vw").val();
+      cep = cep.replace ("-","");
+        {var urlStr = "https://viacep.com.br/ws/"+ cep +"/json/";
+        $.ajax({ url: urlStr, crossDomain: true, type: "get", dataType: "json", success: function(data){
+          $("#bG9ncmFkb3Vybw").val(data.logradouro);
+          $("#YmFpcnJv").val(data.bairro);
+          $("#Y2lkYWRlX2Fzc2lzdGlkbw").val(data.localidade);
+          $("#c2lnbGFfZXN0YWRv").val(data.uf); }, error: function(erro){ console.log(erro);
+  } }); } });
+
+    </script>
+---
 ---
 section: Documentos
 progress: 75
