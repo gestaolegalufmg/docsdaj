@@ -25,7 +25,6 @@ section: Dados iniciais
 question: Substabelecimento
 fields:
   - 'Nome do(a) assistido(a):': nome_assistido
-    hint: João da Silva
     datatype: string
     required: True
   - 'Número de CPF do(a) Assistido(a)': num_cpf
@@ -38,6 +37,7 @@ fields:
         Formato inválido!
     required: True
   - 'Tipo de Ação Judicial:': tipo_acao
+    help: "É o tipo de ação que consta na petição inicial. Exemplo Ação Declaratória de Nulidade de Negócio Jurídico"
     datatype: string
     required: True
   - 'N° do Processo:': num_autos
@@ -56,6 +56,7 @@ script: |
   <script type="text/javascript">
     $(document).ready(function(){
         $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+        $('#insira-id-do-numero-da-acao').mask('0000000-00.0000.0.00.0000');
       });
       $("#bnVtX2NwZg").focusout(function() {
       $('#bnVtX2NwZg-error').remove()
