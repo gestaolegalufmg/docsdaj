@@ -28,12 +28,14 @@ fields:
     datatype: string
     required: True
   - 'CPF do(a) Assistido(a):': num_cpf
-  - 'Tipo de ação judicial:': tipo_acao
+  - 'Tipo de Ação Judicial:': tipo_acao
+    hint: Ação Declaratória de Nulidade de Negócio Jurídico
     datatype: string
     required: True
-  - 'N° do processo:': num_autos
+  - 'N° do Processo:': num_autos
     required: True
   - 'Comarca:': cidade_comarca
+    hint: 20ª Vara Cível de Belo Horizonte
     datatype: string
     required: True
   - 'Estado da Comarca:': estado_comarca
@@ -66,7 +68,16 @@ fields:
     - SP
     - SE
     - TO
-
+    default: MG
+    required: True
+ - 'Local de Assinatura:': cidade_assinatura
+    datatype: string
+    default: Belo Horizonte
+    required: True
+ - 'Data de Assinatutura:': data_assinatura
+    datatype: date
+    default: |
+     ${ today(format='yyyy-MM-dd') }
     required: True
 script: |
   <script type="text/javascript">
@@ -145,6 +156,7 @@ script: |
         $('#cGF0cm9ub19udW1vYWI').mask('900.000', {reverse: true});
     });
   </script>
+progress: 20
 mandatory: True
 ---
 mandatory: True
@@ -152,13 +164,25 @@ section: Checagem I
 progress: 40
 question: |
   #Confira os seus dados:
-  Nome do assistido: ${ nome_assistido }
-  Número de CPF do Assistido: ${ num_cpf }
-  Juízo Competente: ${ juizo_competente  }
-  Número dos Autos: ${ num_autos }
-  Data de Assinatura: ${ data }
-  Cidade da Assinatura: ${ cidade }
+
+  Nome do(a) assistido(a): ${ nome_assistido }
+
+  Número de CPF do(a) Assistido(a): ${ num_cpf }
+
+  Tipo de Ação Judicial: ${ acao_judicial }
+
+  Número do Processo: ${ num_autos }
+
+  Comarca: ${ juizo_competente  }
+
+  Estado da Comarca: ${ estado_comarca }
+
+  Local de Assinatura: ${ cidade_assinatura }
+
+  Data de Assinatura: ${ data_assinatura }
+
   Nome do Patrono: ${ nome_patrono_atual  }
+
   OAB do Patrono: ${ patrono_estadooab } ${ patrono_numoab  }
 back button: True
 back button label: |
@@ -169,19 +193,10 @@ buttons:
 include:
   - comum_colaborador.yml
 ---
-section: Local e Data de Assinatura
-question: Insira o Local e Data de Assinatura
-fields:
-  - 'Cidade:': cidade_assinatura
-    datatype: string
-    default: Belo Horizonte
-    required: True
-  - 'Data assinatutura:': data_assinatura
-    datatype: date
-    default: |
-      ${ today(format='yyyy-MM-dd') }
-    required: True
-progress: 60
+features:
+  navigation: horizontal
+  progress bar: True
+  question back button: True
 ---
 mandatory: True
 section: Impressão
@@ -197,20 +212,5 @@ attachment:
   valid formats:
     - pdf
     - docx
-
 progress: 100
-
----
-sections:
- - Dados iniciais
- - Dados do advogado
- - Dados do orientador
- - Local e data
- - Checagem
- - Impressão
----
-features:
-  navigation: vertical
-  progress bar: True
-  question back button: True
 ---
