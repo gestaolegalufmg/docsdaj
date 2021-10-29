@@ -11,6 +11,7 @@ features:
   question back button: True
   javascript:
     - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+    - comum_validacao_cpf.js
 ---
 sections:
   - Dados
@@ -21,9 +22,9 @@ section: Dados
 question: Preencha os campos abaixo.
 progress: 33
 fields:
-  - "Nome do Assistido": nome_assistido
+  - "Nome do(a) Assistido(a)": nome_assistido
     required: True
-  - "Número de CPF do Assistido": num_cpf
+  - "Número de CPF do(a) Assistido(a)": num_cpf
     minlength: 14
     maxlength: 14
     validation messages:
@@ -32,14 +33,7 @@ fields:
        minlength: |
          Formato inválido!
     required: True
-  - "Número de RG do Assistido": num_rg
-    minlength: 11
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
+  - "Número de RG do(a) Assistido(a)": num_rg
     required: True
   - "Número do Caso": num_caso
     datatype: integer
@@ -52,7 +46,7 @@ fields:
        minlength: |
          Formato inválido!
   - "Logradouro": logradouro
-  - "Número residencial": num_residencial
+  - "Número Residencial": num_residencial
     datatype: integer
   - "Complemento": complemento
     required: False
@@ -89,29 +83,45 @@ fields:
     - TO
     default: "MG"
     required: True
-  - "Cidade de domicílio": cidade
+  - "Cidade de Domicílio": cidade_assistido
     required: True
   - "Data de Assinatura": data
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
-  - "Razões para desarquivamento": razoes_desarquivamento
+  - "Local de Assinatura": cidade_assinatura
+    default: "Belo Horizonte"
+  - "Razões para Desarquivamento": razoes_desarquivamento
   - "Data do Arquivamento": data_arquivamento
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
   - "Motivos do Arquivamento": motivos_arquivamento
-  - "Teve processo?": decisao
+  - "Teve Processo?": decisao
     datatype: yesnoradio
-  - "Número da ação:": num_acao
+  - "Número da Ação:": num_acao
     show if: decisao
     required: True
 script: |
   <script type="text/javascript">
     $(document).ready(function(){
         $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
-	$('#X2ZpZWxkXzE2').mask('0000000-00.0000.0.00.0000');
-
+	$('#X2ZpZWxkXzE3').mask('0000000-00.0000.0.00.0000');
+     $("#bnVtX2NwZg").focusout(function() {
+      $('#bnVtX2NwZg-error').remove()
+      var campo_teste = $("#bnVtX2NwZg").val();
+      if (campo_teste){
+        var cpf_valido = CPF_valido(campo_teste)
+        if (!cpf_valido) {
+            console.log("CPF INVÁLIDO");
+          $("#bnVtX2NwZg").val("");
+          $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+       }
+       else {
+        console.log("CPF VÁLIDO");
+       }
+     }
+     });
           $('#Y2Vw').mask('00000-000'); });
           $("#Y2Vw").focusout(function(){ var cep = $("#Y2Vw").val();
           cep = cep.replace ("-","");
@@ -119,7 +129,7 @@ script: |
             $.ajax({ url: urlStr, crossDomain: true, type: "get", dataType: "json", success: function(data){
               $("#bG9ncmFkb3Vybw").val(data.logradouro);
               $("#YmFpcnJv").val(data.bairro);
-              $("#Y2lkYWRl").val(data.localidade);
+              $("#Y2lkYWRlX2Fzc2lzdGlkbw").val(data.localidade);
               $("#c2lnbGFfZXN0YWRv").val(data.uf); }, error: function(erro){ console.log(erro);
       } }); } });
 
@@ -140,7 +150,7 @@ question: |
 
   Data de Assinatura: ${ data }
 
-  Endereço: ${ logradouro }, ${ bairro }, ${ complemento } nº ${ num_residencial }, ${ cidade }, ${ cep }, ${ sigla_estado }.
+  Endereço: ${ logradouro }, ${ bairro }, ${ complemento } nº ${ num_residencial }, ${ cidade_assistido }, ${ cep }, ${ sigla_estado }.
 back button: True
 back button label: |
   Ops, errei. Voltar
