@@ -145,9 +145,9 @@ progress: 40
 mandatory: True
 question: |
   #Confira os dados abaixo:
-  Nome do Assistido: ${ nome_assistido }
-  Número de CPF do Assistido: ${ num_cpf }
-  Número de RG do Assistido: ${ num_rg }
+  Nome do(a) Assistido(a): ${ nome_assistido }
+  Número de CPF do(a) Assistido(a): ${ num_cpf_assistido }
+  Número de RG do(a) Assistido(a): ${ num_rg_assistido }
   Endereço do cartório: ${ enderecamento_cartorio }
   Email: ${ email_assitido }
   Cep: ${ cep }
