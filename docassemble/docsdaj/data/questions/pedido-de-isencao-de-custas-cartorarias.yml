@@ -265,6 +265,8 @@ fields:
   - "Documento 10:": doc_10
     show if: decisao9
 ---
+section: Impressão
+progress: 100
 mandatory: True
 question: |
   Aqui está o seu documento!
