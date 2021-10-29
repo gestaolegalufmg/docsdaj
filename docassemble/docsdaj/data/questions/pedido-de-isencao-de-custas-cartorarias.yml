@@ -69,7 +69,7 @@ fields:
     datatype: integer
   - "Bairro:": bairro
     required: True
-  - "Cidade:": cidade_assistido
+  - "Cidade:": cidade
     required: True
   - 'Estado:': sigla_estado 
     datatype: dropdown
@@ -139,6 +139,31 @@ script: |
 
     </script>
 ---
+---
+Section: Checagem de Dados
+progress: 40
+mandatory: True
+question: |
+  #Confira os dados abaixo:
+  Nome do Assistido: ${ nome_assistido }
+  Número de CPF do Assistido: ${ num_cpf }
+  Número de RG do Assistido: ${ num_rg }
+  Endereço do cartório: ${ enderecamento_cartorio }
+  Email: ${ email_assitido }
+  Cep: ${ cep }
+  Filiação do(a) Assistido(a): ${ filiacao_assistido }
+  Estado civil do(a) Assistido(a): ${ estado_civil_assitido }
+  Telefone (1): ${ telefone_assistido }
+  Logradouro: ${ logradouro }
+  Número Residencial: ${ num_residencial }
+  Complemento: ${ complemento}
+  Bairro: ${ bairro }
+  Cidade: ${ cidade }
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo! Ver documento: continue
 ---
 section: Documentos
 progress: 75
