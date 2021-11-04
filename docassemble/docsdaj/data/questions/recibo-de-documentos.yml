@@ -1,6 +1,10 @@
 metadata:
   title: Recibo de documentos
 ---
+features:
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+---
 initial: True
 code: |
   set_language('pt')
@@ -71,6 +75,13 @@ fields:
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#bnVtX2NwZl9yZWNlYmVkb3I').mask('000.000.000-00', {reverse: true});
+        $('#bnVtX2NwZl9lbnRyZWdhZG9y').mask('000.000.000-00', {reverse: true});
+      });
+    </script>
 ---
 section: Checagem de Dados
 mandatory: true
