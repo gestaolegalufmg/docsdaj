@@ -21,20 +21,19 @@ mandatory: true
 question: Preencha os campos abaixo.
 progress: 25
 fields:
-  - "Nome do Recebedor:": nome_recebedor
-    hint: "Ex.: Afonso Augusto Moreira Pena"
+  - "Nome do(a) Recebedor(a):": nome_recebedor
     required: True
-  - "Número de CPF do Recebedor:": num_cpf_recebedor  
+  - "Número de CPF do(a) Recebedor(a):": num_cpf_recebedor
     minlength: 14
     maxlength: 14
+    datatype: integer
     validation messages:
        maxlength: |
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: "Ex.: 123.123.123-12"
     required: True
-  - "Número de RG do Recebedor:": num_rg_recebedor 
+  - "Número de RG do(a) Recebedor(a):": num_rg_recebedor
     minlength: 11
     maxlength: 14
     validation messages:
@@ -42,21 +41,19 @@ fields:
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: "Ex.: MG-12.123.123"
     required: True
-  - "Nome do Entregador:": nome_entregador 
-    hint: "Ex.: John Mayer"
-  - "Número de CPF do Entregador:": num_cpf_entregador
+  - "Nome do(a) Entregador(a):": nome_entregador
+  - "Número de CPF do(a) Entregador(a):": num_cpf_entregador
     minlength: 14
     maxlength: 14
+    datatype: integer
     validation messages:
        maxlength: |
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: "Ex.: 123.123.123-12"
     required: True
-  - "Número de RG do Entregador:": num_rg_entregador 
+  - "Número de RG do(a) Entregador(a):": num_rg_entregador
     minlength: 10
     maxlength: 14
     validation messages:
@@ -64,13 +61,11 @@ fields:
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: "Ex.: MG-12.123.123"
     required: True
   - "Número do Caso:": num_caso
-    hint: "Ex.: 1280"
+    datatype: integer
   - "Cidade:": cidade
     default: Belo Horizonte
-    hint: "Ex.: Belo Horizonte"
     required: True
   - "Data:": data
     datatype: date
@@ -82,12 +77,12 @@ mandatory: true
 progress: 49
 question: |
   #Confira os seus dados:  
-  Nome do Recebedor: ${ nome_recebedor }  
-  Número de CPF do Recebedor: ${ num_cpf_recebedor }  
-  Número de RG do Recebedor: ${ num_rg_recebedor }  
-  Nome do Entregador: ${ nome_entregador }  
-  Número de CPF do Entregador: ${ num_cpf_entregador }  
-  Número de RG do Entregador: ${ num_rg_entregador }  
+  Nome do(a) Recebedor(a): ${ nome_recebedor }
+  Número de CPF do(a) Recebedor(a): ${ num_cpf_recebedor }
+  Número de RG do(a) Recebedor(a): ${ num_rg_recebedor }
+  Nome do(a) Entregador(a): ${ nome_entregador }
+  Número de CPF do(a) Entregador(a): ${ num_cpf_entregador }
+  Número de RG do(a) Entregador(a): ${ num_rg_entregador }
   Número do caso: ${ num_caso }  
   Cidade: ${ cidade }  
   Data de Assinatura: ${ data }
@@ -198,14 +193,14 @@ fields:
     show if: decisao9
 ---
 section: Impressão
-progress: 85
+progress: 100
 mandatory: True
 question: |
   Aqui está o seu documento!
 subquestion: |
   Responda nossa [pesquisa de satisfação](https://forms.gle/XKGQKBes5u8e8bW6A)!
 attachment:
-  name: Recibo_de_doc.yml
+  name: Recibo de Documentos
   language: pt
   filename: ${ nome_recebedor }-recibo-de-documentos
   docx template file: recibo-de-documentos.docx
