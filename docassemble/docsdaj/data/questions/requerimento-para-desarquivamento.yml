@@ -139,25 +139,32 @@ mandatory: True
 section: Checagem
 progress: 66
 question: |
-  #Confira os seus dados:
-  Nome do assistido: ${ nome_assistido }
+  #Confira os dados a serem impressos:
+  Nome do(a) Assistido(a): ${ nome_assistido }
 
-  Número de CPF do Assistido: ${ num_cpf }
+  Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Número de RG do Assistido: ${ num_rg }
+  Número de RG do(a) Assistido(a): ${ num_rg }
 
   Número do Caso: ${ num_caso }
 
   Data de Assinatura: ${ data }
 
+  Data do Arquivamento: ${ data_arquivamento }
+
   Endereço: ${ logradouro }, ${ bairro }, ${ complemento } nº ${ num_residencial }, ${ cidade_assistido }, ${ cep }, ${ sigla_estado }.
+
+  Razões para Desarquivamento: ${ razoes_desarquivamento }
+
+  Motivos do Arquivamento: ${ motivos_arquivamento }
+
 back button: True
 back button label: |
   Ops, errei. Voltar
 buttons:
   - Tudo certo! Ver documento: continue
 ---
-section: Conclusão
+section: Impressão
 progress: 100
 mandatory: True
 question: |
