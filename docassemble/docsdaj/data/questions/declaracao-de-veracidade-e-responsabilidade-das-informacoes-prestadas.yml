@@ -48,7 +48,7 @@ fields:
     required: True
     hint: "Ex: Ação trabalhista, Ação de alimentos"
   - "Número do Caso": num_caso
-    datatype: int
+    datatype: integer
   - 'Local de Emissão da Declaração:': cidade
     datatype: string
     default: Belo Horizonte
