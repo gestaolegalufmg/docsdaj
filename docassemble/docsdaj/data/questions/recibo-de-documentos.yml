@@ -183,7 +183,7 @@ fields:
     show if: decisao8
 ---
 section: Documentos
-progress: 50
+progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
