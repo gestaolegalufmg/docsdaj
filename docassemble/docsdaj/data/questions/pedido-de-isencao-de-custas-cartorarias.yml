@@ -153,23 +153,33 @@ question: |
 
   Email: ${ email_assitido }
 
-  Cep: ${ cep }
-
   Filiação do(a) Assistido(a): ${ filiacao_assistido }
 
   Estado civil do(a) Assistido(a): ${ estado_civil_assitido }
 
   Telefone (1): ${ telefone_assistido }
 
+  Telefone (2): ${ telefone_assistido2 }
+
+  Nacionalidade do(a) Assistido(a): ${ nacionalidade_assistido }
+
+  Profissão do(a) Assistido(a): ${ profissao_assistido }
+
+  Cep: ${ cep }
+
   Logradouro: ${ logradouro }
 
   Número Residencial: ${ num_residencial }
 
-  Complemento: ${ complemento}
+  Complemento: ${ complemento }
 
   Bairro: ${ bairro }
 
   Cidade: ${ cidade }
+
+  Estado: ${ sigla_estado }
+
+  Data: ${ data }
 back button: True
 back button label: |
   Ops, errei. Voltar
