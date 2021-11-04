@@ -60,13 +60,11 @@ fields:
     required: True
   - "Logradouro:": logradouro
     required: True
-    datatype: integer
   - "Número residencial:": num_residencial
     required: True
     datatype: integer
   - "Complemento:": complemento
     required: False
-    datatype: integer
   - "Bairro:": bairro
     required: True
   - "Cidade:": cidade
