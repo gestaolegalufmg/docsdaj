@@ -17,7 +17,7 @@ features:
     - comum_validacao_cpf.js
 ---
 sections:
-  - Dados Iniciais
+  - Dados do(a) Assistido(a)
   - Dados da Procuração
   - Checagem
   - Impressão
@@ -56,7 +56,7 @@ script: |
    </script>
 mandatory: True
 ---
-section: Dados
+section: Dados da Procuração
 question: Insira os dados da procuração
 progress: 33
 fields:
