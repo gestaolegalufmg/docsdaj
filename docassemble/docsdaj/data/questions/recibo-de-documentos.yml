@@ -67,7 +67,7 @@ fields:
   - "Cidade:": cidade
     default: Belo Horizonte
     required: True
-  - "Data:": data
+  - "Data de assinatura:": data_assinatura
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
@@ -78,14 +78,22 @@ progress: 49
 question: |
   #Confira os seus dados:  
   Nome do(a) Recebedor(a): ${ nome_recebedor }
+
   Número de CPF do(a) Recebedor(a): ${ num_cpf_recebedor }
+
   Número de RG do(a) Recebedor(a): ${ num_rg_recebedor }
+
   Nome do(a) Entregador(a): ${ nome_entregador }
+
   Número de CPF do(a) Entregador(a): ${ num_cpf_entregador }
+
   Número de RG do(a) Entregador(a): ${ num_rg_entregador }
-  Número do caso: ${ num_caso }  
-  Cidade: ${ cidade }  
-  Data de Assinatura: ${ data }
+
+  Número do caso: ${ num_caso }
+
+  Cidade: ${ cidade }
+
+  Data de Assinatura: ${ data_assinatura }
 back button: True
 back button label: |
   Ops, errei. Voltar
