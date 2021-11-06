@@ -1,6 +1,9 @@
 metadata:
   title: Substabelecimento
 ---
+include:
+  - comum_lista_estados.yml
+---
 features:
   javascript:
     - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
@@ -14,15 +17,15 @@ code: |
   set_language('pt')
 ---
 sections:
-  - Dados
-  - Dados do Patrono
+  - Dados Iniciais
+  - Dados do(a) Patrono(a)
   - Checagem I
   - Dados do Colaborador
   - Checagem II
   - Impressão
 ---
-section: Dados iniciais
-question: Substabelecimento
+section: Dados Iniciais
+question: Insira os Dados do(a) Assistido(a)
 fields:
   - 'Nome do(a) assistido(a):': nome_assistido
     datatype: string
@@ -41,6 +44,13 @@ fields:
     datatype: string
     required: True
   - 'N° do Processo:': num_autos
+    minlength: 25
+    maxlength: 25
+    validation messages:
+      maxlength: |
+        Formato inválido!
+      minlength: |
+        Formato inválido!
     required: True
   - 'Local de Assinatura:': cidade_assinatura
     datatype: string
@@ -73,45 +83,18 @@ script: |
        }
      }
      });
-   </script>
+  </script>
 ---
-question: Insira os Dados do Patrono
-section: Dados do Patrono
+section: Dados do(a) Patrono(a)
+question: Insira os Dados do(a) Patrono(a)
 progress: 20
 fields:
-  - 'Nome do Patrono(a):': nome_patrono_atual
+  - 'Nome do(a) Patrono(a):': nome_patrono_atual
     datatype: string
     required: True
-  - 'UF da OAB do Patrono:': patrono_estadooab
-    datatype: dropdown
-    choices:
-    - AC
-    - AL
-    - AP
-    - AM
-    - BA
-    - CE
-    - DF
-    - ES
-    - GO
-    - MA
-    - MT
-    - MS
-    - MG
-    - PA
-    - PB
-    - PR
-    - PE
-    - PI
-    - RJ
-    - RN
-    - RS
-    - RO
-    - RR
-    - SC
-    - SP
-    - SE
-    - TO
+  - 'Estado da OAB do(a) Patrono(a):': patrono_estadooab
+    code: |
+      lista_estados_sigla()
     default: MG
     required: True
   - 'OAB do Patrono(a):': patrono_numoab
@@ -160,7 +143,7 @@ include:
   - comum_colaborador.yml
 ---
 features:
-  navigation: vertical
+  navigation: horizontal
   progress bar: True
   question back button: True
 ---
