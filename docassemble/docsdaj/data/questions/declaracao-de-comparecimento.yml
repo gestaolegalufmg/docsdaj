@@ -19,10 +19,11 @@ section: Dados do Assistido
 progress: 33
 question: Declaração de comparecimento
 fields:
-  - 'Nome do assistido:': nome_assistido
+  - 'Nome do(a) Assistido(a):': nome_assistido
     datatype: string
     required: True
-  - "Número de CPF do Assistido: ": num_cpf
+  - "Número de CPF do(a) Assistido(a): ": num_cpf
+    hint: "123.123.123-12"
     required: True
   - 'Horário do início:': hora_inicial
     datatype: time
