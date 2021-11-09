@@ -1,6 +1,6 @@
 features:
-  navigation: vertical
   progress bar: True
+  navigation: vertical
   question back button: True
   javascript:
     - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
@@ -10,11 +10,12 @@ metadata:
   title: Declaração de comparecimento
 ---
 sections:
-  - Dados
+  - Dados do Assistido
+  - Dados do Colaborador
   - Checagem
   - Impressão
 ---
-section: Dados
+section: Dados do Assistido
 progress: 33
 question: Declaração de comparecimento
 fields:
@@ -67,6 +68,7 @@ script: |
     </script>
 ---
 question: Dados do colaborador
+progress: 66
 fields:
   - 'Nome do Colaborador:': nome_colaborador
     required: True
@@ -103,7 +105,6 @@ fields:
     default: MG
   - 'Número da OAB:': num_oab
     required: True
-mandatory: True
 script: |
   <script type="text/javascript">
     $(document).ready(function(){
@@ -117,21 +118,32 @@ progress: 77
 question: |
   #Confira os seus dados:
   Nome do assistido: ${ nome_assistido }
+
   Número de CPF do Assistido: ${ num_cpf }
-  Horário do início: $ { hora_inicial }
-  Horário do término: $ { hora_final }
+
+  Horário do início: ${ hora_inicial }
+
+  Horário do término: ${ hora_final }
+
   Data da de comparecimento: ${ data }
+
   Cidade: ${ cidade }
+
   Data da assinatura: ${ data_assinatura }
+
   Nome do Colaborador: ${ nome_colaborador  }
+
   OAB do Colaborado: ${ num_oab }
+
   UF da OAB do Colaborador: ${ uf_oab }
+
   Local da Assinatura: ${ cidade }
 back button: True
 back button label: |
   Ops, errei. Voltar
 buttons:
   - Tudo certo! Ver documento: continue
+mandatory: True
 ---
 section: Impressão
 progress: 100
