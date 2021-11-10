@@ -18,6 +18,9 @@ sections:
   - Checagem
   - Impressão
 ---
+code: |
+  num_acao: ""
+---
 section: Dados
 question: Preencha os campos abaixo.
 progress: 33
@@ -100,8 +103,8 @@ fields:
   - "Teve Processo?": decisao
     datatype: yesnoradio
   - "Número da Ação:": num_acao
+    required: False
     show if: decisao
-    required: True
 script: |
   <script type="text/javascript">
     $(document).ready(function(){
@@ -114,7 +117,6 @@ script: |
         var cpf_valido = CPF_valido(campo_teste)
         if (!cpf_valido) {
             console.log("CPF INVÁLIDO");
-          $("#bnVtX2NwZg").val("");
           $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
        }
        else {
@@ -152,21 +154,28 @@ question: |
 
   Data do Arquivamento: ${ data_arquivamento }
 
-  Endereço: ${ logradouro }, ${ bairro }, ${ complemento } nº ${ num_residencial }, ${ cidade_assistido }, ${ cep }, ${ sigla_estado }.
-
   Razões para Desarquivamento: ${ razoes_desarquivamento }
 
   Motivos do Arquivamento: ${ motivos_arquivamento }
 
+  % if complemento:
+  Endereço: ${ logradouro }, ${ bairro }, nº ${ num_residencial }, ${ complemento }, ${ cidade_assistido }, ${ cep }, ${ sigla_estado }.
+  % else:
+  Endereço: ${ logradouro }, ${ bairro }, nº ${ num_residencial }, ${ cidade_assistido }, ${ cep }, ${ sigla_estado }.
+  % endif
+
+  % if decisao:
+  Número da Ação: ${ num_acao }
+  % endif
 back button: True
 back button label: |
   Ops, errei. Voltar
 buttons:
   - Tudo certo! Ver documento: continue
 ---
+mandatory: True
 section: Impressão
 progress: 100
-mandatory: True
 question: |
   Aqui está o seu documento:
 subquestion: |
