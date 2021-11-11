@@ -55,6 +55,8 @@ fields:
     required: True
   - "Filiação do(a) Assistido(a):": filiacao_assistido
     required: True
+  - "Cep:": cep
+    required: True
   - "Logradouro:": logradouro
     required: True
   - "Número residencial:": num_residencial
@@ -95,8 +97,6 @@ fields:
     - SP
     - SE
     - TO
-    required: True
-  - "Cep:": cep
     required: True
   - "Telefone (1):": telefone_assistido
     required: True
