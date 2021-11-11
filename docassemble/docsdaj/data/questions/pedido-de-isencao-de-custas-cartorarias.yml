@@ -59,7 +59,6 @@ fields:
     required: True
   - "Número residencial:": num_residencial
     required: True
-    datatype: integer
   - "Complemento:": complemento
     required: False
   - "Bairro:": bairro
@@ -99,13 +98,10 @@ fields:
     required: True
   - "Cep:": cep
     required: True
-    datatype: integer
   - "Telefone (1):": telefone_assistido
     required: True
-    datatype: integer
   - "Telefone (2):": telefone_assistido2
     required: False
-    datatype: integer
   - "Email:": email_assitido
     required: True
     datatype: email
