@@ -36,13 +36,6 @@ fields:
          Formato inválido!
     required: True
   - "Número de RG do(a) Assistido(a):": num_rg
-    minlength: 11
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
     required: True
   - "Número do Caso:": num_caso
     datatype: integer
