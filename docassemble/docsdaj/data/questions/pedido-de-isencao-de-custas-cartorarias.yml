@@ -154,8 +154,9 @@ question: |
 
   Telefone (1): ${ telefone_assistido }
 
+  % if telefone_assistido2:
   Telefone (2): ${ telefone_assistido2 }
-
+  % endif
   Nacionalidade do(a) Assistido(a): ${ nacionalidade_assistido }
 
   Profissão do(a) Assistido(a): ${ profissao_assistido }
