@@ -4,6 +4,7 @@ metadata:
 features:
   javascript:
     - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+    - comum_validacao_cpf.js
 ---
 initial: True
 code: |
@@ -30,7 +31,6 @@ fields:
   - "Número de CPF do(a) Recebedor(a):": num_cpf_recebedor
     minlength: 14
     maxlength: 14
-    datatype: integer
     validation messages:
        maxlength: |
          Formato inválido!
@@ -50,8 +50,7 @@ fields:
   - "Número de CPF do(a) Entregador(a):": num_cpf_entregador
     minlength: 14
     maxlength: 14
-    datatype: integer
-    validation messages:
+        validation messages:
        maxlength: |
          Formato inválido!
        minlength: |
@@ -87,7 +86,7 @@ section: Checagem de Dados
 mandatory: true
 progress: 49
 question: |
-  #Confira os seus dados:  
+  #Confira os seus dados:
   Nome do(a) Recebedor(a): ${ nome_recebedor }
 
   Número de CPF do(a) Recebedor(a): ${ num_cpf_recebedor }
@@ -119,7 +118,7 @@ fields:
   - 'Documento:':  doc_1
     required: True
 
---- 
+---
 section: Documentos
 mandatory: True
 progress: 75
