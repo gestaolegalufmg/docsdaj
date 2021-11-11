@@ -65,9 +65,9 @@ fields:
     required: True
   - "Cidade:": cidade
     required: True
-  - 'Estado:': sigla_estado 
+  - 'Estado:': sigla_estado
     datatype: dropdown
-    choices: 
+    choices:
     - AC
     - AL
     - AP
@@ -116,6 +116,8 @@ script: |
   <script type="text/javascript">
     $(document).ready(function(){
         $('#bnVtX2NwZl9hc3Npc3RpZG8').mask('000.000.000-00', {reverse: true});
+        $('#dGVsZWZvbmVfYXNzaXN0aWRv').mask('(00) 00000-0000');
+        $('#dGVsZWZvbmVfYXNzaXN0aWRvMg').mask('(00) 00000-0000');
 
       $('#Y2Vw').mask('00000-000'); });
       $("#Y2Vw").focusout(function(){ var cep = $("#Y2Vw").val();
@@ -187,7 +189,7 @@ fields:
   - 'Documento:':  doc_1
     required: True
 
---- 
+---
 section: Documentos
 mandatory: True
 progress: 75
