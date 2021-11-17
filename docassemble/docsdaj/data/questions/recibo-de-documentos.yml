@@ -29,8 +29,6 @@ fields:
   - "Nome do(a) Recebedor(a):": nome_recebedor
     required: True
   - "Número de CPF do(a) Recebedor(a):": num_cpf_recebedor
-    minlength: 14
-    maxlength: 14
     validation messages:
        maxlength: |
          Formato inválido!
@@ -48,8 +46,6 @@ fields:
     required: True
   - "Nome do(a) Entregador(a):": nome_entregador
   - "Número de CPF do(a) Entregador(a):": num_cpf_entregador
-    minlength: 14
-    maxlength: 14
         validation messages:
        maxlength: |
          Formato inválido!
