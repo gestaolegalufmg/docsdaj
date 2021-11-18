@@ -88,7 +88,7 @@ fields:
     required: True
   - "Cidade de Domicílio": cidade_assistido
     required: True
-  - "Data de Assinatura": data
+  - "Data de Assinatura": data_assinatura
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
@@ -96,9 +96,6 @@ fields:
     default: "Belo Horizonte"
   - "Razões para Desarquivamento": razoes_desarquivamento
   - "Data do Arquivamento": data_arquivamento
-    datatype: date
-    default: |
-      ${ today(format='yyyy-MM-dd') }
   - "Motivos do Arquivamento": motivos_arquivamento
   - "Teve Processo?": decisao
     datatype: yesnoradio
@@ -150,7 +147,7 @@ question: |
 
   Número do Caso: ${ num_caso }
 
-  Data de Assinatura: ${ data }
+  Data de Assinatura: ${ data_assinatura }
 
   Data do Arquivamento: ${ data_arquivamento }
 
