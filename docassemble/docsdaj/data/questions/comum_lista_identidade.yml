@@ -1,5 +1,5 @@
 code: |
-  def lista_identidades ():
+  def lista_identidades():
     identidades = [
     "Conselho Regional de Administração",
     "Conselho Regional da Ordem dos Advogados do Brasil",

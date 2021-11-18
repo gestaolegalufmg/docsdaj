@@ -38,7 +38,7 @@ fields:
     required: True
   - "Documento de identificação do(a) Assistido(a):": doc_identidade_assistido
     code: |
-      lista_identidades ()
+      lista_identidades()
   - "Número do documento de identificação:": num_identidade_assistido
     required: True
   - "Número do Caso:": num_caso
