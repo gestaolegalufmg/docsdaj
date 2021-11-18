@@ -90,7 +90,7 @@ fields:
         Formato inválido!
       minlength: |
         Formato inválido!
-  - 'Data da Procuração:': data
+  - 'Data da Procuração:': data_assinatura
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
@@ -131,7 +131,7 @@ question: |
 
   Número do Processo: ${ num_acao }
 
-  Data da Procuração: ${ data }
+  Data da Procuração: ${ data_assinatura }
 
   Local da Assinatura: ${ cidade_assinatura }
 
