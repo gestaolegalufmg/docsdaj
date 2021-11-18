@@ -2,10 +2,10 @@ metadata:
   title: Declaração de Ciência e Responsabilidade Trabalhista
 ---
 features:
+  - comum_lista_identidade.yml
  javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
   - comum_validacao_cpf.js
-  - comum_lista_identidade.yml
 ---
 initial: True
 code: |
