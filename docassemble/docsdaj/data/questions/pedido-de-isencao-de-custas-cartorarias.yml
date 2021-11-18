@@ -169,9 +169,7 @@ question: |
 
   Número Residencial: ${ num_residencial }
 
- % if complemento:
   Complemento: ${ complemento }
- % endif
 
   Bairro: ${ bairro }
 
