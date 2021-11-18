@@ -35,7 +35,10 @@ fields:
        minlength: |
          Formato inválido!
     required: True
-  - "Número de RG do(a) Assistido(a):": num_rg
+  - "Documento de identificação do(a) Assistido(a):": doc_identidade_assistido
+    code: |
+      lista_identidades ()
+  - "Número do documento de identificação:": num_identidade_assistido
     required: True
   - "Número do Caso:": num_caso
     datatype: integer
@@ -78,7 +81,7 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Número de RG do(a) Assistido(a): ${ num_rg }
+  Número do documento de identificação do(a) Assistido(a): ${ num_identidade_assistido }
 
   Número do Caso: ${ num_caso }
 
