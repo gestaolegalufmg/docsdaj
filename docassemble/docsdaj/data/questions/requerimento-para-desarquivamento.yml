@@ -96,6 +96,7 @@ fields:
     default: "Belo Horizonte"
   - "Razões para Desarquivamento": razoes_desarquivamento
   - "Data do Arquivamento": data_arquivamento
+    datatype: date
   - "Motivos do Arquivamento": motivos_arquivamento
   - "Teve Processo?": decisao
     datatype: yesnoradio
