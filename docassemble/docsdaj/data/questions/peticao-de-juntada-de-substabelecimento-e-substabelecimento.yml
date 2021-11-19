@@ -44,6 +44,7 @@ fields:
     minlength: 25
     required: True
   - 'Tipo da Ação:': tipo_acao
+    help: "Informe o tipo de ação. Exemplo: ação de divórcio, ação trabalhista, etc"
     required: True
   - "Cidade": cidade
     default: Belo Horizonte
