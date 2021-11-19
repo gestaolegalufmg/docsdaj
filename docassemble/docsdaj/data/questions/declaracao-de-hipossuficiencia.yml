@@ -30,7 +30,7 @@ fields:
     datatype: string
     default: Belo Horizonte
     required: True
-  - "Data: ": data
+  - "Data: ": data_assinatura
     required: True
     datatype: date
     default: |
@@ -69,11 +69,11 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Número de RG do Assistido: ${ num_rg }
+  Número de RG do(a) Assistido(a): ${ num_rg }
 
   Cidade de Emissão: ${ cidade }
 
-  Data de Assinatura: ${ data }
+  Data de Assinatura: ${ data_assinatura }
 back button: True
 back button label: |
   Ops, errei. Voltar
@@ -95,12 +95,10 @@ attachment:
   valid formats:
     - pdf
     - docx
-buttons:
-  - Sair: exit
 ---
 
 features:
-  navigation: horizontal
+  navigation: vertical
   progress bar: True
   question back button: True
 ---
