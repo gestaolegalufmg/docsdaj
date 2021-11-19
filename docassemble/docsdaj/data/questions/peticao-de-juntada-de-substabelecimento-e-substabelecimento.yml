@@ -21,11 +21,11 @@ sections:
   - Checagem II
   - Impressão
 ---
-question: Petição de Juntada de Substabelecimento
+question: Preencha os campos abaixo
 section: Dados
 progress: 1
 fields:
-  - 'Nome do(a0 Assistido(a):': nome_assistido
+  - 'Nome do(a) Assistido(a):': nome_assistido
     datatype: string
     required: True
   - "Número de CPF do(a) Assistido(a)": num_cpf
@@ -41,7 +41,7 @@ fields:
     hint: "8ª VARA CÍVEL DA COMARCA DE BETIM"
     required: True
   - 'Número dos Autos:': num_autos
-    datatype: Int
+    minlength: 25
     required: True
   - 'Tipo da Ação:': tipo_acao
     required: True
@@ -57,6 +57,7 @@ script: |
   <script type="text/javascript">
     $(document).ready(function(){
         $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+        $('#bnVtX2F1dG9z').mask('0000000-00.0000.0.00.0000');
       });
       $("#bnVtX2NwZg").focusout(function() {
       $('#bnVtX2NwZg-error').remove()
@@ -80,10 +81,10 @@ question: Insira os dados do patrona
 section: Dados do Patrono
 progress: 37
 fields:
-  - 'Nome do Patrono(a):': nome_patrono_atual
+  - 'Nome do(a) Patrono(a):': nome_patrono_atual
     datatype: string
     required: True
-  - 'UF da OAB do Patrono:': patrono_estadooab
+  - 'UF da OAB do(a) Patrono(a):': patrono_estadooab
     datatype: dropdown
     choices:
     - AC
@@ -115,7 +116,7 @@ fields:
     - TO
     default: MG
     required: True
-  - 'OAB do Patrono(a):': patrono_numoab
+  - 'OAB do(a) Patrono(a):': patrono_numoab
     minlength: 6
     maxlength: 7
     validation messages:

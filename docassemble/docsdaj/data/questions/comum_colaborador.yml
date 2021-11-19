@@ -2,6 +2,9 @@ initial: True
 code: |
   set_language('pt')
 ---
+include:
+  - comum_lista_estados.yml
+---
 features:
   javascript:
     - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
@@ -42,7 +45,10 @@ fields:
     choices: pessoas
   - Nome: colaboradores[i].name.first
   - Estado OAB: colaboradores[i].estadooab
+    default: "MG"
     required: True
+    code: |
+      lista_estados_sigla()
     show if:
       variable: colaboradores[i].existing_or_new
       is: Novo
