@@ -126,7 +126,7 @@ question: |
 
   Horário do Término: ${ hora_final }
 
-  Data de Comparecimento: ${ data }
+  Data de Comparecimento: ${ data_comparecimento }
 
   Cidade: ${ cidade }
 
