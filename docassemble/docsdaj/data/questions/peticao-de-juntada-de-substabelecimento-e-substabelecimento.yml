@@ -147,6 +147,8 @@ question: |
 
   Número dos Autos: ${ num_autos }
 
+  Tipo de Ação: ${ tipo_acao }
+
   Data de Assinatura: ${ data }
 
   Cidade da Assinatura: ${ cidade }
