@@ -6,7 +6,7 @@ code: |
   set_language('pt')
 ---
 features:
-  navigation: horizontal
+  navigation: vertical
   progress bar: True
   question back button: True
   javascript:
@@ -35,8 +35,6 @@ fields:
          Formato inválido!
     required: True
   - "Número do RG do(a) Assistido(a):": num_rg
-    minlength: 11
-    maxlength: 14
     validation messages:
        maxlength: |
          Formato inválido!
@@ -46,7 +44,8 @@ fields:
   - 'Assunto da Petição Inicial:': tipo_acao
     datatype: string
     required: True
-    hint: "Ex: Ação trabalhista, Ação de alimentos"
+    help: |
+      Exemplo: Ação trabalhista, Ação de alimentos etc.
   - "Número do Caso": num_caso
     datatype: integer
   - 'Local de Emissão da Declaração:': cidade
