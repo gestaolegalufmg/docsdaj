@@ -16,6 +16,9 @@ features:
     - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
     - comum_validacao_cpf.js
 ---
+code: |
+  num_acao: ""
+---
 sections:
   - Dados do(a) Assistido(a)
   - Dados da Procuração
@@ -82,7 +85,9 @@ fields:
     help: |
       Exemplo: Ação de despejo, ação de divórcio etc.
   - 'Número do Processo:': num_acao
-    required: True
+    help: |
+      Apenas digite caso o processo já exista.
+    required: False
     minlength: 25
     maxlength: 25
     validation messages:
@@ -129,11 +134,18 @@ question: |
 
   Tipo da Ação: ${ tipo_acao }
 
+  % if num_acao:
   Número do Processo: ${ num_acao }
 
   Data da Procuração: ${ data_assinatura }
 
   Local da Assinatura: ${ cidade_assinatura }
+
+  % else:
+  Data da Procuração: ${ data_assinatura }
+
+  Local da Assinatura: ${ cidade_assinatura }
+  % endif
 
 back button: True
 back button label: |
