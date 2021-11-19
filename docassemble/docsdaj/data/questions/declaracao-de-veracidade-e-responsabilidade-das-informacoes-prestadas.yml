@@ -95,7 +95,7 @@ question: |
 
   Número do Caso: ${ num_caso }
 
-  Local de Emissão Declaração: ${ cidade }
+  Local de Emissão da Declaração: ${ cidade }
 
   Data de Assinatura: ${ data_assinatura }
 back button: True
