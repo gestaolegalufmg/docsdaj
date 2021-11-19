@@ -35,11 +35,6 @@ fields:
          Formato inválido!
     required: True
   - "Número do RG do(a) Assistido(a):": num_rg
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
     required: True
   - 'Assunto da Petição Inicial:': tipo_acao
     datatype: string
