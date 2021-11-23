@@ -1,6 +1,10 @@
 metadata:
   title: Pedido de isenção de custas cartorárias
 ---
+include:
+  - comum_lista_estados.yml
+  - comum_lista_identidade.yml
+---
 features:
   javascript:
     - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
@@ -11,7 +15,7 @@ code: |
   set_language('pt')
 ---
 features:
-  navigation: horizontal
+  navigation: vertical
   progress bar: True
   question back button: True
 ---
@@ -39,13 +43,10 @@ fields:
          Formato inválido!
     required: True
   - "Número de RG do(a) Assistido(a):": num_rg_assistido
-    minlength: 11
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
+    required: True
+  - "Órgão Expedidor:": sigla_identidade
+    code: |
+      lista_identidades_siglas()
     required: True
   - "Nacionalidade do(a) Assistido(a):": nacionalidade_assistido
     required: True
@@ -69,43 +70,17 @@ fields:
   - "Cidade:": cidade
     required: True
   - 'Estado:': sigla_estado
-    datatype: dropdown
-    choices:
-    - AC
-    - AL
-    - AP
-    - AM
-    - BA
-    - CE
-    - DF
-    - ES
-    - GO
-    - MA
-    - MT
-    - MS
-    - MG
-    - PA
-    - PB
-    - PR
-    - PE
-    - PI
-    - RJ
-    - RN
-    - RS
-    - RO
-    - RR
-    - SC
-    - SP
-    - SE
-    - TO
+    code: |
+      lista_estados_sigla()
+    default: MG
     required: True
   - "Telefone (1):": telefone_assistido
     required: True
   - "Telefone (2):": telefone_assistido2
     required: False
   - "Email:": email_assitido
-    required: True
     datatype: email
+    required: True
   - "Data:": data
     datatype: date
     default: |
@@ -115,23 +90,37 @@ fields:
     required: True
 script: |
   <script type="text/javascript">
-    $(document).ready(function(){
+     $(document).ready(function(){
         $('#bnVtX2NwZl9hc3Npc3RpZG8').mask('000.000.000-00', {reverse: true});
         $('#dGVsZWZvbmVfYXNzaXN0aWRv').mask('(00) 00000-0000');
         $('#dGVsZWZvbmVfYXNzaXN0aWRvMg').mask('(00) 00000-0000');
-
-      $('#Y2Vw').mask('00000-000'); });
-      $("#Y2Vw").focusout(function(){ var cep = $("#Y2Vw").val();
-      cep = cep.replace ("-","");
-        {var urlStr = "https://viacep.com.br/ws/"+ cep +"/json/";
-        $.ajax({ url: urlStr, crossDomain: true, type: "get", dataType: "json", success: function(data){
-          $("#bG9ncmFkb3Vybw").val(data.logradouro);
-          $("#YmFpcnJv").val(data.bairro);
-          $("#Y2lkYWRlX2Fzc2lzdGlkbw").val(data.localidade);
-          $("#c2lnbGFfZXN0YWRv").val(data.uf); }, error: function(erro){ console.log(erro);
-  } }); } });
-
-    </script>
+        $('#Y2Vw').mask('00000-000');
+      });
+      $("#bnVtX2NwZl9hc3Npc3RpZG8").focusout(function() {
+      $('#bnVtX2NwZl9hc3Npc3RpZG8-error').remove()
+       var campo_teste = $("#bnVtX2NwZl9hc3Npc3RpZG8").val();
+       if (campo_teste){
+         var cpf_valido = CPF_valido(campo_teste)
+         if (!cpf_valido) {
+             console.log("CPF INVÁLIDO")
+           $("#bnVtX2NwZl9hc3Npc3RpZG8").val("");
+           $('<span id="bnVtX2NwZl9hc3Npc3RpZG8-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZl9hc3Npc3RpZG8");
+        }
+        else {
+         console.log("CPF VÁLIDO");
+        }
+      }
+     });
+          $("#Y2Vw").focusout(function(){ var cep = $("#Y2Vw").val();
+          cep = cep.replace ("-","");
+            {var urlStr = "https://viacep.com.br/ws/"+ cep +"/json/";
+            $.ajax({ url: urlStr, crossDomain: true, type: "get", dataType: "json", success: function(data){
+              $("#bG9ncmFkb3Vybw").val(data.logradouro);
+              $("#YmFpcnJv").val(data.bairro);
+              $("#Y2lkYWRl").val(data.localidade);
+              $("#c2lnbGFfZXN0YWRv").val(data.uf); }, error: function(erro){ console.log(erro);
+      } }); } });
+  </script>
 ---
 ---
 Section: Checagem de Dados
