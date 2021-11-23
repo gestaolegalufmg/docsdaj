@@ -1,6 +1,9 @@
 metadata:
   title: Declaração de Hipossuficiência
 ---
+include:
+  - comum_lista_identidade.yml
+---
 features:
   javascript:
     - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
@@ -24,7 +27,12 @@ fields:
     required: True
   - "Número de CPF do(a) Assistido(a): ": num_cpf
     minlength: 14
-  - "Número de RG do(a) Assistido(a): ": num_rg
+ - "Número do Documento do(a) Assistido(a):": num_rg
+    required: True
+  - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
+    code: |
+      lista_identidades_siglas()
+    default: RG
     required: True
   - "Cidade: ": cidade
     datatype: string
@@ -69,7 +77,9 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Número de RG do(a) Assistido(a): ${ num_rg }
+  Número do Documento do(a) Assistido(a): ${ num_rg }
+
+  Tipo de Documento do(a) Assistido(a): ${ sigla_identidade }
 
   Cidade de Emissão: ${ cidade }
 
