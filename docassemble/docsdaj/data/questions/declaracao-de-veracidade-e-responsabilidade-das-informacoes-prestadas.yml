@@ -1,5 +1,8 @@
-metadata:
+etadata:
   title: Declaração de Veracidade e Responsabilidade das Informações Prestadas
+---
+include:
+  - comum_lista_identidade.yml
 ---
 initial: True
 code: |
@@ -34,7 +37,12 @@ fields:
        minlength: |
          Formato inválido!
     required: True
-  - "Número do RG do(a) Assistido(a):": num_rg
+  - "Número do Documento do(a) Assistido(a):": num_rg
+    required: True
+  - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
+    code: |
+      lista_identidades_siglas()
+    default: RG
     required: True
   - 'Assunto da Petição Inicial:': tipo_acao
     datatype: string
@@ -84,7 +92,9 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Número do RG do(a) Assistido(a): ${ num_rg }
+  Número do Documento do(a) Assistido(a): ${ num_rg }
+
+  Tipo de Documento do(a) Assistido(a): ${ sigla_identidade }
 
   Assunto da Petição Inicial: ${ tipo_acao }
 
