@@ -133,7 +133,9 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf_assistido }
 
-  Número de RG do(a) Assistido(a): ${ num_rg_assistido }
+  Número do Documento do(a) Assistido(a): ${ num_rg_assistido }
+
+  Tipo de Documento do(a) Assistido(a): ${ sigla_identidade }
 
   Endereço do cartório: ${ enderecamento_cartorio }
 
