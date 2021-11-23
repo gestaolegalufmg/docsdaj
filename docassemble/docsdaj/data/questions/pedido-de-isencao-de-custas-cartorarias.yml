@@ -47,6 +47,7 @@ fields:
   - "Órgão Expedidor:": sigla_identidade
     code: |
       lista_identidades_siglas()
+    default: SSP
     required: True
   - "Nacionalidade do(a) Assistido(a):": nacionalidade_assistido
     required: True
