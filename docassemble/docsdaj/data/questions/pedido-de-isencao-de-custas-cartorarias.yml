@@ -42,9 +42,9 @@ fields:
        minlength: |
          Formato inválido!
     required: True
-  - "Número de RG do(a) Assistido(a):": num_rg_assistido
+  - "Número do Documento do(a) Assistido(a):": num_rg_assistido
     required: True
-  - "Órgão Expedidor:": sigla_identidade
+  - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
     code: |
       lista_identidades_siglas()
     default: RG
