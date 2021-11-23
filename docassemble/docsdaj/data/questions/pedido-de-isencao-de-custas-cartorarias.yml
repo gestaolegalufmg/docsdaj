@@ -61,7 +61,7 @@ fields:
     required: True
   - "Logradouro:": logradouro
     required: True
-  - "Número residencial:": num_residencial
+  - "Número Residencial:": num_residencial
     required: True
     datatype: integer
   - "Complemento:": complemento
