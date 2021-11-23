@@ -27,7 +27,7 @@ fields:
     required: True
   - "Número de CPF do(a) Assistido(a): ": num_cpf
     minlength: 14
- - "Número do Documento do(a) Assistido(a):": num_rg
+  - "Número do Documento do(a) Assistido(a):": num_rg
     required: True
   - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
     code: |
