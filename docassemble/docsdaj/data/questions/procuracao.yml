@@ -3,6 +3,7 @@ metadata:
 ---
 include:
   - comum_lista_estados.yml
+  - comum_lista_identidade.yml
 ---
 initial: True
 code: |
@@ -34,8 +35,12 @@ fields:
     required: True
   - "Número de CPF do(a) Assistido(a)": num_cpf
     required: True
-  - "Número de RG do(a) Assistido(a)": num_rg
+  - "Número do Documento do(a) Assistido(a):": num_rg
     required: True
+  - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
+    code: |
+      lista_identidades_siglas()
+    default: RG
 script: |
   <script type="text/javascript">
     $(document).ready(function(){
@@ -122,7 +127,9 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Número de RG do(a) Assistido(a): ${ num_rg }
+  Número do Documento do(a) Assistido(a): ${ num_rg }
+
+  Tipo de Documento do(a) Assistido(a): ${ sigla_identidade }
 
   Nome do(a) Orientador(a): ${ nome_estagiario }
 
