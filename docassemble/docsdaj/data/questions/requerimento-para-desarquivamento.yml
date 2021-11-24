@@ -113,35 +113,36 @@ fields:
     show if: decisao
 script: |
   <script type="text/javascript">
-    $(document).ready(function(){
-        $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
-	$('#X2ZpZWxkXzE3').mask('0000000-00.0000.0.00.0000');
-     $("#bnVtX2NwZg").focusout(function() {
-      $('#bnVtX2NwZg-error').remove()
-      var campo_teste = $("#bnVtX2NwZg").val();
-      if (campo_teste){
-        var cpf_valido = CPF_valido(campo_teste)
-        if (!cpf_valido) {
-            console.log("CPF INVÁLIDO");
-          $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+      $(document).ready(function(){
+          $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+  	$('#X2ZpZWxkXzE3').mask('0000000-00.0000.0.00.0000');
+        $("#bnVtX2NwZg").focusout(function() {
+        $('#bnVtX2NwZg-error').remove()
+        var campo_teste = $("#bnVtX2NwZg").val();
+        if (campo_teste){
+          var cpf_valido = CPF_valido(campo_teste)
+          if (!cpf_valido) {
+              console.log("CPF INVÁLIDO")
+            $("#bnVtX2NwZg").val("");
+            $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+         }
+         else {
+          console.log("CPF VÁLIDO");
+         }
        }
-       else {
-        console.log("CPF VÁLIDO");
-       }
-     }
-     });
-          $('#Y2Vw').mask('00000-000'); });
-          $("#Y2Vw").focusout(function(){ var cep = $("#Y2Vw").val();
-          cep = cep.replace ("-","");
-            {var urlStr = "https://viacep.com.br/ws/"+ cep +"/json/";
-            $.ajax({ url: urlStr, crossDomain: true, type: "get", dataType: "json", success: function(data){
-              $("#bG9ncmFkb3Vybw").val(data.logradouro);
-              $("#YmFpcnJv").val(data.bairro);
-              $("#Y2lkYWRlX2Fzc2lzdGlkbw").val(data.localidade);
-              $("#c2lnbGFfZXN0YWRv").val(data.uf); }, error: function(erro){ console.log(erro);
-      } }); } });
+       });
+            $('#Y2Vw').mask('00000-000'); });
+            $("#Y2Vw").focusout(function(){ var cep = $("#Y2Vw").val();
+            cep = cep.replace ("-","");
+              {var urlStr = "https://viacep.com.br/ws/"+ cep +"/json/";
+              $.ajax({ url: urlStr, crossDomain: true, type: "get", dataType: "json", success: function(data){
+                $("#bG9ncmFkb3Vybw").val(data.logradouro);
+                $("#YmFpcnJv").val(data.bairro);
+                $("#Y2lkYWRlX2Fzc2lzdGlkbw").val(data.localidade);
+                $("#c2lnbGFfZXN0YWRv").val(data.uf); }, error: function(erro){ console.log(erro);
+        } }); } });
 
-    </script>
+      </script>
 ---
 mandatory: True
 section: Checagem
