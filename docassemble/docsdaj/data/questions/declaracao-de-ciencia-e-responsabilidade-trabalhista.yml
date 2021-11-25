@@ -84,7 +84,7 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Documento de identificação do(a) Assistido(a): ${ doc_identidade_assistido } ${ num_identidade_assistido }
+  Documento de identificação do(a) Assistido(a): ${ doc_identidade_assistido } nº ${ num_identidade_assistido }
 
   Número do Caso: ${ num_caso }
 
