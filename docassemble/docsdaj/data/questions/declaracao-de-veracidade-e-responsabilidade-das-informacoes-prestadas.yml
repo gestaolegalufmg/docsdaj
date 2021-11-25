@@ -38,9 +38,9 @@ fields:
          Formato inválido!
     required: True
   - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
-      code: |
+    code: |
         lista_identidades_siglas()
-      default: RG
+    default: RG
   - "Número do Documento do(a) Assistido(a):": num_rg
     required: True
   - 'Tipo da Ação:': tipo_acao
