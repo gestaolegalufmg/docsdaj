@@ -127,9 +127,7 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Número do Documento do(a) Assistido(a): ${ num_rg }
-
-  Tipo de Documento do(a) Assistido(a): ${ sigla_identidade }
+  Tipoe e Número do Documento do(a) Assistido(a): ${ sigla_identidade } ${ num_rg }
 
   Nome do(a) Orientador(a): ${ nome_estagiario }
 
