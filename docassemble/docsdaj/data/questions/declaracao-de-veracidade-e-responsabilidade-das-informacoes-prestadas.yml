@@ -37,21 +37,21 @@ fields:
        minlength: |
          Formato inválido!
     required: True
+  - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
+      code: |
+        lista_identidades_siglas()
+      default: RG
+      required: True
   - "Número do Documento do(a) Assistido(a):": num_rg
     required: True
-  - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
-    code: |
-      lista_identidades_siglas()
-    default: RG
-    required: True
-  - 'Assunto da Petição Inicial:': tipo_acao
+  - 'Tipo da Ação:': tipo_acao
     datatype: string
     required: True
     help: |
       Exemplo: Ação trabalhista, Ação de alimentos etc.
   - "Número do Caso": num_caso
     datatype: integer
-  - 'Local de Emissão da Declaração:': cidade
+  - 'Local de Emissão da Declaração:': cidade_assinatura
     datatype: string
     default: Belo Horizonte
     required: True
@@ -92,15 +92,13 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Número do Documento do(a) Assistido(a): ${ num_rg }
+  Tipo e Número de Documento do(a) Assistido(a): ${ num_rg } ${ sigla_identidade }
 
-  Tipo de Documento do(a) Assistido(a): ${ sigla_identidade }
-
-  Assunto da Petição Inicial: ${ tipo_acao }
+  Tipo da Ação: ${ tipo_acao }
 
   Número do Caso: ${ num_caso }
 
-  Local de Emissão da Declaração: ${ cidade }
+  Local de Emissão da Declaração: ${ cidade_assinatura }
 
   Data de Assinatura: ${ data_assinatura }
 back button: True
