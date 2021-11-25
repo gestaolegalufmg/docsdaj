@@ -91,7 +91,7 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Tipo e Número de Documento do(a) Assistido(a): ${ num_rg } ${ sigla_identidade }
+  Tipo e Número de Documento do(a) Assistido(a): ${ sigla_identidade } ${ num_rg }
 
   Tipo da Ação: ${ tipo_acao }
 
