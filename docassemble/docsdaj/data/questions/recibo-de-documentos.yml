@@ -30,26 +30,12 @@ fields:
     required: True
   - "Número de CPF do(a) Recebedor(a):": num_cpf_recebedor
     required: True
-  - "Número de RG do(a) Recebedor(a):": num_rg_recebedor
-    minlength: 11
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
+  - "Documento de indentificação  do(a) Recebedor(a):": num_rg_recebedor
     required: True
   - "Nome do(a) Entregador(a):": nome_entregador
   - "Número de CPF do(a) Entregador(a):": num_cpf_entregador
     required: True
-  - "Número de RG do(a) Entregador(a):": num_rg_entregador
-    minlength: 10
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
+  - "Documento de indentificação do(a) Entregador(a):": num_rg_entregador
     required: True
   - "Número do Caso:": num_caso
     datatype: integer
@@ -77,13 +63,13 @@ question: |
 
   Número de CPF do(a) Recebedor(a): ${ num_cpf_recebedor }
 
-  Número de RG do(a) Recebedor(a): ${ num_rg_recebedor }
+  Documento de indentificação  do(a) Recebedor(a): ${ num_rg_recebedor }
 
   Nome do(a) Entregador(a): ${ nome_entregador }
 
   Número de CPF do(a) Entregador(a): ${ num_cpf_entregador }
 
-  Número de RG do(a) Entregador(a): ${ num_rg_entregador }
+  Documento de indentificação do(a) Entregador(a): ${ num_rg_entregador }
 
   Número do caso: ${ num_caso }
 
