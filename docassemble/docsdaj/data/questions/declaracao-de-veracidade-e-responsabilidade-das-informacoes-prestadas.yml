@@ -43,7 +43,7 @@ fields:
     default: RG
   - "Número do Documento do(a) Assistido(a):": num_rg
     required: True
-  - 'Tipo da Ação:': tipo_acao
+  - 'Tipo de Ação:': tipo_acao
     datatype: string
     required: True
     help: |
@@ -93,7 +93,7 @@ question: |
 
   Tipo e Número de Documento do(a) Assistido(a): ${ sigla_identidade } ${ num_rg }
 
-  Tipo da Ação: ${ tipo_acao }
+  Tipo de Ação: ${ tipo_acao }
 
   Número do Caso: ${ num_caso }
 
