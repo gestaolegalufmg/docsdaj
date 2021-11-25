@@ -134,7 +134,7 @@ question: |
 
   Documento de Identidade do(a) Assistido(a): ${ sigla_identidade }/${ sigla_estado_identidade} ${ num_rg }
 
-  Nome do(a) Orientador(a): ${ nome_estagiario }
+  Nome do(a) Orientador(a): ${ nome_orientador }
 
   OAB do(a) Orientador(a): ${ uf_oab_orientador } ${ num_oab_orientador }
 
