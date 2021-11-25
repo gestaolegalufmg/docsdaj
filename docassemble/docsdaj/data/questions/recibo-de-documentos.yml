@@ -137,7 +137,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao5
+  - "Deseja adicionar mais um documento?": decisao5
     datatype: yesnoradio
   - "Documento 6:": doc_6
     show if: decisao5
@@ -147,7 +147,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao6
+  - "Deseja adicionar mais um documento?": decisao6
     datatype: yesnoradio
   - "Documento 7:": doc_7
     show if: decisao6
@@ -157,7 +157,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao7
+  - "Deseja adicionar mais um documento?": decisao7
     datatype: yesnoradio
   - "Documento 8:": doc_8
     show if: decisao7
@@ -167,7 +167,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao8
+  - "Deseja adicionar mais um documento?": decisao8
     datatype: yesnoradio
   - "Documento 9:": doc_9
     show if: decisao8
@@ -177,7 +177,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao9
+  - "Deseja adicionar mais um documento?": decisao9
     datatype: yesnoradio
   - "Documento 10:": doc_10
     show if: decisao9
