@@ -35,12 +35,12 @@ fields:
     required: True
   - "Número de CPF do(a) Assistido(a)": num_cpf
     required: True
-  - "Número do Documento do(a) Assistido(a):": num_rg
-    required: True
   - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
     code: |
       lista_identidades_siglas()
     default: RG
+  - "Número do Documento do(a) Assistido(a):": num_rg
+    required: True
 script: |
   <script type="text/javascript">
     $(document).ready(function(){
