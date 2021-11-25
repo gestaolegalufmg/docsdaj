@@ -97,7 +97,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao
+  - "Deseja adicionar mais um documento?": decisao
     datatype: yesnoradio
   - "Documento 2:": doc_2
     show if: decisao
@@ -107,7 +107,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao2
+  - "Deseja adicionar mais um documento?": decisao2
     datatype: yesnoradio
   - "Documento 3:": doc_3
     show if: decisao2
@@ -117,7 +117,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao3
+  - "Deseja adicionar mais um documento?": decisao3
     datatype: yesnoradio
   - "Documento 4:": doc_4
     show if: decisao3
