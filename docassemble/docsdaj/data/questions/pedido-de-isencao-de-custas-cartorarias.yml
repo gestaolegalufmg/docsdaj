@@ -138,7 +138,7 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf_assistido }
 
-  Documento de Identidade do(a) Assistido(a): ${ sigla_identidade }/{ sigla_estado_identidade } ${ num_rg_assistido }
+  Documento de Identidade do(a) Assistido(a): ${ sigla_identidade }/${ sigla_estado_identidade } ${ num_rg_assistido }
 
   Endereço do cartório: ${ enderecamento_cartorio }
 
