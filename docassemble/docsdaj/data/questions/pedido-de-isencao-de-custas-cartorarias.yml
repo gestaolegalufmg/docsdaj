@@ -42,12 +42,17 @@ fields:
        minlength: |
          Formato inválido!
     required: True
-  - "Número do Documento do(a) Assistido(a):": num_rg_assistido
-    required: True
   - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
     code: |
       lista_identidades_siglas()
     default: RG
+    required: True
+  - "Estado de Emissão do Documento:": sigla_estado_identidade
+    code: |
+      lista_estados_sigla()
+    default: MG
+    required: True
+  - "Número do Documento do(a) Assistido(a):": num_rg_assistido
     required: True
   - "Nacionalidade do(a) Assistido(a):": nacionalidade_assistido
     required: True
@@ -70,7 +75,7 @@ fields:
     required: True
   - "Cidade:": cidade
     required: True
-  - 'Estado:': sigla_estado
+  - "Estado:": sigla_estado
     code: |
       lista_estados_sigla()
     default: MG
@@ -133,9 +138,7 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf_assistido }
 
-  Número do Documento do(a) Assistido(a): ${ num_rg_assistido }
-
-  Tipo de Documento do(a) Assistido(a): ${ sigla_identidade }
+  Documento de Identidade do(a) Assistido(a): ${ sigla_identidade }/{ sigla_estado_identidade } ${ num_rg_assistido }
 
   Endereço do cartório: ${ enderecamento_cartorio }
 
