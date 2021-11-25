@@ -3,6 +3,7 @@ metadata:
 ---
 include:
   - comum_lista_identidade.yml
+  - comum_lista_estados.yml
 ---
 initial: True
 code: |
@@ -45,6 +46,11 @@ fields:
     default: RG
     required: True
   - "Número do Documento do(a) Assistido(a):": num_rg
+    required: True
+  - "Estado de Emissão do Documento:": sigla_estado_identidade
+    code: |
+      lista_estados_sigla()
+    default: MG
     required: True
   - "Número do Caso": num_caso
     datatype: integer
@@ -153,7 +159,7 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Tipo e Número do Documento do(a) Assistido(a): ${ sigla_identidade } ${ num_rg }
+  Tipo e Número do Documento do(a) Assistido(a): ${ sigla_identidade }/${ sigla_estado_identidade} ${ num_rg }
 
   Número do Caso: ${ num_caso }
 
