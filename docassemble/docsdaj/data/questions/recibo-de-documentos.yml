@@ -127,7 +127,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao4
+  - "Deseja adicionar mais um documento?": decisao4
     datatype: yesnoradio
   - "Documento 5:": doc_5
     show if: decisao4
