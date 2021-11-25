@@ -39,6 +39,11 @@ fields:
     code: |
       lista_identidades_siglas()
     default: RG
+  - "Estado de Emissão do Documento:": sigla_estado_identidade
+    code: |
+      lista_estados_sigla()
+    default: MG
+    required: True
   - "Número do Documento do(a) Assistido(a):": num_rg
     required: True
 script: |
@@ -127,7 +132,7 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Tipoe e Número do Documento do(a) Assistido(a): ${ sigla_identidade } ${ num_rg }
+  Documento de Identidade do(a) Assistido(a): ${ sigla_identidade }/${ sigla_estado_identidade} ${ num_rg }
 
   Nome do(a) Orientador(a): ${ nome_estagiario }
 
