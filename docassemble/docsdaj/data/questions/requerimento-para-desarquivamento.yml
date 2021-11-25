@@ -39,12 +39,12 @@ fields:
        minlength: |
          Formato inválido!
     required: True
-  - "Número do Documento do(a) Assistido(a):": num_rg
-    required: True
   - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
     code: |
       lista_identidades_siglas()
     default: RG
+    required: True
+  - "Número do Documento do(a) Assistido(a):": num_rg
     required: True
   - "Número do Caso": num_caso
     datatype: integer
@@ -153,9 +153,7 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Número do Documento do(a) Assistido(a): ${ num_rg }
-
-  Tipo de Documento do(a) Assistido(a): ${ sigla_identidade }
+  Tipo e Número do Documento do(a) Assistido(a): ${ sigla_identidade } ${ num_rg }
 
   Número do Caso: ${ num_caso }
 
