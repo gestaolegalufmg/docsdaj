@@ -11,7 +11,7 @@ code: |
   set_language('pt')
 ---
 features:
-  navigation: horizontal
+  navigation: vertical
   progress bar: True
   question back button: True
 ---
@@ -30,26 +30,12 @@ fields:
     required: True
   - "Número de CPF do(a) Recebedor(a):": num_cpf_recebedor
     required: True
-  - "Número de RG do(a) Recebedor(a):": num_rg_recebedor
-    minlength: 11
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
+  - "Documento de identificação  do(a) Recebedor(a):": num_rg_recebedor
     required: True
   - "Nome do(a) Entregador(a):": nome_entregador
   - "Número de CPF do(a) Entregador(a):": num_cpf_entregador
     required: True
-  - "Número de RG do(a) Entregador(a):": num_rg_entregador
-    minlength: 10
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
+  - "Documento de identificação do(a) Entregador(a):": num_rg_entregador
     required: True
   - "Número do Caso:": num_caso
     datatype: integer
@@ -65,7 +51,40 @@ script: |
     $(document).ready(function(){
         $('#bnVtX2NwZl9yZWNlYmVkb3I').mask('000.000.000-00', {reverse: true});
         $('#bnVtX2NwZl9lbnRyZWdhZG9y').mask('000.000.000-00', {reverse: true});
-      });
+     });
+      $("#bnVtX2NwZl9yZWNlYmVkb3I").focusout(function() {
+      $('#bnVtX2NwZl9yZWNlYmVkb3I-error').remove()
+      var campo_teste = $("#bnVtX2NwZl9yZWNlYmVkb3I").val();
+      if (campo_teste){
+        var cpf_valido = CPF_valido(campo_teste)
+        if (!cpf_valido) {
+            console.log("CPF INVÁLIDO");
+
+          $("#bnVtX2NwZl9yZWNlYmVkb3I").val("");
+          $('<span id="bnVtX2NwZl9yZWNlYmVkb3I-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZl9yZWNlYmVkb3I");
+       }
+       else {
+        console.log("CPF VÁLIDO");
+       }
+     }
+     });
+      $("#bnVtX2NwZl9lbnRyZWdhZG9y").focusout(function() {
+      $('#bnVtX2NwZl9lbnRyZWdhZG9y-error').remove()
+      var campo_teste = $("#bnVtX2NwZl9lbnRyZWdhZG9y").val();
+      if (campo_teste){
+        var cpf_valido = CPF_valido(campo_teste)
+        if (!cpf_valido) {
+            console.log("CPF INVÁLIDO");
+
+          $("#bnVtX2NwZl9lbnRyZWdhZG9y").val("");
+          $('<span id="bnVtX2NwZl9lbnRyZWdhZG9y-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZl9lbnRyZWdhZG9y");
+       }
+       else {
+        console.log("CPF VÁLIDO");
+       }
+     }
+     });
+   </script>
     </script>
 ---
 section: Checagem de Dados
@@ -77,13 +96,13 @@ question: |
 
   Número de CPF do(a) Recebedor(a): ${ num_cpf_recebedor }
 
-  Número de RG do(a) Recebedor(a): ${ num_rg_recebedor }
+  Documento de identificação  do(a) Recebedor(a): ${ num_rg_recebedor }
 
   Nome do(a) Entregador(a): ${ nome_entregador }
 
   Número de CPF do(a) Entregador(a): ${ num_cpf_entregador }
 
-  Número de RG do(a) Entregador(a): ${ num_rg_entregador }
+  Documento de identificação do(a) Entregador(a): ${ num_rg_entregador }
 
   Número do caso: ${ num_caso }
 
@@ -111,7 +130,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao
+  - "Deseja adicionar mais um documento?": decisao
     datatype: yesnoradio
   - "Documento 2:": doc_2
     show if: decisao
@@ -121,7 +140,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao2
+  - "Deseja adicionar mais um documento?": decisao2
     datatype: yesnoradio
   - "Documento 3:": doc_3
     show if: decisao2
@@ -131,7 +150,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao3
+  - "Deseja adicionar mais um documento?": decisao3
     datatype: yesnoradio
   - "Documento 4:": doc_4
     show if: decisao3
@@ -141,7 +160,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao4
+  - "Deseja adicionar mais um documento?": decisao4
     datatype: yesnoradio
   - "Documento 5:": doc_5
     show if: decisao4
@@ -151,7 +170,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao5
+  - "Deseja adicionar mais um documento?": decisao5
     datatype: yesnoradio
   - "Documento 6:": doc_6
     show if: decisao5
@@ -161,7 +180,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao6
+  - "Deseja adicionar mais um documento?": decisao6
     datatype: yesnoradio
   - "Documento 7:": doc_7
     show if: decisao6
@@ -171,7 +190,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao7
+  - "Deseja adicionar mais um documento?": decisao7
     datatype: yesnoradio
   - "Documento 8:": doc_8
     show if: decisao7
@@ -181,7 +200,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao8
+  - "Deseja adicionar mais um documento?": decisao8
     datatype: yesnoradio
   - "Documento 9:": doc_9
     show if: decisao8
@@ -191,7 +210,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao9
+  - "Deseja adicionar mais um documento?": decisao9
     datatype: yesnoradio
   - "Documento 10:": doc_10
     show if: decisao9
