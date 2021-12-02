@@ -1,12 +1,17 @@
 metadata:
-  title: Recibo de documentos
+  title: Recibo de Documentos
+---
+features:
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+    - comum_validacao_cpf.js
 ---
 initial: True
 code: |
   set_language('pt')
 ---
 features:
-  navigation: horizontal
+  navigation: vertical
   progress bar: True
   question back button: True
 ---
@@ -21,76 +26,89 @@ mandatory: true
 question: Preencha os campos abaixo.
 progress: 25
 fields:
-  - "Nome do Recebedor:": nome_recebedor
-    hint: "Ex.: Afonso Augusto Moreira Pena"
+  - "Nome do(a) Recebedor(a):": nome_recebedor
     required: True
-  - "Número de CPF do Recebedor:": num_cpf_recebedor  
-    minlength: 14
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: "Ex.: 123.123.123-12"
+  - "Número de CPF do(a) Recebedor(a):": num_cpf_recebedor
     required: True
-  - "Número de RG do Recebedor:": num_rg_recebedor 
-    minlength: 11
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: "Ex.: MG-12.123.123"
+  - "Documento de identificação  do(a) Recebedor(a):": num_rg_recebedor
     required: True
-  - "Nome do Entregador:": nome_entregador 
-    hint: "Ex.: John Mayer"
-  - "Número de CPF do Entregador:": num_cpf_entregador
-    minlength: 14
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: "Ex.: 123.123.123-12"
+  - "Nome do(a) Entregador(a):": nome_entregador
+  - "Número de CPF do(a) Entregador(a):": num_cpf_entregador
     required: True
-  - "Número de RG do Entregador:": num_rg_entregador 
-    minlength: 10
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: "Ex.: MG-12.123.123"
+  - "Documento de identificação do(a) Entregador(a):": num_rg_entregador
     required: True
   - "Número do Caso:": num_caso
-    hint: "Ex.: 1280"
+    datatype: integer
   - "Cidade:": cidade
     default: Belo Horizonte
-    hint: "Ex.: Belo Horizonte"
     required: True
-  - "Data:": data
+  - "Data de assinatura:": data_assinatura
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#bnVtX2NwZl9yZWNlYmVkb3I').mask('000.000.000-00', {reverse: true});
+        $('#bnVtX2NwZl9lbnRyZWdhZG9y').mask('000.000.000-00', {reverse: true});
+     });
+      $("#bnVtX2NwZl9yZWNlYmVkb3I").focusout(function() {
+      $('#bnVtX2NwZl9yZWNlYmVkb3I-error').remove()
+      var campo_teste = $("#bnVtX2NwZl9yZWNlYmVkb3I").val();
+      if (campo_teste){
+        var cpf_valido = CPF_valido(campo_teste)
+        if (!cpf_valido) {
+            console.log("CPF INVÁLIDO");
+
+          $("#bnVtX2NwZl9yZWNlYmVkb3I").val("");
+          $('<span id="bnVtX2NwZl9yZWNlYmVkb3I-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZl9yZWNlYmVkb3I");
+       }
+       else {
+        console.log("CPF VÁLIDO");
+       }
+     }
+     });
+      $("#bnVtX2NwZl9lbnRyZWdhZG9y").focusout(function() {
+      $('#bnVtX2NwZl9lbnRyZWdhZG9y-error').remove()
+      var campo_teste = $("#bnVtX2NwZl9lbnRyZWdhZG9y").val();
+      if (campo_teste){
+        var cpf_valido = CPF_valido(campo_teste)
+        if (!cpf_valido) {
+            console.log("CPF INVÁLIDO");
+
+          $("#bnVtX2NwZl9lbnRyZWdhZG9y").val("");
+          $('<span id="bnVtX2NwZl9lbnRyZWdhZG9y-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZl9lbnRyZWdhZG9y");
+       }
+       else {
+        console.log("CPF VÁLIDO");
+       }
+     }
+     });
+   </script>
+    </script>
 ---
 section: Checagem de Dados
 mandatory: true
 progress: 49
 question: |
-  #Confira os seus dados:  
-  Nome do Recebedor: ${ nome_recebedor }  
-  Número de CPF do Recebedor: ${ num_cpf_recebedor }  
-  Número de RG do Recebedor: ${ num_rg_recebedor }  
-  Nome do Entregador: ${ nome_entregador }  
-  Número de CPF do Entregador: ${ num_cpf_entregador }  
-  Número de RG do Entregador: ${ num_rg_entregador }  
-  Número do caso: ${ num_caso }  
-  Cidade: ${ cidade }  
-  Data de Assinatura: ${ data }
+  #Confira os seus dados:
+  Nome do(a) Recebedor(a): ${ nome_recebedor }
+
+  Número de CPF do(a) Recebedor(a): ${ num_cpf_recebedor }
+
+  Documento de identificação  do(a) Recebedor(a): ${ num_rg_recebedor }
+
+  Nome do(a) Entregador(a): ${ nome_entregador }
+
+  Número de CPF do(a) Entregador(a): ${ num_cpf_entregador }
+
+  Documento de identificação do(a) Entregador(a): ${ num_rg_entregador }
+
+  Número do caso: ${ num_caso }
+
+  Cidade: ${ cidade }
+
+  Data de Assinatura: ${ data_assinatura }
 back button: True
 back button label: |
   Ops, errei. Voltar
@@ -105,14 +123,14 @@ fields:
   - 'Documento:':  doc_1
     required: True
 
---- 
+---
 section: Documentos
 mandatory: True
 progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao
+  - "Deseja adicionar mais um documento?": decisao
     datatype: yesnoradio
   - "Documento 2:": doc_2
     show if: decisao
@@ -122,7 +140,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao2
+  - "Deseja adicionar mais um documento?": decisao2
     datatype: yesnoradio
   - "Documento 3:": doc_3
     show if: decisao2
@@ -132,7 +150,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao3
+  - "Deseja adicionar mais um documento?": decisao3
     datatype: yesnoradio
   - "Documento 4:": doc_4
     show if: decisao3
@@ -142,7 +160,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao4
+  - "Deseja adicionar mais um documento?": decisao4
     datatype: yesnoradio
   - "Documento 5:": doc_5
     show if: decisao4
@@ -152,7 +170,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao5
+  - "Deseja adicionar mais um documento?": decisao5
     datatype: yesnoradio
   - "Documento 6:": doc_6
     show if: decisao5
@@ -162,7 +180,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao6
+  - "Deseja adicionar mais um documento?": decisao6
     datatype: yesnoradio
   - "Documento 7:": doc_7
     show if: decisao6
@@ -172,7 +190,7 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao7
+  - "Deseja adicionar mais um documento?": decisao7
     datatype: yesnoradio
   - "Documento 8:": doc_8
     show if: decisao7
@@ -182,30 +200,30 @@ progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao8
+  - "Deseja adicionar mais um documento?": decisao8
     datatype: yesnoradio
   - "Documento 9:": doc_9
     show if: decisao8
 ---
 section: Documentos
-progress: 50
+progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao9
+  - "Deseja adicionar mais um documento?": decisao9
     datatype: yesnoradio
   - "Documento 10:": doc_10
     show if: decisao9
 ---
 section: Impressão
-progress: 85
+progress: 100
 mandatory: True
 question: |
   Aqui está o seu documento!
 subquestion: |
   Responda nossa [pesquisa de satisfação](https://forms.gle/XKGQKBes5u8e8bW6A)!
 attachment:
-  name: Recibo_de_doc.yml
+  name: Recibo de Documentos
   language: pt
   filename: ${ nome_recebedor }-recibo-de-documentos
   docx template file: recibo-de-documentos.docx
