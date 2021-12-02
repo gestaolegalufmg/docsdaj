@@ -121,7 +121,7 @@ script: |
   <script type="text/javascript">
       $(document).ready(function(){
           $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
-  	$('#X2ZpZWxkXzE3').mask('0000000-00.0000.0.00.0000');
+  	$('#X2ZpZWxkXzE5').mask('0000000-00.0000.0.00.0000');
         $("#bnVtX2NwZg").focusout(function() {
         $('#bnVtX2NwZg-error').remove()
         var campo_teste = $("#bnVtX2NwZg").val();
