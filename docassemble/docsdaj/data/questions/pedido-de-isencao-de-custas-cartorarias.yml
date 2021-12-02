@@ -1,12 +1,21 @@
 metadata:
   title: Pedido de isenção de custas cartorárias
 ---
+include:
+  - comum_lista_estados.yml
+  - comum_lista_identidade.yml
+---
+features:
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+    - comum_validacao_cpf.js
+---
 initial: True
 code: |
   set_language('pt')
 ---
 features:
-  navigation: horizontal
+  navigation: vertical
   progress bar: True
   question back button: True
 ---
@@ -15,21 +24,16 @@ sections:
   - Checagem de Dados
   - Documentos
   - Impressão
----
-mandatory: True
-code: |
-  telefone_assistido2 = ""
-  complemento = ""
+
 ---
 section: Dados
 mandatory: true
 question: Preencha os campos abaixo.
 progress: 25
 fields:
-  - "Nome do Assistido:": nome_assistido
-    hint: "Ex.: Afonso Augusto Moreira Pena"
+  - "Nome do(a) Assistido(a):": nome_assistido
     required: True
-  - "Número de CPF do Assistido:": num_cpf_assistido  
+  - "Número de CPF do(a) Assistido(a):": num_cpf_assistido
     minlength: 14
     maxlength: 14
     validation messages:
@@ -37,87 +41,51 @@ fields:
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: "Ex.: 123.123.123-12"
     required: True
-  - "Número de RG do Assistido:": num_rg_assistido
-    minlength: 11
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: "Ex.: MG-12.123.123"
+  - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
+    code: |
+      lista_identidades_siglas()
+    default: RG
     required: True
-  - "Nacionalidade do Assistido:": nacionalidade_assistido  
-    hint: "Ex.: Brasileiro"
+  - "Estado de Emissão do Documento:": sigla_estado_identidade
+    code: |
+      lista_estados_sigla()
+    default: MG
     required: True
-  - "Estado civil do Assistido:": estado_civil_assitido  
-    hint: "Ex.: Solteiro"
+  - "Número do Documento do(a) Assistido(a):": num_rg_assistido
     required: True
-  - "Profissão do Assistido:": profissao_assistido   
-    hint: "Ex.: Professor"
+  - "Nacionalidade do(a) Assistido(a):": nacionalidade_assistido
     required: True
-  - "Filiação do Assistido:": filiacao_assistido  
-    hint: "Ex.: Maria Joaquina"
+  - "Estado civil do(a) Assistido(a):": estado_civil_assitido
     required: True
-  - "Logradouro:": logradouro   
-    hint: "Ex.: Avenida João Pinheiro"
+  - "Profissão do(a) Assistido(a):": profissao_assistido
     required: True
-  - "Número residencial:": num_residencial   
-    hint: "Ex.: 110"
+  - "Filiação do(a) Assistido(a):": filiacao_assistido
     required: True
-  - "Complemento:": complemento    
-    hint: "Ex.: Sala 110"
+  - "Cep:": cep
+    required: True
+  - "Logradouro:": logradouro
+    required: True
+  - "Número Residencial:": num_residencial
+    required: True
+    datatype: integer
+  - "Complemento:": complemento
     required: False
   - "Bairro:": bairro
-    hint: "Ex.: Centro"
     required: True
-  - "Cidade:": cidade    
-    hint: "Ex.: Belo Horizonte"
+  - "Cidade:": cidade
     required: True
-  - 'Estado:': sigla_estado 
-    datatype: dropdown
-    choices: 
-    - AC
-    - AL
-    - AP
-    - AM
-    - BA
-    - CE
-    - DF
-    - ES
-    - GO
-    - MA
-    - MT
-    - MS
-    - MG
-    - PA
-    - PB
-    - PR
-    - PE
-    - PI
-    - RJ
-    - RN
-    - RS
-    - RO
-    - RR
-    - SC
-    - SP
-    - SE
-    - TO
+  - "Estado:": sigla_estado
+    code: |
+      lista_estados_sigla()
+    default: MG
     required: True
-  - "Cep:": cep     
-    hint: "Ex.: 31100-500"
-    required: True
-  - "Telefone (1):": telefone_assistido 
-    hint: "(31)98456-5432"
+  - "Telefone (1):": telefone_assistido
     required: True
   - "Telefone (2):": telefone_assistido2
-    hint: "(31)3456-5432"
     required: False
-  - "Email:": email_assitido 
-    hint: "ryan@daj.ufmg.br"
+  - "Email:": email_assitido
+    datatype: email
     required: True
   - "Data:": data
     datatype: date
@@ -125,18 +93,101 @@ fields:
       ${ today(format='yyyy-MM-dd') }
     required: True
   - "Endereço do cartório": enderecamento_cartorio
-    hint: "Rua São Paulo, 115"
     required: True
+script: |
+  <script type="text/javascript">
+     $(document).ready(function(){
+        $('#bnVtX2NwZl9hc3Npc3RpZG8').mask('000.000.000-00', {reverse: true});
+        $('#dGVsZWZvbmVfYXNzaXN0aWRv').mask('(00) 00000-0000');
+        $('#dGVsZWZvbmVfYXNzaXN0aWRvMg').mask('(00) 00000-0000');
+        $('#Y2Vw').mask('00000-000');
+      });
+      $("#bnVtX2NwZl9hc3Npc3RpZG8").focusout(function() {
+      $('#bnVtX2NwZl9hc3Npc3RpZG8-error').remove()
+       var campo_teste = $("#bnVtX2NwZl9hc3Npc3RpZG8").val();
+       if (campo_teste){
+         var cpf_valido = CPF_valido(campo_teste)
+         if (!cpf_valido) {
+             console.log("CPF INVÁLIDO")
+           $("#bnVtX2NwZl9hc3Npc3RpZG8").val("");
+           $('<span id="bnVtX2NwZl9hc3Npc3RpZG8-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZl9hc3Npc3RpZG8");
+        }
+        else {
+         console.log("CPF VÁLIDO");
+        }
+      }
+     });
+          $("#Y2Vw").focusout(function(){ var cep = $("#Y2Vw").val();
+          cep = cep.replace ("-","");
+            {var urlStr = "https://viacep.com.br/ws/"+ cep +"/json/";
+            $.ajax({ url: urlStr, crossDomain: true, type: "get", dataType: "json", success: function(data){
+              $("#bG9ncmFkb3Vybw").val(data.logradouro);
+              $("#YmFpcnJv").val(data.bairro);
+              $("#Y2lkYWRl").val(data.localidade);
+              $("#c2lnbGFfZXN0YWRv").val(data.uf); }, error: function(erro){ console.log(erro);
+      } }); } });
+  </script>
+---
+---
+Section: Checagem de Dados
+progress: 40
+mandatory: True
+question: |
+  #Confira os dados abaixo:
+  Nome do(a) Assistido(a): ${ nome_assistido }
+
+  Número de CPF do(a) Assistido(a): ${ num_cpf_assistido }
+
+  Documento de Identidade do(a) Assistido(a): ${ sigla_identidade }/${ sigla_estado_identidade } ${ num_rg_assistido }
+
+  Endereço do cartório: ${ enderecamento_cartorio }
+
+  Email: ${ email_assitido }
+
+  Filiação do(a) Assistido(a): ${ filiacao_assistido }
+
+  Estado civil do(a) Assistido(a): ${ estado_civil_assitido }
+
+  Telefone (1): ${ telefone_assistido }
+
+  % if telefone_assistido2:
+  Telefone (2): ${ telefone_assistido2 }
+  % endif
+
+  Nacionalidade do(a) Assistido(a): ${ nacionalidade_assistido }
+
+  Profissão do(a) Assistido(a): ${ profissao_assistido }
+
+  Cep: ${ cep }
+
+  Logradouro: ${ logradouro }
+
+  Número Residencial: ${ num_residencial }
+
+  Complemento: ${ complemento }
+
+  Bairro: ${ bairro }
+
+  Cidade: ${ cidade }
+
+  Estado: ${ sigla_estado }
+
+  Data: ${ data }
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo! Ver documento: continue
 ---
 section: Documentos
 progress: 75
 mandatory: True
-question: Qual o documento o assistido recebeu?
+question: Qual o documento o(a) assistido(a) recebeu?
 fields:
   - 'Documento:':  doc_1
     required: True
 
---- 
+---
 section: Documentos
 mandatory: True
 progress: 75
@@ -219,7 +270,7 @@ fields:
     show if: decisao8
 ---
 section: Documentos
-progress: 50
+progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
@@ -228,6 +279,8 @@ fields:
   - "Documento 10:": doc_10
     show if: decisao9
 ---
+section: Impressão
+progress: 100
 mandatory: True
 question: |
   Aqui está o seu documento!
