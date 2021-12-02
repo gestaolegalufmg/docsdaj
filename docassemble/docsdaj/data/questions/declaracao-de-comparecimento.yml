@@ -1,6 +1,6 @@
 features:
-  navigation: vertical
   progress bar: True
+  navigation: vertical
   question back button: True
   javascript:
     - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
@@ -10,43 +10,68 @@ metadata:
   title: Declaração de comparecimento
 ---
 sections:
-  - Dados
+  - Dados do(a) Assistido(a)
+  - Dados do(a) Colaborador(a)
   - Checagem
   - Impressão
 ---
-section: Dados
+section: Dados do(a) Assistido(a)
 progress: 33
-question: Declaração de comparecimento
+question: Preencha os campos abaixo
 fields:
-  - 'Nome do assistido:': nome_assistido
+  - 'Nome do(a) Assistido(a):': nome_assistido
     datatype: string
     required: True
-  - "Número de CPF do Assistido: ": num_cpf
-    hint: "123.123.123-12"
+  - "Número de CPF do(a) assistido(a): ": num_cpf
     required: True
-  - 'Horário do início:': hora_inicial
+  - 'Horário do Início:': hora_inicial
     datatype: time
     required: True
-  - 'Horário do término:': hora_final
+  - 'Horário do Término:': hora_final
     datatype: time
     required: True
-  - 'Data do comparecimento:': data
+  - 'Data do Comparecimento:': data_comparecimento
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
     required: True
   - 'Cidade:': cidade
+    default: Belo Horizonte
     datatype: string
     required: True
-  - 'Data assinatutura:': data_assinatura
+  - 'Data de Assinatutura:': data_assinatura
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
     required: True
+script: |
+  <script type="text/javascript">
+     $(document).ready(function(){
+           $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+       });
+       $("#bnVtX2NwZg").focusout(function() {
+       $('#bnVtX2NwZg-error').remove()
+       var campo_teste = $("#bnVtX2NwZg").val();
+       if (campo_teste){
+         var cpf_valido = CPF_valido(campo_teste)
+         if (!cpf_valido) {
+             console.log("CPF INVÁLIDO");
+
+           $("#bnVtX2NwZg").val("");
+           $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+        }
+        else {
+         console.log("CPF VÁLIDO");
+        }
+      }
+      });
+    </script>
 ---
-question: Dados do colaborador
+section: Dados do(a) Colaborador(a)
+question: Preencha os campos abaixo
+progress: 66
 fields:
-  - 'Nome do Colaborador:': nome_colaborador
+  - 'Nome do(a) Colaborador(a):': nome_colaborador
     required: True
   - 'UF da OAB do Colaborador:': uf_oab
     datatype: dropdown
@@ -81,28 +106,11 @@ fields:
     default: MG
   - 'Número da OAB:': num_oab
     required: True
-mandatory: True
 script: |
   <script type="text/javascript">
     $(document).ready(function(){
-          $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
-      });
-      $("#bnVtX2NwZg").focusout(function() {
-      $('#bnVtX2NwZg-error').remove()
-      var campo_teste = $("#bnVtX2NwZg").val();
-      if (campo_teste){
-        var cpf_valido = CPF_valido(campo_teste)
-        if (!cpf_valido) {
-            console.log("CPF INVÁLIDO");
-
-          $("#bnVtX2NwZg").val("");
-          $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
-       }
-       else {
-        console.log("CPF VÁLIDO");
-       }
-     }
-     });
+          $('#bnVtX29hYg').mask('900.000', {reverse: true});
+          });
    </script>
 
 ---
@@ -110,22 +118,33 @@ section: Checagem
 progress: 77
 question: |
   #Confira os seus dados:
-  Nome do assistido: ${ nome_assistido }
-  Número de CPF do Assistido: ${ num_cpf }
-  Horário do início: $ { hora_inicial }
-  Horário do término: $ { hora_final }
-  Data da de comparecimento: ${ data }
+  Nome do(a) Assistido(a): ${ nome_assistido }
+
+  Número de CPF do(a) Assistido(a): ${ num_cpf }
+
+  Horário do Início: ${ hora_inicial }
+
+  Horário do Término: ${ hora_final }
+
+  Data de Comparecimento: ${ data_comparecimento }
+
   Cidade: ${ cidade }
-  Data da assinatura: ${ data_assinatura }
-  Nome do Colaborador: ${ nome_colaborador  }
-  OAB do Colaborado: ${ num_oab }
-  UF da OAB do Colaborador: ${ estado }
+
+  Data da Assinatura: ${ data_assinatura }
+
+  Nome do(a) Colaborador(a): ${ nome_colaborador  }
+
+  OAB do(a) ColaboradoR(a): ${ num_oab }
+
+  UF da OAB do(a) Colaborador(a): ${ uf_oab }
+
   Local da Assinatura: ${ cidade }
 back button: True
 back button label: |
   Ops, errei. Voltar
 buttons:
   - Tudo certo! Ver documento: continue
+mandatory: True
 ---
 section: Impressão
 progress: 100
