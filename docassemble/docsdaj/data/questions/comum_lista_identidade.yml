@@ -1,6 +1,7 @@
 code: |
   def lista_identidades ():
     identidades = [
+    "Carteira Nacional de Habilitação"
     "Conselho Regional de Administração",
     "Conselho Regional da Ordem dos Advogados do Brasil",
     "Conselho de Arquitetura e Urbanismo do Brasil",
@@ -34,11 +35,11 @@ code: |
     "Conselho Regional dos Técnicos Industriais",
     "Conselho Regional dos Técnicos Agrícolas",
     "Conselho Regional de Medicina Veterinária",
-    "Departamento de Trânsito"
-    "Secretaria de Segurança Pública"]
+    "Registro Geral"]
     return identidades
   def lista_identidades_siglas ():
     siglas = [
+    "CNH",
     "CAU",
     "CRESS",
     "CRB",
@@ -70,6 +71,5 @@ code: |
     "CRT",
     "CRTA",
     "CRMV",
-    "DETRAN",
-    "SSP"]
+    "RG"]
     return siglas
