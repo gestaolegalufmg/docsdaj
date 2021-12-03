@@ -1,29 +1,37 @@
 metadata:
   title: Requerimento para desarquivamento
 ---
+include:
+  - comum_lista_identidade.yml
+  - comum_lista_estados.yml
+---
 initial: True
 code: |
   set_language('pt')
-  complemento = ""
 ---
 features:
-  navigation: horizontal
+  navigation: vertical
   progress bar: True
   question back button: True
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+    - comum_validacao_cpf.js
 ---
 sections:
   - Dados
   - Checagem
   - Impressão
 ---
+code: |
+  num_acao: ""
+---
 section: Dados
 question: Preencha os campos abaixo.
 progress: 33
 fields:
-  - "Nome do Assistido": nome_assistido
-    hint: "Ex: Afonso Augusto Moreira Pena"
+  - "Nome do(a) Assistido(a)": nome_assistido
     required: True
-  - "Número de CPF do Assistido": num_cpf
+  - "Número de CPF do(a) Assistido(a)": num_cpf
     minlength: 14
     maxlength: 14
     validation messages:
@@ -31,29 +39,35 @@ fields:
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: "123.123.123-12"
     required: True
-  - "Número de RG do Assistido": num_rg
-    minlength: 11
-    maxlength: 14
+  - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
+    code: |
+      lista_identidades_siglas()
+    default: RG
+    required: True
+  - "Estado de Emissão do Documento:": sigla_estado_identidade
+    code: |
+      lista_estados_sigla()
+    default: MG
+    required: True
+  - "Número do Documento do(a) Assistido(a):": num_rg
+    required: True
+  - "Número do Caso": num_caso
+    datatype: integer
+  - "CEP": cep
+    minlength: 9
+    maxlength: 9
     validation messages:
        maxlength: |
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: "MG-12.123.123"
-    required: True
-  - "Número do Caso": num_caso
-    hint: 1
   - "Logradouro": logradouro
-    hint: "Rua"
-  - "Número residencial": num_residencial
-    hint: 123
+  - "Número Residencial": num_residencial
+    datatype: integer
   - "Complemento": complemento
-    hint: 302
     required: False
   - "Bairro": bairro
-    hint: "Centro"
   - 'Estado:': sigla_estado
     datatype: dropdown
     choices:
@@ -86,57 +100,95 @@ fields:
     - TO
     default: "MG"
     required: True
-  - "CEP": cep
-    minlength: 9
-    maxlength: 9
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: "30160-100"
-  - "Cidade de domicílio": cidade
-    hint: "Belo Horizonte"
+  - "Cidade de Domicílio": cidade_assistido
     required: True
-  - "Data de Assinatura": data
+  - "Data de Assinatura": data_assinatura
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
-  - "Razões para desarquivamento": razoes_desarquivamento
+  - "Local de Assinatura": cidade_assinatura
+    default: "Belo Horizonte"
+  - "Razões para Desarquivamento": razoes_desarquivamento
   - "Data do Arquivamento": data_arquivamento
     datatype: date
-    default: |
-      ${ today(format='yyyy-MM-dd') }
   - "Motivos do Arquivamento": motivos_arquivamento
-  - "Teve processo?": decisao
+  - "Teve Processo?": decisao
     datatype: yesnoradio
-  - "Número da ação:": num_acao
+  - "Número da Ação:": num_acao
+    required: False
     show if: decisao
-    required: True
+script: |
+  <script type="text/javascript">
+      $(document).ready(function(){
+          $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+  	$('#X2ZpZWxkXzE5').mask('0000000-00.0000.0.00.0000');
+        $("#bnVtX2NwZg").focusout(function() {
+        $('#bnVtX2NwZg-error').remove()
+        var campo_teste = $("#bnVtX2NwZg").val();
+        if (campo_teste){
+          var cpf_valido = CPF_valido(campo_teste)
+          if (!cpf_valido) {
+              console.log("CPF INVÁLIDO")
+            $("#bnVtX2NwZg").val("");
+            $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+         }
+         else {
+          console.log("CPF VÁLIDO");
+         }
+       }
+       });
+            $('#Y2Vw').mask('00000-000'); });
+            $("#Y2Vw").focusout(function(){ var cep = $("#Y2Vw").val();
+            cep = cep.replace ("-","");
+              {var urlStr = "https://viacep.com.br/ws/"+ cep +"/json/";
+              $.ajax({ url: urlStr, crossDomain: true, type: "get", dataType: "json", success: function(data){
+                $("#bG9ncmFkb3Vybw").val(data.logradouro);
+                $("#YmFpcnJv").val(data.bairro);
+                $("#Y2lkYWRlX2Fzc2lzdGlkbw").val(data.localidade);
+                $("#c2lnbGFfZXN0YWRv").val(data.uf); }, error: function(erro){ console.log(erro);
+        } }); } });
 
-
-
+      </script>
 ---
 mandatory: True
 section: Checagem
 progress: 66
 question: |
-  #Confira os seus dados:
-  Nome do assistido: ${ nome_assistido }  
-  Número de CPF do Assistido: ${ num_cpf }  
-  Número de RG do Assistido: ${ num_rg }  
-  Local de Emissão da Declaração: ${ cidade }  
-  Número do Caso: ${ num_caso }  
-  Data de Assinatura: ${ data }
+  #Confira os dados a serem impressos:
+  Nome do(a) Assistido(a): ${ nome_assistido }
+
+  Número de CPF do(a) Assistido(a): ${ num_cpf }
+
+  Documento do(a) Assistido(a): ${ sigla_identidade }/${ sigla_estado_identidade} ${ num_rg }
+
+  Número do Caso: ${ num_caso }
+
+  Data de Assinatura: ${ data_assinatura }
+
+  Data do Arquivamento: ${ data_arquivamento }
+
+  Razões para Desarquivamento: ${ razoes_desarquivamento }
+
+  Motivos do Arquivamento: ${ motivos_arquivamento }
+
+  % if complemento:
+  Endereço: ${ logradouro }, ${ bairro }, nº ${ num_residencial }, ${ complemento }, ${ cidade_assistido }, ${ cep }, ${ sigla_estado }.
+  % else:
+  Endereço: ${ logradouro }, ${ bairro }, nº ${ num_residencial }, ${ cidade_assistido }, ${ cep }, ${ sigla_estado }.
+  % endif
+
+  % if decisao:
+  Número da Ação: ${ num_acao }
+  % endif
 back button: True
 back button label: |
   Ops, errei. Voltar
 buttons:
   - Tudo certo! Ver documento: continue
 ---
-section: Conclusão
-progress: 100
 mandatory: True
+section: Impressão
+progress: 100
 question: |
   Aqui está o seu documento:
 subquestion: |
