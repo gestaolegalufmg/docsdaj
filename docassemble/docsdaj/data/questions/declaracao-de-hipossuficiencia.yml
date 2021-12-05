@@ -3,6 +3,7 @@ metadata:
 ---
 include:
   - comum_lista_identidade.yml
+  - comum_lista_estados.yml
 ---
 features:
   javascript:
