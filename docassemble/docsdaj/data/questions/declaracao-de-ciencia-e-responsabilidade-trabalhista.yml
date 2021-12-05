@@ -92,7 +92,7 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Documento de identificação do(a) Assistido(a): ${ sigla_identidade }/${ sigla_estado_identidade } ${ num_indentidade_assistido }
+  Documento de identificação do(a) Assistido(a): ${ sigla_identidade }/${ sigla_estado_identidade } ${ num_identidade_assistido }
 
   Número do Caso: ${ num_caso }
 
