@@ -27,12 +27,24 @@ fields:
     required: True
   - "Número de CPF do(a) Assistido(a): ": num_cpf
     minlength: 14
-  - "Número do Documento do(a) Assistido(a):": num_rg
+    maxlength: 14
+    validation messages:
+       maxlength: |
+         Formato inválido!
+       minlength: |
+         Formato inválido!
     required: True
   - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
     code: |
       lista_identidades_siglas()
     default: RG
+    required: True
+  - "Estado de Emissão do Documento:": sigla_estado_identidade
+    code: |
+      lista_estados_sigla()
+    default: MG
+    required: True
+  - "Número do Documento do(a) Assistido(a):": num_rg
     required: True
   - "Cidade: ": cidade
     datatype: string
@@ -67,7 +79,6 @@ script: |
   </script>
 
 ---
----
 mandatory: True
 section: Checagem
 progress: 66
@@ -77,9 +88,7 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Número do Documento do(a) Assistido(a): ${ num_rg }
-
-  Tipo de Documento do(a) Assistido(a): ${ sigla_identidade }
+  Documento de identificação do(a) Assistido(a): ${ sigla_identidade }/${ sigla_estado_identidade } ${ num_rg }
 
   Cidade de Emissão: ${ cidade }
 

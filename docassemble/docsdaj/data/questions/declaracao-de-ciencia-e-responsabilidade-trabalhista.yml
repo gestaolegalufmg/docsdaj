@@ -38,9 +38,16 @@ fields:
        minlength: |
          Formato inválido!
     required: True
-  - "Documento de identificação do(a) Assistido(a):": doc_identidade_assistido
+  - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
     code: |
-      lista_identidades_siglas ()
+      lista_identidades_siglas()
+    default: RG
+    required: True
+  - "Estado de Emissão do Documento:": sigla_estado_identidade
+    code: |
+      lista_estados_sigla()
+    default: MG
+    required: True
   - "Número do documento de identificação:": num_identidade_assistido
     required: True
   - "Número do Caso:": num_caso
@@ -84,7 +91,7 @@ question: |
 
   Número de CPF do(a) Assistido(a): ${ num_cpf }
 
-  Documento de identificação do(a) Assistido(a): ${ doc_identidade_assistido } nº ${ num_identidade_assistido }
+  Documento de identificação do(a) Assistido(a): ${ sigla_identidade }/${ sigla_estado_identidade } ${ num_rg_assistido }
 
   Número do Caso: ${ num_caso }
 
