@@ -1,62 +1,89 @@
 metadata:
   title: Declaração de Hipossuficiência
 ---
+include:
+  - comum_lista_identidade.yml
+---
+features:
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+    - comum_validacao_cpf.js
+---
 initial: True
 code: |
   set_language('pt')
 ---
 sections:
-  - Dados 
+  - Dados
   - Checagem
   - Impressão
 ---
 question: Informações Pessoais
 section: Dados
 progress: 33
-fields: 
-  - "Nome do Assistido: ": nome_assistido
+fields:
+  - "Nome do(a) Assistido(a): ": nome_assistido
     datatype: string
-    hint: John Clayton Mayer
     required: True
-  - "CPF: ": num_cpf
+  - "Número de CPF do(a) Assistido(a): ": num_cpf
     minlength: 14
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: "123.123.123-12"
-  - "RG: ": num_rg
-    minlength: 11
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: "MG-12.123.123"
+  - "Número do Documento do(a) Assistido(a):": num_rg
+    required: True
+  - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
+    code: |
+      lista_identidades_siglas()
+    default: RG
     required: True
   - "Cidade: ": cidade
     datatype: string
     default: Belo Horizonte
     required: True
-  - "Data: ": data
+  - "Data: ": data_assinatura
     required: True
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+  });
+     $("#bnVtX2NwZg").focusout(function() {
+     $('#bnVtX2NwZg-error').remove()
+     var campo_teste = $("#bnVtX2NwZg").val();
+     if (campo_teste){
+       var cpf_valido = CPF_valido(campo_teste)
+       if (!cpf_valido) {
+           console.log("CPF INVÁLIDO");
+
+         $("#bnVtX2NwZg").val("");
+         $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+      }
+      else {
+       console.log("CPF VÁLIDO");
+      }
+    }
+    });
+  </script>
+
+---
 ---
 mandatory: True
 section: Checagem
 progress: 66
 question: |
-  #Confira os seus dados:  
-  Nome do Assistido: ${ nome_assistido }  
-  Número de CPF do Assistido: ${ num_cpf }  
-  Número de RG do Assistido: ${ num_rg }  
-  Cidade de Emissão: ${ cidade }   
-  Data de Assinatura: ${ data }
+  #Confira os seus dados:
+  Nome do(a) Assistido(a): ${ nome_assistido }
+
+  Número de CPF do(a) Assistido(a): ${ num_cpf }
+
+  Número do Documento do(a) Assistido(a): ${ num_rg }
+
+  Tipo de Documento do(a) Assistido(a): ${ sigla_identidade }
+
+  Cidade de Emissão: ${ cidade }
+
+  Data de Assinatura: ${ data_assinatura }
 back button: True
 back button label: |
   Ops, errei. Voltar
@@ -78,11 +105,10 @@ attachment:
   valid formats:
     - pdf
     - docx
-buttons:
-  - Sair: exit
 ---
+
 features:
-  navigation: horizontal
+  navigation: vertical
   progress bar: True
   question back button: True
 ---

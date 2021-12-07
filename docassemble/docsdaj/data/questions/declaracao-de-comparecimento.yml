@@ -1,44 +1,153 @@
+features:
+  progress bar: True
+  navigation: vertical
+  question back button: True
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+    - comum_validacao_cpf.js
+---
 metadata:
   title: Declaração de comparecimento
 ---
-question: Declaração de comparecimento
-fields:
-  - 'assistido:': nome_assistido
-    datatype: string
-    required: True
-  - 'horario do inicio:': horario_inicio
-    datatype: time
-    required: True
-  - 'horario do termino:': horario_termino
-    datatype: time
-    required: True
-  - 'data do comparecimento:': data
-    datatype: date
-    required: True
-mandatory: True
+sections:
+  - Dados do(a) Assistido(a)
+  - Dados do(a) Colaborador(a)
+  - Checagem
+  - Impressão
 ---
-question: Local e data
+section: Dados do(a) Assistido(a)
+progress: 33
+question: Preencha os campos abaixo
 fields:
-  - 'cidade:': cidade
+  - 'Nome do(a) Assistido(a):': nome_assistido
     datatype: string
     required: True
-  - 'data assinatutura:': data
+  - "Número de CPF do(a) assistido(a): ": num_cpf
+    required: True
+  - 'Horário do Início:': hora_inicial
+    datatype: time
+    required: True
+  - 'Horário do Término:': hora_final
+    datatype: time
+    required: True
+  - 'Data do Comparecimento:': data_comparecimento
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
     required: True
+  - 'Cidade:': cidade
+    default: Belo Horizonte
+    datatype: string
+    required: True
+  - 'Data de Assinatutura:': data_assinatura
+    datatype: date
+    default: |
+      ${ today(format='yyyy-MM-dd') }
+    required: True
+script: |
+  <script type="text/javascript">
+     $(document).ready(function(){
+           $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+       });
+       $("#bnVtX2NwZg").focusout(function() {
+       $('#bnVtX2NwZg-error').remove()
+       var campo_teste = $("#bnVtX2NwZg").val();
+       if (campo_teste){
+         var cpf_valido = CPF_valido(campo_teste)
+         if (!cpf_valido) {
+             console.log("CPF INVÁLIDO");
+
+           $("#bnVtX2NwZg").val("");
+           $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+        }
+        else {
+         console.log("CPF VÁLIDO");
+        }
+      }
+      });
+    </script>
 ---
-question: Dados do advogado
+section: Dados do(a) Colaborador(a)
+question: Preencha os campos abaixo
+progress: 66
 fields:
-  - 'advogado:': advogado
-    datatype: string
+  - 'Nome do(a) Colaborador(a):': nome_colaborador
     required: True
-  - 'oab:': numeroOab
-    datatype: string
-    hint: 00000/MG
+  - 'UF da OAB do Colaborador:': uf_oab
+    datatype: dropdown
+    choices:
+      - AC
+      - AL
+      - AP
+      - AM
+      - BA
+      - CE
+      - DF
+      - ES
+      - GO
+      - MA
+      - MT
+      - MS
+      - MG
+      - PA
+      - PB
+      - PR
+      - PE
+      - PI
+      - RJ
+      - RN
+      - RS
+      - RO
+      - RR
+      - SC
+      - SP
+      - SE
+      - TO
+    default: MG
+  - 'Número da OAB:': num_oab
     required: True
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+          $('#bnVtX29hYg').mask('900.000', {reverse: true});
+          });
+   </script>
+
+---
+section: Checagem
+progress: 77
+question: |
+  #Confira os seus dados:
+  Nome do(a) Assistido(a): ${ nome_assistido }
+
+  Número de CPF do(a) Assistido(a): ${ num_cpf }
+
+  Horário do Início: ${ hora_inicial }
+
+  Horário do Término: ${ hora_final }
+
+  Data de Comparecimento: ${ data_comparecimento }
+
+  Cidade: ${ cidade }
+
+  Data da Assinatura: ${ data_assinatura }
+
+  Nome do(a) Colaborador(a): ${ nome_colaborador  }
+
+  OAB do(a) ColaboradoR(a): ${ num_oab }
+
+  UF da OAB do(a) Colaborador(a): ${ uf_oab }
+
+  Local da Assinatura: ${ cidade }
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo! Ver documento: continue
 mandatory: True
 ---
+section: Impressão
+progress: 100
 mandatory: True
 question: |
   Aqui está o seu documento!
@@ -50,9 +159,3 @@ attachment:
   valid formats:
     - pdf
     - docx
----
-features:
-  navigation: vertical
-  progress bar: True
-  question back button: True
----

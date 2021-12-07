@@ -1,12 +1,20 @@
 metadata:
   title: Declaração de Ciência e Responsabilidade Trabalhista
 ---
+include:
+  - comum_lista_identidade.yml
+---
+features:
+ javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+  - comum_validacao_cpf.js
+---
 initial: True
 code: |
   set_language('pt')
 ---
 features:
-  navigation: horizontal
+  navigation: vertical
   progress bar: True
   question back button: True
 ---
@@ -20,9 +28,8 @@ question: Preencha os campos abaixo.
 progress: 33
 fields:
   - "Nome do(a) Assistido(a):": nome_assistido
-    hint: "Ex.: Afonso Augusto Moreira Pena"
     required: True
-  - "Número de CPF do(a) Assistido(a):": num_cpf 
+  - "Número de CPF do(a) Assistido(a):": num_cpf
     minlength: 14
     maxlength: 14
     validation messages:
@@ -30,40 +37,61 @@ fields:
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: "Ex.: 123.123.123-12"
     required: True
-  - "Número de RG do(a) Assistido(a):": num_rg 
-    minlength: 11
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: "Ex.: MG-12.123.123"
+  - "Documento de identificação do(a) Assistido(a):": doc_identidade_assistido
+    code: |
+      lista_identidades_siglas ()
+  - "Número do documento de identificação:": num_identidade_assistido
     required: True
   - "Número do Caso:": num_caso
-    hint: "Ex.: 27"
-  - "Cidade de assinatura:": cidade
+    datatype: integer
+  - "Local de Assinatura:": cidade_assinatura
     default: Belo Horizonte
-    hint: "Ex.: Belo Horizonte"
     required: True
-  - "Data de assinatura:": data
+  - "Data de Assinatura:": data_assinatura
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
+script: |
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+    });
+   $("#bnVtX2NwZg").focusout(function() {
+      $('#bnVtX2NwZg-error').remove()
+      var campo_teste = $("#bnVtX2NwZg").val();
+      if (campo_teste){
+        var cpf_valido = CPF_valido(campo_teste)
+        if (!cpf_valido) {
+            console.log("CPF INVÁLIDO");
+          $("#bnVtX2NwZg").val("");
+          $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+       }
+       else {
+        console.log("CPF VÁLIDO");
+       }
+     }
+     });
+   </script>
+
 ---
 mandatory: True
 section: Checagem
 progress: 66
 question: |
-  #Confira os seus dados:  
-  Nome do(a) assistido(a): ${ nome_assistido }  
-  Número de CPF do(a) Assistido(a): ${ num_cpf }  
-  Número de RG do(a) Assistido(a): ${ num_rg }  
-  Número do Caso: ${ num_caso }  
-  Cidade de assinatura: ${ cidade } 
-  Data de assinatura: ${ data }
+  #Confira os seus dados:
+  Nome do(a) Assistido(a): ${ nome_assistido }
+
+  Número de CPF do(a) Assistido(a): ${ num_cpf }
+
+  Documento de identificação do(a) Assistido(a): ${ doc_identidade_assistido } nº ${ num_identidade_assistido }
+
+  Número do Caso: ${ num_caso }
+
+  Local de Assinatura: ${ cidade_assinatura }
+
+  Data de Assinatura: ${ data_assinatura }
+
 back button: True
 back button label: |
   Ops, errei. Voltar

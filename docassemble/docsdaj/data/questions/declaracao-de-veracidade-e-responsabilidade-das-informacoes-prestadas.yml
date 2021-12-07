@@ -1,14 +1,21 @@
 metadata:
   title: Declaração de Veracidade e Responsabilidade das Informações Prestadas
 ---
+include:
+  - comum_lista_identidade.yml
+  - comum_lista_estados.yml
+---
 initial: True
 code: |
   set_language('pt')
 ---
 features:
-  navigation: horizontal
+  navigation: vertical
   progress bar: True
   question back button: True
+  javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js
+    - comum_validacao_cpf.js
 ---
 sections:
   - Dados
@@ -17,13 +24,12 @@ sections:
 ---
 section: Dados
 question: Preencha os campos abaixo.
-progress: 1
+progress: 33
 fields:
-  - 'Nome do Assistido:': nome_assistido
+  - 'Nome do(a) Assistido(a):': nome_assistido
     datatype: string
-    hint: Ana Maria Braga
     required: True
-  - "Número de CPF do Assistido": num_cpf
+  - "Número de CPF do(a) Assistido(a)": num_cpf
     minlength: 14
     maxlength: 14
     validation messages:
@@ -31,48 +37,75 @@ fields:
          Formato inválido!
        minlength: |
          Formato inválido!
-    hint: "123.123.123-12"
     required: True
-  - "Número de RG do Assistido": num_rg
-    minlength: 11
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
-    hint: "MG-12.123.123"
+  - "Tipo de Documento do(a) Assistido(a):": sigla_identidade
+    code: |
+        lista_identidades_siglas()
+    default: RG
+  - "Estado de Emissão do Documento:": sigla_estado_identidade
+    code: |
+      lista_estados_sigla()
+    default: MG
     required: True
-  - 'Tipo de ação:': tipo_acao
+  - "Número do Documento do(a) Assistido(a):": num_rg
+    required: True
+  - 'Tipo de Ação:': tipo_acao
     datatype: string
     required: True
-    hint: "Ex.: trabalhista, de alimentos"
-    help: "Classificação da ação de acordo com a matéria abordada na petição inicial."
+    help: |
+      Exemplo: Ação trabalhista, Ação de alimentos etc.
   - "Número do Caso": num_caso
-    hint: 1
-  - 'Local de Emissão da Declaração:': cidade
+    datatype: integer
+  - 'Local de Emissão da Declaração:': cidade_assinatura
     datatype: string
     default: Belo Horizonte
     required: True
-    hint: "Ex: Belo Horizonte"
-  - 'Data de Assinatutura:': data
+  - 'Data de Assinatutura:': data_assinatura
     datatype: date
     default: |
       ${ today(format='yyyy-MM-dd') }
     required: True
+script: |
+      <script type="text/javascript">
+        $(document).ready(function(){
+            $('#bnVtX2NwZg').mask('000.000.000-00', {reverse: true});
+          });
+          $("#bnVtX2NwZg").focusout(function() {
+          $('#bnVtX2NwZg-error').remove()
+          var campo_teste = $("#bnVtX2NwZg").val();
+          if (campo_teste){
+            var cpf_valido = CPF_valido(campo_teste)
+            if (!cpf_valido) {
+                console.log("CPF INVÁLIDO");
+              $("#bnVtX2NwZg").val("");
+              $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
+           }
+           else {
+            console.log("CPF VÁLIDO");
+           }
+         }
+         });
+       </script>
 ---
 Section: Checagem
-progress: 50
+progress: 66
 mandatory: True
 question: |
   #Confira os dados abaixo:
-  Nome do Assistido: ${ nome_assistido }
-  Número de CPF do Assistido: ${ num_cpf }
-  Número de RG do Assistido: ${ num_rg }
-  Assunto da Petição Inicial: ${ tipo_acao }
+
+  Nome do(a) Assistido(a): ${ nome_assistido }
+
+  Número de CPF do(a) Assistido(a): ${ num_cpf }
+
+  Documento do(a) Assistido(a): ${ sigla_identidade }/${ sigla_estado_identidade } ${ num_rg }
+
+  Tipo de Ação: ${ tipo_acao }
+
   Número do Caso: ${ num_caso }
-  Local de Emissão Declaração: ${ cidade }
-  Data de Assinatura: ${ data }
+
+  Local de Emissão da Declaração: ${ cidade_assinatura }
+
+  Data de Assinatura: ${ data_assinatura }
 back button: True
 back button label: |
   Ops, errei. Voltar
@@ -87,7 +120,7 @@ question: |
 subquestion: |
   Responda nossa [pesquisa de satisfação](https://forms.gle/XKGQKBes5u8e8bW6A)!
 attachment:
-  name: Declarao de Veracidade e Responsabilidade das Informaes Prestadas
+  name: Declaração de Veracidade e Responsabilidade das Informações Prestadas
   language: pt
   filename:  ${ nome_assistido }-declaracao-de-veracidade-e-responsabilidade-das-informacoes-prestadas
   docx template file: declaracao-de-veracidade-e-responsabilidade-das-informacoes-prestadas.docx

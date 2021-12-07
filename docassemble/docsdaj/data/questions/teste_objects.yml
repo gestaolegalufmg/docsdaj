@@ -1,0 +1,72 @@
+initial: True
+code: |
+  set_language('pt')
+---
+objects:
+  - colaboradores: DAList.using(object_type=Individual)
+---
+question: É necessário nomear um colaborador.
+continue button field: colaboradores.there_are_any
+default: yes
+
+---
+question: Adicionar mais um colaborador?
+yesno: colaboradores.there_is_another
+---
+code: |
+  pessoas = colaboradores.complete_elements()
+---
+reconsider:
+  - pessoas
+question: |
+  Quem é o ${ ordinal(i) } colaborador?
+fields:
+  - Existing or New: colaboradores[i].existing_or_new
+    datatype: radio
+    default: New
+    choices:
+      - Existing
+      - New
+  - Person: colaboradores[i]
+    show if:
+      variable: colaboradores[i].existing_or_new
+      is: Existing
+    datatype: object
+    choices: pessoas
+  - Nome: colaboradores[i].name.first
+  - Estado OAB: colaboradores[i].estadooab
+    required: True
+    show if:
+      variable: colaboradores[i].existing_or_new
+      is: New
+  - Número OAB: colaboradores[i].numoab
+    required: True
+    show if:
+      variable: colaboradores[i].existing_or_new
+      is: New
+---
+mandatory: True
+code: |
+  if colaboradores.there_are_any:
+    todos_colaboradores = ''
+    for colaborador in colaboradores:
+      todos_colaboradores = todos_colaboradores + '' + colaborador.name.full().upper() + ', ' + "OAB " + colaborador.estadooab.upper() + colaborador.numoab + "; "
+
+---
+mandatory: True
+section: Checagem Colaboradores
+question: |
+  Confira os dados informados
+subquestion:
+  ${todos_colaboradores}
+back button: True
+back button label: |
+  Ops, errei. Voltar
+buttons:
+  - Tudo certo! Ver documento: continue
+---
+features:
+  navigation: horizontal
+  progress bar: True
+  question back button: True
+---
