@@ -29,13 +29,6 @@ fields:
     datatype: string
     required: True
   - "Número de CPF do(a) Assistido(a)": num_cpf
-    minlength: 14
-    maxlength: 14
-    validation messages:
-       maxlength: |
-         Formato inválido!
-       minlength: |
-         Formato inválido!
     required: True
   - 'Juízo Competente:': juizo_competente
     hint: "8ª VARA CÍVEL DA COMARCA DE BETIM"
@@ -68,7 +61,6 @@ script: |
         if (!cpf_valido) {
             console.log("CPF INVÁLIDO");
 
-          $("#bnVtX2NwZg").val("");
           $('<span id="bnVtX2NwZg-error" class="da-has-error text-danger" style="">CPF Inválido</span>').insertAfter("#bnVtX2NwZg");
        }
        else {
