@@ -40,7 +40,7 @@ fields:
         Formato inválido!
     required: True
   - 'Tipo de Ação Judicial:': tipo_acao
-    help: "É o tipo de ação que consta na petição inicial. Exemplo Ação Declaratória de Nulidade de Negócio Jurídico"
+    help: "É o tipo de ação que consta na petição inicial. Por exemplo Ação Declaratória de Nulidade de Negócio Jurídico"
     datatype: string
     required: True
   - 'N° do Processo:': num_autos
