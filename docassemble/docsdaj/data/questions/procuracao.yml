@@ -118,7 +118,7 @@ script: |
   <script type="text/javascript">
     $(document).ready(function(){
           $('#bnVtX29hYl9vcmllbnRhZG9y').mask('000.000', {reverse: true});
-          $('#bnVtX29hYl9lc3RhZ2lhcmlv').mask('000.000', {reverse: true});
+          $('#bnVtX29hYl9lc3RhZ2lhcmlv').mask('000.000-E', {reverse: true});
           $('#bnVtX2FjYW8').mask('0000000-00.0000.0.00.0000');
       });
    </script>
