@@ -22,7 +22,7 @@ features:
 sections:
   - Dados
   - Checagem de Dados
-  - Documentos
+  - Atos a serem praticados pelo cartório
   - Impressão
 
 ---
@@ -56,13 +56,14 @@ fields:
     required: True
   - "Nacionalidade do(a) Assistido(a):": nacionalidade_assistido
     required: True
+    default: "Brasileiro(a)"
   - "Estado civil do(a) Assistido(a):": estado_civil_assitido
     required: True
   - "Profissão do(a) Assistido(a):": profissao_assistido
     required: True
   - "Filiação do(a) Assistido(a):": filiacao_assistido
     required: True
-  - "Cep:": cep
+  - "CEP:": cep
     required: True
   - "Logradouro:": logradouro
     required: True
@@ -92,7 +93,7 @@ fields:
     default: |
       ${ today(format='yyyy-MM-dd') }
     required: True
-  - "Endereço do cartório": enderecamento_cartorio
+  - "Nome do Cartório": enderecamento_cartorio
     required: True
 script: |
   <script type="text/javascript">
@@ -179,104 +180,106 @@ back button label: |
 buttons:
   - Tudo certo! Ver documento: continue
 ---
-section: Documentos
+section: Atos a serem praticados pelo cartório
 progress: 75
 mandatory: True
-question: Qual o documento o(a) assistido(a) recebeu?
+question: Qual ato será praticado pelo cartório?
 fields:
-  - 'Documento:':  doc_1
+  - 'Ato:':  doc_1
     required: True
+    help: |
+      Informe o ato a ser praticado pelo cartório (Testamento Público, Escritura Pública, etc.).
 
 ---
-section: Documentos
+section: Atos a serem praticados pelo cartório
 mandatory: True
 progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao
+  - "Deseja adicionar algum outro ato?": decisao
     datatype: yesnoradio
-  - "Documento 2:": doc_2
+  - "Ato 2:": doc_2
     show if: decisao
 ---
-section: Documentos
+section: Atos a serem praticados pelo cartório
 progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao2
+  - "Deseja adicionar algum outro ato?": decisao2
     datatype: yesnoradio
-  - "Documento 3:": doc_3
+  - "Ato 3:": doc_3
     show if: decisao2
 ---
-section: Documentos
+section: Atos a serem praticados pelo cartório
 progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao3
+  - "Deseja adicionar algum outro ato?": decisao3
     datatype: yesnoradio
-  - "Documento 4:": doc_4
+  - "Ato 4:": doc_4
     show if: decisao3
 ---
-section: Documentos
+section: Atos a serem praticados pelo cartório
 progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao4
+  - "Deseja adicionar algum outro ato?": decisao4
     datatype: yesnoradio
-  - "Documento 5:": doc_5
+  - "Ato 5:": doc_5
     show if: decisao4
 ---
-section: Documentos
+section: Atos a serem praticados pelo cartório
 progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao5
+  - "Deseja adicionar algum outro ato?": decisao5
     datatype: yesnoradio
-  - "Documento 6:": doc_6
+  - "Ato 6:": doc_6
     show if: decisao5
 ---
-section: Documentos
+section: Atos a serem praticados pelo cartório
 progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao6
+  - "Deseja adicionar algum outro ato?": decisao6
     datatype: yesnoradio
-  - "Documento 7:": doc_7
+  - "Ato 7:": doc_7
     show if: decisao6
 ---
-section: Documentos
+section: Atos a serem praticados pelo cartório
 progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao7
+  - "Deseja adicionar algum outro ato?": decisao7
     datatype: yesnoradio
-  - "Documento 8:": doc_8
+  - "Ato 8:": doc_8
     show if: decisao7
 ---
-section: Documentos
+section: Atos a serem praticados pelo cartório
 progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao8
+  - "Deseja adicionar algum outro ato?": decisao8
     datatype: yesnoradio
-  - "Documento 9:": doc_9
+  - "Ato 9:": doc_9
     show if: decisao8
 ---
-section: Documentos
+section: Atos a serem praticados pelo cartório
 progress: 75
 question: |
   Por favor preencha os campos abaixo
 fields:
-  - "Deseja adicionar um documento?": decisao9
+  - "Deseja adicionar algum outro ato?": decisao9
     datatype: yesnoradio
-  - "Documento 10:": doc_10
+  - "Ato 10:": doc_10
     show if: decisao9
 ---
 section: Impressão
