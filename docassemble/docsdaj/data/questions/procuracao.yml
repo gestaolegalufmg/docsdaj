@@ -82,14 +82,11 @@ fields:
   - 'OAB do(a) Orientador(a):': num_oab_orientador
     required: True
   - 'Nome do(a) Estagiário(a):': nome_estagiario
-    required: True
   - 'Estado da OAB do(a) Estagiário(a)': uf_oab_estagiario
     code: |
       lista_estados_sigla()
-    default: MG
-    required: True
-  - 'OAB do(a) Estagiário(a):': num_oab_estagiario
-    required: True
+    default: MG    
+  - 'OAB do(a) Estagiário(a):': num_oab_estagiario    
   - 'Tipo da Ação:': tipo_acao
     required: True
     help: |
